@@ -284,3 +284,4 @@ def convert_markdown_to_pdf(md_path: str, pdf_path: str):
 
 if __name__ == "__main__":
     convert_markdown_to_pdf("docs/Phase3_Report.md", "docs/Phase3_Report.pdf")
+
