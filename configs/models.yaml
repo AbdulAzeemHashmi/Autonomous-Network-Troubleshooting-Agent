@@ -1,0 +1,36 @@
+# LLM Backbones Configuration
+backbones:
+  gpt-5:
+    provider: "openai"
+    model_name: "gpt-5"
+    cost_per_1k_input: 0.005
+    cost_per_1k_output: 0.015
+    context_window: 128000
+    supports_tools: true
+
+  gpt-5-mini:
+    provider: "openai"
+    model_name: "gpt-5-mini"
+    cost_per_1k_input: 0.00015
+    cost_per_1k_output: 0.0006
+    context_window: 128000
+    supports_tools: true
+
+  claude-sonnet-4-6:
+    provider: "anthropic"
+    model_name: "claude-sonnet-4-6"
+    cost_per_1k_input: 0.003
+    cost_per_1k_output: 0.015
+    context_window: 200000
+    supports_tools: true
+
+  gpt-oss-20b:
+    provider: "local"
+    model_name: "gpt-oss-20b"
+    cost_per_1k_input: 0.0000
+    cost_per_1k_output: 0.0000
+    context_window: 32768
+    supports_tools: true
+
+default_backbone: "claude-sonnet-4-6"
+judge_backbone: "gpt-5"

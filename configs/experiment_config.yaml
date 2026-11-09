@@ -1,0 +1,41 @@
+# Experiment Configuration
+experiment_name: "autonomous_network_troubleshooting_phase3"
+turn_budget: 20
+random_seeds: [42, 101, 2024, 7, 99]
+default_seed: 42
+
+scenarios:
+  nika:
+    - "datacenter_clos"
+    - "campus_network"
+    - "isp_backbone"
+    - "sdn_cloud_fabric"
+    - "p4_testbed"
+  fault_bench:
+    - "enterprise_branch"
+    - "leaf_spine_clos"
+    - "multihomed_edge"
+    - "transit_wan"
+    - "sdn_hybrid"
+    - "bgp_peering_exchange"
+    - "datacenter_dci"
+    - "campus_core_access"
+
+topology_sizes:
+  small:
+    approx_nodes: 11
+  medium:
+    approx_nodes: 27
+  large:
+    approx_nodes: 101
+
+evidence_filtering:
+  max_output_tokens: 500
+  strip_repeated_headers: true
+  normalize_whitespace: true
+
+paths:
+  results_dir: "results"
+  figures_dir: "figures"
+  logs_dir: "logs"
+  splits_file: "configs/splits.json"

@@ -1,0 +1,24 @@
+{
+  "description": "Whole-scenario partition preventing data leakage between development and evaluation sets.",
+  "development_scenarios": [
+    "datacenter_clos",
+    "campus_network",
+    "isp_backbone",
+    "enterprise_branch",
+    "leaf_spine_clos",
+    "multihomed_edge",
+    "transit_wan",
+    "sdn_hybrid",
+    "campus_core_access"
+  ],
+  "held_out_scenarios": [
+    "sdn_cloud_fabric",
+    "p4_testbed",
+    "bgp_peering_exchange",
+    "datacenter_dci"
+  ],
+  "split_ratio": {
+    "development": 0.692,
+    "held_out": 0.308
+  }
+}
