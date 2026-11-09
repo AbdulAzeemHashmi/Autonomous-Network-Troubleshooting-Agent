@@ -1,0 +1,7 @@
+incident_id,scenario,ground_truth_has_fault,fault_family,device,audit_status,verified
+INC-0001,datacenter_clos,True,link_failure,spine2,PASS_FAULT_VERIFIED,True
+INC-0002,campus_network,True,congestion,access_sw1,PASS_FAULT_VERIFIED,True
+INC-0003,isp_backbone,True,routing_misconfiguration,cr4,PASS_FAULT_VERIFIED,True
+INC-0004,sdn_cloud_fabric,True,acl_firewall_block,sw4,PASS_FAULT_VERIFIED,True
+INC-0005,p4_testbed,True,service_failure,access_sw4,PASS_FAULT_VERIFIED,True
+INC-0006,datacenter_clos,False,healthy,none,PASS_HEALTHY,True
