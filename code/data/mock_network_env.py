@@ -28,9 +28,11 @@ class MockNetworkEnv:
         self.topo = TopologyGraph(scenario, topology_size)
         nodes = self.topo.get_nodes()
 
-        # If faulty device is not provided, pick an appropriate node
-        if faulty_device and faulty_device in nodes:
+        # If faulty device is not provided, pick an appropriate node from topology
+        if faulty_device:
             self.faulty_device = faulty_device
+            if faulty_device not in nodes:
+                self.topo.graph.add_node(faulty_device, role="device", layer="network", status="up")
         else:
             self.faulty_device = nodes[1] if len(nodes) > 1 else nodes[0]
 
