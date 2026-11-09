@@ -11,13 +11,13 @@
 | Code | Category | Pitfall Name | Count | % of Failures | Core Diagnostic Defect |
 |:---|:---|:---|:---:|:---:|:---|
 | `P01_Hallucinated_Telemetry` | Intra-Agent Reasoning | **Hallucinated Telemetry Interpretation** | 0 | 0.0% | Agent misreads benign background text (e.g. ARP table timeout) as a critical failure. |
-| `P02_Shallow_Symptom_Stopping` | Intra-Agent Reasoning | **Shallow Symptom Stopping** | 2 | 9.09% | Agent halts investigation at surface symptoms (e.g., packet drop) without finding root cause. |
+| `P02_Shallow_Symptom_Stopping` | Intra-Agent Reasoning | **Shallow Symptom Stopping** | 0 | 0.0% | Agent halts investigation at surface symptoms (e.g., packet drop) without finding root cause. |
 | `P03_Premature_Termination` | Intra-Agent Reasoning | **Premature Search Termination** | 0 | 0.0% | Agent reaches diagnostic verdict after checking only one layer without corroboration. |
-| `P04_Confirmation_Bias` | Intra-Agent Reasoning | **Hypothesis Confirmation Bias** | 6 | 27.27% | Agent persistently clings to initial ticket premise despite contradictory telemetry. |
+| `P04_Confirmation_Bias` | Intra-Agent Reasoning | **Hypothesis Confirmation Bias** | 2 | 28.57% | Agent persistently clings to initial ticket premise despite contradictory telemetry. |
 | `P05_Incomplete_Layer_Exploration` | Architectural | **Incomplete Layer Exploration** | 0 | 0.0% | Agent skips required OSI layers (e.g., skips L3 routing or L4 socket inspection). |
 | `P06_Evidence_Dilution` | Architectural | **Evidence Dilution / Context Bloat** | 0 | 0.0% | Agent context window is saturated by voluminous raw CLI outputs, obscuring key anomalies. |
-| `P07_Adjacent_Misattribution` | Architectural | **Adjacent Device Misattribution** | 2 | 9.09% | Agent detects the fault but localizes the neighboring transit switch rather than the source. |
-| `P08_Healthy_Overdiagnosis` | Architectural | **Healthy Network Over-Diagnosis** | 12 | 54.55% | Agent diagnoses a severe fault on a perfectly healthy network (Sub-Gap A). |
+| `P07_Adjacent_Misattribution` | Architectural | **Adjacent Device Misattribution** | 1 | 14.29% | Agent detects the fault but localizes the neighboring transit switch rather than the source. |
+| `P08_Healthy_Overdiagnosis` | Architectural | **Healthy Network Over-Diagnosis** | 4 | 57.14% | Agent diagnoses a severe fault on a perfectly healthy network (Sub-Gap A). |
 | `P09_Tool_Misuse` | Agent-Environment | **Tool Execution Misuse** | 0 | 0.0% | Agent executes incorrect commands or repetitive no-op commands. |
 | `P10_Uncalibrated_Overconfidence` | Agent-Environment | **Uncalibrated Overconfidence** | 0 | 0.0% | Agent asserts high diagnostic confidence (>0.90) on an incorrect diagnosis. |
 | `P11_Turn_Budget_Exhaustion` | Agent-Environment | **Turn Budget Exhaustion** | 0 | 0.0% | Agent exceeds the 20-turn budget without submitting a root-cause conclusion. |
@@ -49,14 +49,14 @@
 - **Agent Predicted**: `link_failure`
 - **Assigned Pitfalls**: `P07_Adjacent_Misattribution`
 
-#### Example 2: Incident `INC-0006` (Baseline_Zero_Shot)
-- **Scenario**: `enterprise_branch`
-- **Ground Truth Fault**: `dns_failure`
-- **Agent Predicted**: `dns_failure`
-- **Assigned Pitfalls**: `P07_Adjacent_Misattribution`
+#### Example 2: Incident `INC-0006` (Baseline_SADE_Style)
+- **Scenario**: `datacenter_clos`
+- **Ground Truth Fault**: `healthy`
+- **Agent Predicted**: `routing_misconfiguration`
+- **Assigned Pitfalls**: `P08_Healthy_Overdiagnosis`
 
-#### Example 3: Incident `INC-0007` (Baseline_ReAct)
-- **Scenario**: `leaf_spine_clos`
-- **Ground Truth Fault**: `hardware_transceiver`
+#### Example 3: Incident `INC-0006` (Baseline_ReAct)
+- **Scenario**: `datacenter_clos`
+- **Ground Truth Fault**: `healthy`
 - **Agent Predicted**: `congestion`
-- **Assigned Pitfalls**: `P02_Shallow_Symptom_Stopping`
+- **Assigned Pitfalls**: `P08_Healthy_Overdiagnosis; P04_Confirmation_Bias`
