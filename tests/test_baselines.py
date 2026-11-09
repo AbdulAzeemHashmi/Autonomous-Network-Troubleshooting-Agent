@@ -63,3 +63,4 @@ def test_scripted_rules_baseline():
     env_healthy = MockNetworkEnv("datacenter_clos", "small", fault_injected=False)
     res_healthy = agent.troubleshoot(inc_fault, env_healthy)
     assert res_healthy["detected"] is False
+

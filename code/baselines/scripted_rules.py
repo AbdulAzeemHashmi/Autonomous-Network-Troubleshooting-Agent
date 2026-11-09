@@ -85,3 +85,4 @@ class ScriptedRuleAgent:
             "trace_logs": [{"turn": turns_used, "action": "scripted_threshold_evaluation", "root_cause": root_cause}],
             "ticket_valid": True
         }
+

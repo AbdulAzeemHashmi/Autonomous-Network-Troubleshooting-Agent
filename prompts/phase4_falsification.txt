@@ -23,3 +23,4 @@ Output valid JSON:
   "verdict_reason": "why probe disproved or corroborated hypothesis",
   "updated_confidence": 0.0 to 1.0
 }
+

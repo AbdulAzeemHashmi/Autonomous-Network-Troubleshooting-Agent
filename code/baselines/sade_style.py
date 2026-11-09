@@ -100,3 +100,4 @@ class SADEAgent:
             "trace_logs": trace_logs,
             "ticket_valid": True
         }
+

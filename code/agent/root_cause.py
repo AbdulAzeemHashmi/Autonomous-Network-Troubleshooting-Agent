@@ -57,3 +57,4 @@ class RootCauseSynthesizer:
                 f"with confidence {top_cause['confidence']}. Evidence: {top_cause['evidence']}"
             ) if top_cause else "Uncertain diagnosis"
         }
+

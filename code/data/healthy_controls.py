@@ -100,3 +100,4 @@ def generate_healthy_suite(
             controls.append(ctrl)
             idx += 1
     return controls
+

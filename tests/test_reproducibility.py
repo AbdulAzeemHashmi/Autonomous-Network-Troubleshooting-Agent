@@ -32,3 +32,4 @@ def test_reproducibility_run_all(tmp_path):
     assert os.path.exists("docs/error_analysis.md")
     assert os.path.exists("figures/fig1_main_performance_comparison.png")
     assert os.path.exists("figures/fig4_root_cause_confusion_matrix.png")
+

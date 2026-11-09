@@ -47,3 +47,4 @@ Our trimmer:
 1. Strips repetitive vendor banners and empty line sequences.
 2. Normalizes newline formats across operating systems.
 3. Enforces an upper bound of 500 tokens per tool execution output window.
+

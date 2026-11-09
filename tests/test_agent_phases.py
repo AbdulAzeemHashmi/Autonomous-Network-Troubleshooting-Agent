@@ -120,3 +120,4 @@ def test_agent_orchestrator_end_to_end():
     assert out_healthy["detected"] is False
     assert out_healthy["root_cause"] == "none"
     assert out_healthy["abstain_invoked"] is True
+

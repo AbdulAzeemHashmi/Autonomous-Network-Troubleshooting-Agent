@@ -85,3 +85,4 @@ class StatisticalAnalyzer:
                 "significant_at_05": False,
                 "error": str(e)
             }
+

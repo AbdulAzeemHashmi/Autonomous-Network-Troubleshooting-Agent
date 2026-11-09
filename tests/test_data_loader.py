@@ -50,3 +50,4 @@ def test_mock_network_env_execution():
 
     out_ping = env.execute_command("dist_sw1", "ping target")
     assert "Destination Host Unreachable" in out_ping
+

@@ -105,3 +105,4 @@ class TopologyGraph:
     def summarize(self) -> str:
         return (f"Topology: {self.scenario_name} ({self.topology_size}) - "
                 f"Nodes: {self.graph.number_of_nodes()}, Edges: {self.graph.number_of_edges()}")
+

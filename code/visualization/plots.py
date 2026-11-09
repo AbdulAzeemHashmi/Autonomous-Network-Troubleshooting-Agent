@@ -379,3 +379,4 @@ class PlotGenerator:
         plt.tight_layout()
         plt.savefig(os.path.join(self.figures_dir, "fig8_no_submission_rates.png"), dpi=300)
         plt.close()
+

@@ -234,3 +234,4 @@ class ErrorTaxonomyAnalyzer:
             f.write("\n".join(md_lines))
 
         print(f"[+] Saved failure taxonomy to {output_csv} and report to {output_md}.")
+

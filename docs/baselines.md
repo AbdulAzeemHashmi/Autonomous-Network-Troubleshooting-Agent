@@ -55,3 +55,4 @@ To evaluate our proposed 7-Phase Autonomous Troubleshooting Agent, we implement 
 ### Baseline 5: Scripted Rule Checks
 - **Mechanism**: Classical non-AI deterministic network monitoring. Executes fixed pings, interface checks, and route lookups against hardcoded thresholds.
 - **Purpose**: Establishes the non-AI floor and evaluates whether generative AI provides measurable benefit over conventional scripted threshold monitors.
+

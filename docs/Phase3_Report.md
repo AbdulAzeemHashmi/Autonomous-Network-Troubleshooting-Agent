@@ -300,3 +300,4 @@ Following Kim et al. (*Why Do AI Agents Systematically Fail at Cloud Root Cause 
 10. **Sana, M., Piovesan, N., De Domenico, A., et al.** (2025). *Reasoning Language Models for Root Cause Analysis in 5G Wireless Networks (TeleLogs)*. arXiv:2507.21974.
 11. **Shi, C., Jalli, B., Macdonald, G., et al.** (2025). *Leveraging Multi-Agent System (MAS) and Fine-Tuned Small Language Models (SLMs) for Automated Telecom Network Troubleshooting*. arXiv:2511.00651.
 12. **Kim, T., et al.** (2026). *Why Do AI Agents Systematically Fail at Cloud Root Cause Analysis?* arXiv:2602.09937.
+

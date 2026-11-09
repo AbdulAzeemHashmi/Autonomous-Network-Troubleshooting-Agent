@@ -53,3 +53,4 @@ class AbstainManager:
             "reason": f"Active network anomaly corroborated by {len(surviving_hypotheses)} surviving hypothesis/hypotheses.",
             "verdict": "fault detected"
         }
+

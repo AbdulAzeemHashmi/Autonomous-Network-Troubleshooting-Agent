@@ -116,3 +116,4 @@ class RemediationPlanner:
             "executed_automatically": False,
             "safety_note": "Remediation plan generated but not executed; awaiting human operator confirmation."
         }
+

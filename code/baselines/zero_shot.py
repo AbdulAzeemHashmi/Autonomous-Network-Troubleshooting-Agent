@@ -71,3 +71,4 @@ class ZeroShotAgent:
             "trace_logs": [{"turn": 1, "action": "zero_shot_inference", "predicted_cause": predicted_cause}],
             "ticket_valid": True
         }
+

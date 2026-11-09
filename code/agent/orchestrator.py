@@ -216,3 +216,4 @@ class TroubleshootingAgent:
             "trace_logs": trace_logs,
             "ticket_valid": ticket_valid
         }
+

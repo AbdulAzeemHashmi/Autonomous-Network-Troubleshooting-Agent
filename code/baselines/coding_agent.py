@@ -101,3 +101,4 @@ class CodingAgent:
             "trace_logs": trace_logs,
             "ticket_valid": True
         }
+
