@@ -481,12 +481,38 @@ Context bounding stops the context window from filling up. When the network grow
 
 <div align="center">
 
-| Name | Roll Number |
-|------|:-----------:|
-| Abdul Azeem | 24I-2013 |
-| Taha Amjad | 24K-0007 |
+<table>
+  <tr>
+    <td align="center" width="260">
+      <a href="https://github.com/AbdulAzeemHashmi">
+        <img src="https://github.com/AbdulAzeemHashmi.png?size=120" width="120" height="120" style="border-radius:50%" alt="Abdul Azeem"/>
+      </a>
+      <br/><br/>
+      <b>Abdul Azeem</b>
+      <br/>24I-2013
+      <br/><br/>
+      <a href="https://github.com/AbdulAzeemHashmi">
+        <img src="https://img.shields.io/badge/GitHub-AbdulAzeemHashmi-181717?style=for-the-badge&logo=github" alt="Abdul Azeem GitHub"/>
+      </a>
+    </td>
+    <td align="center" width="260">
+      <a href="https://github.com/tahaamja">
+        <img src="https://github.com/tahaamja.png?size=120" width="120" height="120" style="border-radius:50%" alt="Taha Amjad"/>
+      </a>
+      <br/><br/>
+      <b>Taha Amjad</b>
+      <br/>24K-0007
+      <br/><br/>
+      <a href="https://github.com/tahaamja">
+        <img src="https://img.shields.io/badge/GitHub-tahaamja-181717?style=for-the-badge&logo=github" alt="Taha Amjad GitHub"/>
+      </a>
+    </td>
+  </tr>
+</table>
 
-[![GitHub](https://img.shields.io/badge/GitHub-AbdulAzeemHashmi-181717?style=for-the-badge&logo=github)](https://github.com/AbdulAzeemHashmi/Autonomous-Network-Troubleshooting-Agent)
+<br/>
+
+[![Project Repository](https://img.shields.io/badge/Project%20Repository-Autonomous--Network--Troubleshooting--Agent-2C5364?style=for-the-badge&logo=github)](https://github.com/AbdulAzeemHashmi/Autonomous-Network-Troubleshooting-Agent)
 
 </div>
 
