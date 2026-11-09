@@ -32,7 +32,7 @@ class EvidenceScanner:
                 "severity": "high",
                 "raw_snippet": "Interface eth1 is DOWN, line protocol is DOWN (NO-CARRIER)"
             })
-        elif "CRC errors" in if_out or "ALARM" in if_out:
+        elif ("CRC errors" in if_out and "0 CRC errors" not in if_out) or "ALARM" in if_out:
             evidence_records.append({
                 "layer": "L2",
                 "symptom": "High CRC errors / optical transceiver degradation",
@@ -48,24 +48,31 @@ class EvidenceScanner:
         # -----------------------------------------------------------------
         ping_out = env.execute_command(device, "ping target")
         raw_outputs["L3_ping"] = self.preprocessor.trim_tool_output(ping_out)
-        if "100% packet loss" in ping_out or "Destination Net Unreachable" in ping_out:
+        if "Packet filtered" in ping_out or "Destination Host Prohibited" in ping_out:
+            evidence_records.append({
+                "layer": "L3",
+                "symptom": "Traffic administratively filtered by ACL firewall",
+                "severity": "high",
+                "raw_snippet": "Packet filtered (Destination Host Prohibited)"
+            })
+        elif "100% packet loss" in ping_out or "Destination Net Unreachable" in ping_out:
             evidence_records.append({
                 "layer": "L3",
                 "symptom": "Total packet loss / destination unreachable",
                 "severity": "high",
                 "raw_snippet": "Destination Net Unreachable (100% loss)"
             })
-        elif "60% packet loss" in ping_out or "time=312" in ping_out:
+        elif ("packet loss" in ping_out and "0% packet loss" not in ping_out) or "time=312" in ping_out:
             evidence_records.append({
                 "layer": "L3",
                 "symptom": "Severe packet loss and latency inflation (>300ms)",
                 "severity": "high",
-                "raw_snippet": "60% packet loss, rtt avg = 370.2 ms"
+                "raw_snippet": "Packet loss and high RTT latency"
             })
 
         route_out = env.execute_command(device, "show ip route")
         raw_outputs["L3_show_ip_route"] = self.preprocessor.trim_tool_output(route_out)
-        if "blackhole" in route_out or "Null0" in route_out or "not set" in route_out:
+        if "blackhole" in route_out or "Null0" in route_out:
             evidence_records.append({
                 "layer": "L3",
                 "symptom": "Anomalous route entry or blackhole null route",

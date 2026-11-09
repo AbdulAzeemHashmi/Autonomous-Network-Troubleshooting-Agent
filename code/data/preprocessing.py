@@ -68,7 +68,7 @@ class Preprocessor:
                     verified = ("timed out" in out or "NXDOMAIN" in out)
                 elif family == "hardware_transceiver":
                     out = env.execute_command(dev, "show interface")
-                    verified = ("CRC errors" in out or "ALARM" in out)
+                    verified = (("CRC errors" in out and "0 CRC errors" not in out) or "ALARM" in out)
                 else:
                     verified = True
                 status = "PASS_FAULT_VERIFIED" if verified else "FAIL_INJECTION_ABSENT"

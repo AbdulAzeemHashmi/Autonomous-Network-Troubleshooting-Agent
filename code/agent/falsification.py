@@ -75,8 +75,8 @@ class FalsificationEngine:
                     reason = "Routing table inspection confirmed missing next-hop / blackhole null route."
 
             elif family == "acl_firewall_block":
-                # Disproven if drop counter is 0 or policy ACCEPT without drop rules
-                if "DROP" not in probe_out or "0 pkts" in probe_out:
+                # Disproven if no DROP rule exists in output or drop rule has 0 matching packets
+                if "DROP" not in probe_out or " 0 DROP" in probe_out or "0 pkts DROP" in probe_out:
                     is_disproven = True
                     reason = "Firewall inspection revealed zero drop rule matches on target traffic."
                 else:
