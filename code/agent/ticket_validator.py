@@ -44,17 +44,22 @@ class TicketValidator:
 
         # Telemetry evaluation
         has_packet_loss = ("100% packet loss" in ping_out or "Destination" in ping_out or ("packet loss" in ping_out and "0% packet loss" not in ping_out))
-        has_latency_spike = any(f"time={ms}" in ping_out for ms in ["1", "2", "3", "4", "5", "6", "7", "8", "9"]) and ("time=0." not in ping_out and "time=1." not in ping_out and "time=2." not in ping_out and "time=3." not in ping_out and "time=4." not in ping_out and "time=5." not in ping_out) and ("rtt avg" in ping_out or "mdev" in ping_out)
-        # Check explicit high RTT in statistics
+        has_latency_spike = False
         if "rtt min/avg/max" in ping_out:
             try:
-                # e.g. rtt min/avg/max/mdev = 312.4/370.2/428.1/57.8 ms
                 stats_line = [l for l in ping_out.split("\n") if "rtt min/avg/max" in l][0]
                 avg_rtt = float(stats_line.split("=")[1].split("/")[1])
                 has_latency_spike = (avg_rtt > 100.0)
             except Exception:
                 pass
-        interface_anomaly = ("DOWN" in if_out or "NO-CARRIER" in if_out or "CRC errors" in if_out)
+
+        interface_anomaly = (
+            "is DOWN" in if_out or 
+            "line protocol is DOWN" in if_out or 
+            "NO-CARRIER" in if_out or 
+            ("CRC errors" in if_out and "0 CRC errors" not in if_out) or 
+            "ALARM" in if_out
+        )
 
         telemetry_confirms_fault = has_packet_loss or has_latency_spike or interface_anomaly
 
