@@ -9,7 +9,11 @@ import os
 import json
 import re
 import time
+import warnings
 from typing import Dict, Any, Optional
+
+# Suppress FutureWarning from deprecated google-generativeai package
+warnings.filterwarnings("ignore", category=FutureWarning, module="google.generativeai")
 
 try:
     import google.generativeai as genai
