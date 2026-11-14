@@ -16,7 +16,7 @@ The following table contrasts the performance of our proposed 7-Phase Autonomous
 | **SADE (Claude Sonnet 4.6)** | Tseng et al. (arXiv 2026) | 85.0% | *Not Reported* | 0.770 | *Not Reported* (Degraded in FaulT-Bench) | ~$1.44 / session (344k input tokens) | Single-emulator NIKA distribution; single backbone |
 | **FaulT-Bench Baseline** | Tseng et al. (arXiv 2026) | 75.0% | 65.6% | ~0.450 | 85.0% - 100.0% (Severe over-diagnosis) | Variable ($0.05 - $0.30) | 8 topologies; 72 false-premise tickets |
 | **RCLAgent (Claude 3.5 Sonnet)** | Zhang et al. (IEEE TDSC 2026) | 88.5% | 74.1% (MRR) | 69.7% (Rec@1) | *Not Reported* (Microservices) | *Not Reported* | Microservice trace-graphs; not tested on networks |
-| **Proposed 7-Phase Agent** | **Our Work (Phase 3)** | **75.0%** | **66.7%** | **0.621** | **0.0%** (Suppressed all false alarms) | **$0.0138** / session (1.9k input tokens) | **96.3% Transfer Score** across 13 diverse topologies |
+| **Proposed 7-Phase Agent** | **Our Work (Phase 3)** | **75.0%** | **66.7%** | **0.621** | **0.0%** (Suppressed all false alarms) | **$0.0138** / session (1.9k input tokens) | **96.3% Transfer Score** across 15 diverse topologies |
 
 ---
 

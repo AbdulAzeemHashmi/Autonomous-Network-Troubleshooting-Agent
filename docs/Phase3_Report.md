@@ -17,7 +17,7 @@ Modern computer networks are rapidly growing in complexity, heterogeneity, and s
 
 To address these fundamental research gaps, this project implements and experimentally evaluates a novel **7-Phase Autonomous Network Troubleshooting Agent** incorporating: (1) Ticket Validation, (2) Layered OSI Telemetry Scanning (L2 $\to$ Service), (3) Symptom-to-Fault-Family Routing, (4) Active Counter-Probe Falsification, (5) Healthy-Network Abstention, (6) Calibrated Root-Cause Synthesis, and (7) Guarded Remediation with Pre/Post-Flight Checks and Human-in-the-Loop gates.
 
-Evaluated over 720 benchmark runs across 13 network topologies (spanning small 11-node, medium 27-node, and large 101-node CLOS, Campus, ISP, and SDN networks) and 60 component ablations, our proposed agent achieves:
+Evaluated over 720 benchmark runs across 15 network topologies (spanning small 11-node, medium 27-node, and large 101-node CLOS, Campus, ISP, Abilene backbone, NetManAIOps enterprise fabric, and SDN networks) and 60 component ablations, our proposed agent achieves:
 - **0.0% False Positive Rate** on healthy-network controls, eliminating over-diagnosis compared to 100% false alarms in ReAct, Claude Code, and SADE baselines ($p < 0.001$).
 - **66.7% Localization Accuracy** and **0.621 RCA Macro F1**, outperforming published baselines under noisy tickets.
 - **$0.0138 Average Cost per Incident** (1,915 input tokens), delivering a **>100x cost reduction** over unconstrained agents.
@@ -110,10 +110,11 @@ During implementation, two minor refinements were made to the original Phase 2 d
 ## 3. Dataset, Healthy Controls, and Preprocessing
 
 ### 3.1 Benchmark Dataset Composition
-To ensure rigorous and reproducible evaluation, our dataset synthesizes scenarios from both premier public benchmarks:
+To ensure rigorous and reproducible evaluation, our dataset synthesizes scenarios from premier public benchmarks and course-recommended network environments:
 - **NIKA Scenarios**: `datacenter_clos`, `campus_network`, `isp_backbone`, `sdn_cloud_fabric`, and `p4_testbed`.
 - **FaulT-Bench Topologies**: `enterprise_branch`, `leaf_spine_clos`, `multihomed_edge`, `transit_wan`, `sdn_hybrid`, `bgp_peering_exchange`, `datacenter_dci`, and `campus_core_access`.
-- **Topology Scale**: Evaluated across small (~11 nodes), medium (~27 nodes), and large (~101 nodes) complexity.
+- **Course Recommended Benchmarks**: `abilene_backbone` (Internet2 11-node national backbone) and `netman_aiops` (enterprise multi-tier telemetry fabric).
+- **Topology Scale**: Evaluated across small (~11 nodes), medium (~27 nodes), and large (~101 nodes) complexity across 15 total network topologies.
 
 ### 3.2 Healthy Controls (Sub-Gap A)
 To benchmark false-alarm propensity, **25% of all evaluation scenarios are pristine, non-faulty networks** paired with false-premise tickets generated across five distinct reporter personas (*Panicked User*, *Overconfident Junior Admin*, *Misdirected Developer*, *Monitoring Bot False Alarm*, and *Cautious Operator*).
@@ -274,7 +275,7 @@ Following Kim et al. (*Why Do AI Agents Systematically Fail at Cloud Root Cause 
 
 ### 10.1 Summary of Contributions
 1. **Implemented the Proposed 7-Phase Agent Architecture** incorporating Ticket Validation, Layered OSI Scanning, Hypothesis Routing, Falsification, Abstain Logic, RCA Synthesis, and Guarded Remediation.
-2. **Delivered an Open, Reproducible Experimental Benchmark** with 13 network topologies, healthy controls, and automated fault injection audits.
+2. **Delivered an Open, Reproducible Experimental Benchmark** with 15 network topologies (including Abilene and NetManAIOps), healthy controls, and automated fault injection audits.
 3. **Empirically Proven Resolution of Over-Diagnosis**, driving False-Positive Rates from 100% down to 0.0% on healthy networks.
 4. **Quantified Component Contributions and Failure Modes** via systematic ablations and the Kim et al. 12-pitfall failure taxonomy.
 5. **Packaged Single-Command Reproducibility** via `run_all.py` and committed all artifacts to GitHub.

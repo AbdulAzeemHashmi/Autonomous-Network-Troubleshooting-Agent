@@ -20,7 +20,7 @@ To address **Sub-Gap A** and **Sub-Gap C**, our preprocessing pipeline enforces 
 ## 2. Preprocessing Pipeline Steps
 
 ### Step 1: Benchmark Dataset Synthesis
-We synthesize and load incidents reflecting the five official NIKA scenarios (`datacenter_clos`, `campus_network`, `isp_backbone`, `sdn_cloud_fabric`, `p4_testbed`) and eight FaulT-Bench topologies (`enterprise_branch`, `leaf_spine_clos`, `multihomed_edge`, `transit_wan`, `sdn_hybrid`, `bgp_peering_exchange`, `datacenter_dci`, `campus_core_access`).
+We synthesize and load incidents reflecting the five official NIKA scenarios (`datacenter_clos`, `campus_network`, `isp_backbone`, `sdn_cloud_fabric`, `p4_testbed`), eight FaulT-Bench topologies (`enterprise_branch`, `leaf_spine_clos`, `multihomed_edge`, `transit_wan`, `sdn_hybrid`, `bgp_peering_exchange`, `datacenter_dci`, `campus_core_access`), and two course-recommended benchmarks (`abilene_backbone` Internet2 backbone and `netman_aiops` enterprise multi-tier network) across 15 total topologies.
 - **Scale**: Multi-tier topologies with small (~11 nodes), medium (~27 nodes), and large (~101 nodes) complexity.
 - **Healthy Controls**: 25% of all evaluation scenarios are pristine, non-faulty networks accompanied by false-premise tickets across five reporter personas (*Panicked User*, *Overconfident Junior Admin*, *Misdirected Developer*, *Monitoring Bot Alert*, and *Cautious Operator*).
 
