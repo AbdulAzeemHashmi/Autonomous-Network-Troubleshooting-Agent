@@ -189,7 +189,11 @@ class ExperimentRunner:
                 llm_client=self.llm_client,
                 use_llm=self.use_live_llm
             ),
-            "Baseline_SADE_Style": SADEAgent(turn_budget=self.config.get("turn_budget", 20)),
+            "Baseline_SADE_Style": SADEAgent(
+                turn_budget=self.config.get("turn_budget", 20),
+                llm_client=self.llm_client,
+                use_llm=self.use_live_llm
+            ),
             "Baseline_ReAct": ReActAgent(turn_budget=self.config.get("turn_budget", 20)),
             "Baseline_Generic_Coding": CodingAgent(turn_budget=self.config.get("turn_budget", 20)),
             "Baseline_Zero_Shot": ZeroShotAgent(

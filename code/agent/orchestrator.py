@@ -188,7 +188,14 @@ class TroubleshootingAgent:
         # =================================================================
         turns_used += 1
         trace_logs.append({"turn": turns_used, "phase": 6, "action": "root_cause_synthesis"})
-        rca_res = self.rca_synthesizer.synthesize(surviving_hyps, abstain_res, suspected_device)
+        rca_res = self.rca_synthesizer.synthesize(
+            surviving_hyps,
+            abstain_res,
+            suspected_device,
+            ticket_text=ticket_text,
+            llm_client=self.llm_client,
+            use_llm=self.use_llm
+        )
         input_tokens += 400
         output_tokens += 150
 
@@ -197,7 +204,11 @@ class TroubleshootingAgent:
         # =================================================================
         turns_used += 1
         trace_logs.append({"turn": turns_used, "phase": 7, "action": "remediation_planning"})
-        remediation_res = self.remediation_planner.plan_remediation(rca_res)
+        remediation_res = self.remediation_planner.plan_remediation(
+            rca_res,
+            llm_client=self.llm_client,
+            use_llm=self.use_llm
+        )
 
         elapsed = time.time() - start_time
         dollar_cost = (input_tokens / 1000.0) * self.cost_per_1k_input + (output_tokens / 1000.0) * self.cost_per_1k_output

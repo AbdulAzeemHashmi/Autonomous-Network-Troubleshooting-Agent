@@ -8,6 +8,8 @@ import os
 import json
 from code.agent.llm_client import GeminiClient
 from code.agent.ticket_validator import TicketValidator
+from code.agent.root_cause import RootCauseSynthesizer
+from code.agent.remediation import RemediationPlanner
 from code.experiments.runner import LLMJudge
 from code.data.mock_network_env import MockNetworkEnv
 
@@ -70,4 +72,54 @@ def test_llm_judge_with_gemini_client():
     assert "overall_judge_score" in scores
     assert 1.0 <= scores["overall_judge_score"] <= 5.0
     assert scores["outcome_score"] == 5.0
+
+
+def test_root_cause_synthesizer_with_gemini_client():
+    client = GeminiClient(api_key="mock_key", model_name="gemini-1.5-flash")
+    synthesizer = RootCauseSynthesizer()
+
+    hyps = [
+        {
+            "fault_family": "link_failure",
+            "device": "leaf1",
+            "updated_confidence": 0.92,
+            "falsification_reason": "Verified carrier loss on interface eth1"
+        }
+    ]
+    abstain_res = {"abstain": False}
+
+    res = synthesizer.synthesize(
+        surviving_hypotheses=hyps,
+        abstain_result=abstain_res,
+        device="leaf1",
+        ticket_text="Link down on leaf1",
+        llm_client=client,
+        use_llm=True
+    )
+
+    assert "detected" in res
+    assert res["detected"] is True
+    assert "ranked_causes" in res
+    assert len(res["ranked_causes"]) > 0
+    assert res["root_cause"] == "link_failure"
+
+
+def test_remediation_planner_with_gemini_client():
+    client = GeminiClient(api_key="mock_key", model_name="gemini-1.5-flash")
+    planner = RemediationPlanner()
+
+    rca_result = {
+        "detected": True,
+        "root_cause": "link_failure",
+        "localized_device": "leaf1",
+        "confidence": 0.92,
+        "reasoning_summary": "Carrier loss confirmed on eth1"
+    }
+
+    res = planner.plan_remediation(rca_result, llm_client=client, use_llm=True)
+    assert "remediation_proposed" in res
+    assert res["remediation_proposed"] is True
+    assert res["requires_human_approval"] is True
+    assert "pre_flight_check" in res
+
 

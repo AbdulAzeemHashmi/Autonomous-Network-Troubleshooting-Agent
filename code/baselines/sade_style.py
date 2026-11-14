@@ -5,7 +5,7 @@ Strongest published baseline: utilizes phase-gated layered escalation and fault-
 but DOES NOT include hypothesis falsification or healthy-network abstention.
 """
 
-from typing import Dict, Any, List
+from typing import Dict, Any, List, Optional
 import time
 from code.data.mock_network_env import MockNetworkEnv
 from code.data.preprocessing import Preprocessor
@@ -21,11 +21,15 @@ class SADEAgent:
         self,
         turn_budget: int = 20,
         cost_per_1k_input: float = 0.003,
-        cost_per_1k_output: float = 0.015
+        cost_per_1k_output: float = 0.015,
+        llm_client: Optional[Any] = None,
+        use_llm: bool = False
     ):
         self.turn_budget = turn_budget
         self.cost_per_1k_input = cost_per_1k_input
         self.cost_per_1k_output = cost_per_1k_output
+        self.llm_client = llm_client
+        self.use_llm = use_llm
         self.preprocessor = Preprocessor(max_tokens=500)
         self.scanner = EvidenceScanner(self.preprocessor)
         self.router = HypothesisRouter()
@@ -76,7 +80,14 @@ class SADEAgent:
 
         # 3. Root cause synthesis
         turns_used += 1
-        rca_res = self.rca_synthesizer.synthesize(candidate_hyps, {"abstain": False}, target_device)
+        rca_res = self.rca_synthesizer.synthesize(
+            candidate_hyps,
+            {"abstain": False},
+            target_device,
+            ticket_text=ticket_text,
+            llm_client=self.llm_client,
+            use_llm=self.use_llm
+        )
         input_tokens += 350
         output_tokens += 120
 

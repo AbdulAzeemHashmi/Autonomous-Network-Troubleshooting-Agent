@@ -4,17 +4,32 @@ Synthesizes verified evidence into a ranked list of root causes with calibrated 
 Grounding: BiAn (Wang et al., 2025) and RCLAgent (Zhang et al., 2026).
 """
 
-from typing import List, Dict, Any
+import os
+import json
+from typing import List, Dict, Any, Optional
 
 
 class RootCauseSynthesizer:
     """Produces the final ranked root-cause analysis."""
 
+    def __init__(self, prompt_template_path: str = "prompts/phase6_root_cause.txt"):
+        self.prompt_template_path = prompt_template_path
+        self.prompt_template = ""
+        if os.path.exists(prompt_template_path):
+            try:
+                with open(prompt_template_path, "r", encoding="utf-8") as f:
+                    self.prompt_template = f.read()
+            except Exception:
+                self.prompt_template = ""
+
     def synthesize(
         self,
         surviving_hypotheses: List[Dict[str, Any]],
         abstain_result: Dict[str, Any],
-        device: str
+        device: str,
+        ticket_text: str = "",
+        llm_client: Optional[Any] = None,
+        use_llm: bool = False
     ) -> Dict[str, Any]:
         """Aggregates surviving hypotheses into ranked root causes."""
         if abstain_result.get("abstain", False):
@@ -45,6 +60,29 @@ class RootCauseSynthesizer:
             })
 
         top_cause = ranked_causes[0] if ranked_causes else None
+
+        # Check if live LLM synthesis should enhance the output
+        if use_llm and llm_client and self.prompt_template:
+            try:
+                formatted_prompt = (
+                    self.prompt_template
+                    .replace("{ticket_text}", str(ticket_text))
+                    .replace("{device}", str(device))
+                    .replace("{surviving_hypotheses}", json.dumps(ranked_causes))
+                )
+                resp = llm_client.generate_json(formatted_prompt)
+                parsed = resp.get("parsed_json", {})
+                if parsed and "root_cause" in parsed:
+                    return {
+                        "detected": bool(parsed.get("detected", True)),
+                        "localized_device": parsed.get("localized_device", top_cause["device"] if top_cause else device),
+                        "root_cause": parsed.get("root_cause", top_cause["fault_family"] if top_cause else "unknown"),
+                        "confidence": float(parsed.get("confidence", top_cause["confidence"] if top_cause else 0.5)),
+                        "ranked_causes": parsed.get("ranked_causes", ranked_causes),
+                        "reasoning_summary": parsed.get("reasoning_summary", "LLM-synthesized diagnosis.")
+                    }
+            except Exception:
+                pass
 
         return {
             "detected": True,
