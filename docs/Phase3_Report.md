@@ -33,7 +33,7 @@ Autonomous network operations (AIOps) and self-healing networks aim to minimize 
 ### 1.2 Synthesis of Literature and Identified Gaps (Phases 1 & 2)
 In Phase 1, our review of early self-healing papers (*Huang et al.*, IEEE TCCN 2026; *Mwangi et al.*, IEEE TNSM 2026; *Rawas & Samala*, 2026) revealed that existing work focused almost exclusively on traffic rerouting without evaluating diagnostic accuracy, false alarm susceptibility, or operational overhead.
 
-In Phase 2, our extended review of nine 2025–2026 systems (*BiAn*, Alibaba SIGCOMM 2025; *Confucius*, Meta SIGCOMM 2025; *RCLAgent*, IEEE TDSC 2026; *NIKA*, arXiv 2025; *SADE*, arXiv 2026; *FaulT-Bench*, arXiv 2026; *TeleLogs*, arXiv 2025; *Ericsson MAS*, 2025; *Kim et al.*, arXiv 2026) formalized our refined research gap:
+In Phase 2, our extended review of nine 2025 to 2026 systems (*BiAn*, Alibaba SIGCOMM 2025; *Confucius*, Meta SIGCOMM 2025; *RCLAgent*, IEEE TDSC 2026; *NIKA*, arXiv 2025; *SADE*, arXiv 2026; *FaulT-Bench*, arXiv 2026; *TeleLogs*, arXiv 2025; *Ericsson MAS*, 2025; *Kim et al.*, arXiv 2026) formalized our refined research gap:
 > *"There is no publicly reproducible troubleshooting agent that avoids over-diagnosis on healthy networks, reports a complete metric set including false positives and cost together, and generalizes across different network scenarios, topology sizes, and fault families."*
 
 This overarching gap decomposed into three sub-gaps:
@@ -185,7 +185,7 @@ All eight publication-grade figures were generated and saved to the `figures/` d
 
 ### Figure 3: Cost-Effectiveness and Pareto Frontier Analysis
 ![Figure 3: Cost vs RCA F1 Pareto](../figures/fig3_cost_vs_rca_f1_pareto.png)  
-*Figure 3 Caption*: Scatter plot of operational dollar cost per incident versus RCA Macro F1. The Proposed Agent establishes an optimal position on the Pareto frontier, delivering superior diagnostic quality at just $0.0138 per incident—a >100x cost reduction compared to unconstrained literature benchmarks.
+*Figure 3 Caption*: Scatter plot of operational dollar cost per incident versus RCA Macro F1. The Proposed Agent establishes an optimal position on the Pareto frontier, delivering superior diagnostic quality at just $0.0138 per incident -- a >100x cost reduction compared to unconstrained literature benchmarks.
 
 ### Figure 4: Root Cause Confusion Matrix
 ![Figure 4: Confusion Matrix](../figures/fig4_root_cause_confusion_matrix.png)  
@@ -288,11 +288,11 @@ Following Kim et al. (*Why Do AI Agents Systematically Fail at Cloud Root Cause 
 
 ## 11. References
 
-1. **Huang, L., Wu, Y., and Simeonidou, D.** (2026). *Optimizing System Performance for Autonomous Recovery in AI Native Networks Using Large Language Models*. IEEE Transactions on Cognitive Communications and Networking (TCCN), Vol. 12, pp. 6451–6465.
-2. **Mwangi, A., Navarro Hilfiker, L., Brewka, L., Gryning, M., Fumagalli, E., and Gibescu, M.** (2026). *A Threshold Triggered Deep Q Network Based Framework for Self Healing in Autonomic Software Defined IIoT Edge Networks*. IEEE Transactions on Network and Service Management (TNSM), Vol. 23, pp. 1297–1311.
+1. **Huang, L., Wu, Y., and Simeonidou, D.** (2026). *Optimizing System Performance for Autonomous Recovery in AI Native Networks Using Large Language Models*. IEEE Transactions on Cognitive Communications and Networking (TCCN), Vol. 12, pp. 6451-6465.
+2. **Mwangi, A., Navarro Hilfiker, L., Brewka, L., Gryning, M., Fumagalli, E., and Gibescu, M.** (2026). *A Threshold Triggered Deep Q Network Based Framework for Self Healing in Autonomic Software Defined IIoT Edge Networks*. IEEE Transactions on Network and Service Management (TNSM), Vol. 23, pp. 1297-1311.
 3. **Rawas, S. and Samala, A. D.** (2026). *Bio inspired AI for Adaptive and Resilient Software Defined Networks: A Self Healing Approach for Autonomous Optimization and Security*. Iranian Journal of Computer Science.
-4. **Wang, C., Zhang, X., Lu, R., et al.** (2025). *Towards LLM-Based Failure Localization in Production-Scale Networks (BiAn)*. ACM SIGCOMM 2025, pp. 496–511.
-5. **Wang, Z., Lin, S., Yan, G., et al.** (2025). *Intent-Driven Network Management with Multi-Agent LLMs: The Confucius Framework*. ACM SIGCOMM 2025, pp. 347–362.
+4. **Wang, C., Zhang, X., Lu, R., et al.** (2025). *Towards LLM-Based Failure Localization in Production-Scale Networks (BiAn)*. ACM SIGCOMM 2025, pp. 496-511.
+5. **Wang, Z., Lin, S., Yan, G., et al.** (2025). *Intent-Driven Network Management with Multi-Agent LLMs: The Confucius Framework*. ACM SIGCOMM 2025, pp. 347-362.
 6. **Zhang, L., Jia, T., Wang, K., et al.** (2026). *Towards In-Depth Root Cause Localization for Microservices with Multi-Agent Recursion-of-Thought (RCLAgent)*. IEEE Transactions on Dependable and Secure Computing (TDSC).
 7. **Wang, Z., Cornacchia, A., Sacco, A., Galante, F., Canini, M., Jiang, D.** (2025). *A Network Arena for Benchmarking AI Agents on Network Troubleshooting (NIKA)*. arXiv:2512.16381.
 8. **Tseng, K.-H., Bogahawatta, N., Ginige, Y., Dekic, K., Sivanathan, A., Seneviratne, S.** (2026). *SADE: Symptom-Aware Diagnostic Escalation for LLM-Based Network Troubleshooting*. arXiv:2605.04530.

@@ -3,7 +3,7 @@
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f2027,50:203a43,100:2c5364&height=220&section=header&text=Autonomous%20Network%20Troubleshooting%20Agent&fontSize=38&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=Find%20the%20real%20fault.%20Ignore%20the%20false%20alarm.&descAlignY=58&descSize=18" alt="Header banner" width="100%"/>
 
 <a href="https://github.com/AbdulAzeemHashmi/Autonomous-Network-Troubleshooting-Agent">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&duration=3000&pause=800&color=2C9CDB&center=true&vCenter=true&width=720&lines=7-Phase+AI+Agent+for+Network+Faults;Powered+by+Google+Gemini+API;0.0%25+False+Positive+Rate+on+Healthy+Networks;Only+%240.0138+per+Troubleshooting+Session;Tested+on+13+Topologies+and+720+Runs" alt="Typing animation"/>
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&duration=3000&pause=800&color=2C9CDB&center=true&vCenter=true&width=720&lines=7-Phase+AI+Agent+for+Network+Faults;Powered+by+Google+Gemini+API;0.0%25+False+Positive+Rate+on+Healthy+Networks;Only+%240.0138+per+Troubleshooting+Session;Tested+on+15+Topologies+and+720+Runs" alt="Typing animation"/>
 </a>
 
 <br/>
@@ -20,7 +20,7 @@
 ![Transfer Score](https://img.shields.io/badge/Transfer%20Score-96.3%25-brightgreen?style=flat-square)
 ![Benchmark Runs](https://img.shields.io/badge/Benchmark%20Runs-720-informational?style=flat-square)
 ![Ablation Runs](https://img.shields.io/badge/Ablation%20Runs-60-informational?style=flat-square)
-![Topologies](https://img.shields.io/badge/Topologies-13-informational?style=flat-square)
+![Topologies](https://img.shields.io/badge/Topologies-15-informational?style=flat-square)
 
 <br/>
 
@@ -155,7 +155,7 @@ The agent identifies seven canonical network fault families:
 
 ## 5. Dataset and Topologies
 
-The evaluation uses 13 network topologies across 3 sizes:
+The evaluation uses 15 network topologies across 3 sizes:
 
 | Scenario Name | Source | Topology Type | Node Count |
 |---|---|---|---|
@@ -172,6 +172,8 @@ The evaluation uses 13 network topologies across 3 sizes:
 | bgp_peering_exchange| Fault-Bench | Internet Exchange Point (IXP) | 16 |
 | datacenter_dci | Fault-Bench | Data Center Interconnect | 28 |
 | campus_core_access | Fault-Bench | Large campus network | 101 |
+| abilene_backbone | Course Benchmark | Internet2 Abilene 11-node backbone | 11 |
+| netman_aiops | Course Benchmark | Enterprise multi-tier (NetManAIOps) | 16 |
 
 ---
 
