@@ -11,7 +11,7 @@
 ![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![Gemini](https://img.shields.io/badge/Google%20Gemini-1.5%20Flash-4285F4?style=for-the-badge&logo=google&logoColor=white)
 ![NetworkX](https://img.shields.io/badge/NetworkX-3.7-orange?style=for-the-badge)
-![Pytest](https://img.shields.io/badge/Tests-25%20passing-success?style=for-the-badge&logo=pytest&logoColor=white)
+![Pytest](https://img.shields.io/badge/Tests-26%20passing-success?style=for-the-badge&logo=pytest&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
 ![Repo](https://img.shields.io/badge/Repository-Private-lightgrey?style=for-the-badge&logo=github)
 
@@ -149,7 +149,7 @@ The agent identifies seven canonical network fault families:
 | Data analysis | Pandas, NumPy, SciPy, Scikit-Learn | Statistical tests, CIs, F1 scores |
 | Plotting | Matplotlib | 8 publication figures at 300 DPI |
 | PDF Export | ReportLab | Formatted academic report compiler |
-| Testing | Pytest | 25 automated unit tests |
+| Testing | Pytest | 26 automated unit tests |
 
 ---
 
@@ -264,7 +264,7 @@ Autonomous-Network-Troubleshooting-Agent/
 |   |-- failure_taxonomy.csv              # Error classification counts
 |   \-- fault_audit.csv                   # Preprocessing audit logs
 |
-\-- tests/                                # Automated test suite (25 tests)
+\-- tests/                                # Automated test suite (26 tests)
     |-- test_agent_phases.py              # Phase 1 through 7 unit tests
     |-- test_baselines.py                 # All 5 baselines tests
     |-- test_data_loader.py               # Loader, graph, and env tests
@@ -307,7 +307,7 @@ python run_all.py --use_live_llm --gemini_api_key "YOUR_GEMINI_KEY"
 
 ### Step 4: Run unit tests
 
-All 25 automated unit tests run with:
+All 26 automated unit tests run with:
 
 ```bash
 pytest tests/ -v
