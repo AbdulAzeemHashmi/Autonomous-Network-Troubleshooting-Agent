@@ -22,7 +22,6 @@ class MetricCalculator:
             return {}
 
         # 1. Detection Accuracy: did agent correctly distinguish fault vs healthy?
-        # True detection = (actual_fault == True and detected == True) or (actual_fault == False and detected == False)
         correct_detection = (
             (runs_df["ground_truth_has_fault"] == runs_df["detected"])
         ).sum()
@@ -39,9 +38,7 @@ class MetricCalculator:
         # 3. RCA F1: multiclass macro/micro F1 over fault family classifications
         y_true = runs_df["ground_truth_fault_family"].fillna("none").astype(str).tolist()
         y_pred = runs_df["root_cause"].fillna("none").astype(str).tolist()
-        # Macro F1
         rca_f1_macro = float(f1_score(y_true, y_pred, average="macro", zero_division=0))
-        # Micro / Weighted F1
         rca_f1_weighted = float(f1_score(y_true, y_pred, average="weighted", zero_division=0))
 
         # 4. False-Positive Rate on Healthy Cases (KEY NEW METRIC - Sub-Gap A)
@@ -110,3 +107,16 @@ class MetricCalculator:
             "transfer_score": round(transfer_score, 4)
         }
 
+    @classmethod
+    def compute_summary_table(cls, runs_df: pd.DataFrame) -> pd.DataFrame:
+        """Groups raw runs by model_name and computes summary metric rows."""
+        summary_rows = []
+        for model_name, m_df in runs_df.groupby("model_name"):
+            metrics = cls.compute_all_metrics(m_df)
+            metrics["model_name"] = model_name
+            summary_rows.append(metrics)
+        df_summary = pd.DataFrame(summary_rows)
+        if not df_summary.empty:
+            cols = ["model_name"] + [c for c in df_summary.columns if c != "model_name"]
+            return df_summary[cols]
+        return df_summary

@@ -1,5 +1,6 @@
 """
 Export Phase 3 Markdown Report to Publication-Grade PDF using ReportLab
+Grounding: Phase 3 Deliverable (Academic Research Report PDF)
 """
 
 import os
@@ -8,7 +9,7 @@ from reportlab.lib.pagesizes import letter
 from reportlab.lib import colors
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.platypus import (
-    SimpleDocTemplate, Paragraph, Spacer, Image, Table, TableStyle, PageBreak, KeepTogether, HRFlowable
+    SimpleDocTemplate, Paragraph, Spacer, Image, Table, TableStyle, HRFlowable
 )
 from reportlab.pdfgen import canvas
 
@@ -39,18 +40,56 @@ class NumberedCanvas(canvas.Canvas):
 
         # Header (pages > 1)
         if self._pageNumber > 1:
-            self.drawString(54, 11 * 72 - 36, "Computer Networks — Phase 3: Autonomous Network Troubleshooting Agent")
+            self.drawString(54, 11 * 72 - 36, "Computer Networks - Phase 3: Autonomous Network Troubleshooting Agent")
             self.drawRightString(8.5 * 72 - 54, 11 * 72 - 36, "FAST-NUCES")
             self.line(54, 11 * 72 - 42, 8.5 * 72 - 54, 11 * 72 - 42)
 
         # Footer
         self.line(54, 45, 8.5 * 72 - 54, 45)
-        self.drawString(54, 32, "Abdul Azeem (24I-2013) & Taha Amjad (24K-0007)")
+        self.drawString(54, 32, "Abdul Azeem (24I-2013) and Taha Amjad (24K-0007)")
         self.drawRightString(8.5 * 72 - 54, 32, f"Page {self._pageNumber} of {page_count}")
         self.restoreState()
 
 
+def format_inline_markdown(text: str) -> str:
+    """Safely converts markdown bold, italics, code, and symbols to valid ReportLab XML."""
+    if not text:
+        return ""
+
+    # 1. Replace specific LaTeX math symbols before XML escaping
+    text = text.replace(r"$\ge$", ">=").replace(r"$\le$", "<=")
+    text = text.replace(r"$\to$", "->").replace(r"$\approx$", "~")
+    text = text.replace(r"\to", "->").replace(r"\ge", ">=").replace(r"\le", "<=")
+
+    # 2. Escape XML special characters
+    text = text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+
+    # 3. Protect inline code `code` tokens to protect snake_case and special syntax
+    code_tokens = []
+    def stash_code(match):
+        code_tokens.append(match.group(1))
+        return f"__CODE_TOKEN_{len(code_tokens)-1}__"
+
+    text = re.sub(r"`(.+?)`", stash_code, text)
+
+    # 4. Convert bold **text** -> <b>text</b>
+    text = re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", text)
+
+    # 5. Convert italics *text* only (not underscores, and only when non-empty)
+    text = re.sub(r"(?<!\*)\*([^\*]+?)\*(?!\*)", r"<i>\1</i>", text)
+
+    # 6. Restore code tokens with Courier font
+    for idx, c in enumerate(code_tokens):
+        safe_c = c.replace("<", "&lt;").replace(">", "&gt;")
+        text = text.replace(f"__CODE_TOKEN_{idx}__", f'<font name="Courier" size="7.5">{safe_c}</font>')
+
+    return text
+
+
 def convert_markdown_to_pdf(md_path: str, pdf_path: str):
+    if not os.path.exists(md_path):
+        raise FileNotFoundError(f"Markdown file not found: {md_path}")
+
     with open(md_path, "r", encoding="utf-8") as f:
         md_text = f.read()
 
@@ -65,88 +104,87 @@ def convert_markdown_to_pdf(md_path: str, pdf_path: str):
 
     styles = getSampleStyleSheet()
 
-    # Custom styles
+    # Academic Typography Styles
     title_style = ParagraphStyle(
-        "CoverTitle",
+        "DocTitle",
         parent=styles["Normal"],
         fontName="Helvetica-Bold",
-        fontSize=20,
-        leading=24,
+        fontSize=18,
+        leading=22,
         textColor=colors.HexColor("#0F172A"),
-        spaceAfter=8
+        spaceAfter=6,
+        alignment=1  # Center
     )
     subtitle_style = ParagraphStyle(
-        "CoverSubTitle",
-        parent=styles["Normal"],
-        fontName="Helvetica-Bold",
-        fontSize=13,
-        leading=16,
-        textColor=colors.HexColor("#2563EB"),
-        spaceAfter=14
-    )
-    meta_style = ParagraphStyle(
-        "MetaStyle",
+        "DocSubtitle",
         parent=styles["Normal"],
         fontName="Helvetica",
-        fontSize=9.5,
-        leading=13,
-        textColor=colors.HexColor("#334155")
+        fontSize=11,
+        leading=15,
+        textColor=colors.HexColor("#334155"),
+        spaceAfter=12,
+        alignment=1
     )
     h1_style = ParagraphStyle(
-        "Heading1_Custom",
-        parent=styles["Heading1"],
+        "SectionH1",
+        parent=styles["Normal"],
         fontName="Helvetica-Bold",
-        fontSize=13,
-        leading=16,
-        textColor=colors.HexColor("#0F172A"),
-        spaceBefore=12,
+        fontSize=12,
+        leading=15,
+        textColor=colors.HexColor("#1E3A8A"),
+        spaceBefore=14,
         spaceAfter=6,
         keepWithNext=True
     )
     h2_style = ParagraphStyle(
-        "Heading2_Custom",
-        parent=styles["Heading2"],
+        "SectionH2",
+        parent=styles["Normal"],
         fontName="Helvetica-Bold",
-        fontSize=11,
-        leading=14,
-        textColor=colors.HexColor("#1E3A8A"),
-        spaceBefore=8,
+        fontSize=10,
+        leading=13,
+        textColor=colors.HexColor("#1E293B"),
+        spaceBefore=10,
         spaceAfter=4,
         keepWithNext=True
     )
     h3_style = ParagraphStyle(
-        "Heading3_Custom",
-        parent=styles["Heading3"],
+        "SectionH3",
+        parent=styles["Normal"],
         fontName="Helvetica-Bold",
-        fontSize=10,
-        leading=13,
-        textColor=colors.HexColor("#0F172A"),
-        spaceBefore=6,
-        spaceAfter=2,
+        fontSize=9,
+        leading=12,
+        textColor=colors.HexColor("#334155"),
+        spaceBefore=8,
+        spaceAfter=3,
         keepWithNext=True
     )
     body_style = ParagraphStyle(
-        "Body_Custom",
+        "BodyCustom",
         parent=styles["Normal"],
         fontName="Helvetica",
-        fontSize=9,
-        leading=12.5,
+        fontSize=8.5,
+        leading=11.5,
         textColor=colors.HexColor("#1E293B"),
-        spaceAfter=5
+        spaceAfter=5,
+        alignment=4  # Justified
     )
     bullet_style = ParagraphStyle(
-        "Bullet_Custom",
-        parent=body_style,
+        "BulletCustom",
+        parent=styles["Normal"],
+        fontName="Helvetica",
+        fontSize=8.5,
+        leading=11.5,
+        textColor=colors.HexColor("#1E293B"),
         leftIndent=14,
         firstLineIndent=-10,
         spaceAfter=3
     )
     caption_style = ParagraphStyle(
-        "Caption_Custom",
+        "CaptionCustom",
         parent=styles["Normal"],
         fontName="Helvetica-Oblique",
         fontSize=8,
-        leading=10.5,
+        leading=10,
         textColor=colors.HexColor("#475569"),
         alignment=1,  # Center
         spaceBefore=4,
@@ -156,8 +194,8 @@ def convert_markdown_to_pdf(md_path: str, pdf_path: str):
         "TableCell",
         parent=styles["Normal"],
         fontName="Helvetica",
-        fontSize=7.5,
-        leading=9.5,
+        fontSize=7,
+        leading=9,
         textColor=colors.HexColor("#0F172A")
     )
     table_cell_header = ParagraphStyle(
@@ -168,10 +206,8 @@ def convert_markdown_to_pdf(md_path: str, pdf_path: str):
     )
 
     story = []
-
     lines = md_text.split("\n")
     i = 0
-    in_table = False
     table_lines = []
 
     while i < len(lines):
@@ -199,8 +235,8 @@ def convert_markdown_to_pdf(md_path: str, pdf_path: str):
                     row_cells = []
                     for c_idx, cell_text in enumerate(r_cols):
                         c_style = table_cell_header if row_idx == 0 else table_cell
-                        clean_cell = cell_text.replace("**", "").replace("`", "")
-                        row_cells.append(Paragraph(clean_cell, c_style))
+                        formatted_cell = format_inline_markdown(cell_text)
+                        row_cells.append(Paragraph(formatted_cell, c_style))
                     table_data.append(row_cells)
 
                 t = Table(table_data, colWidths=[col_w] * num_cols)
@@ -233,48 +269,32 @@ def convert_markdown_to_pdf(md_path: str, pdf_path: str):
                 img = Image(img_abs_path, width=420, height=220)
                 img.hAlign = "CENTER"
                 story.append(img)
-                story.append(Paragraph(f"<b>Figure</b>: {img_caption}", caption_style))
+                story.append(Paragraph(f"<b>Figure</b>: {format_inline_markdown(img_caption)}", caption_style))
             i += 1
             continue
 
-        # Title / Subtitle
+        # Headings
         if line.startswith("# "):
-            title_text = line[2:].strip()
-            story.append(Paragraph(title_text, title_style))
+            story.append(Paragraph(format_inline_markdown(line[2:].strip()), title_style))
         elif line.startswith("## Project Title:"):
-            story.append(Paragraph(line[3:].strip(), subtitle_style))
+            story.append(Paragraph(format_inline_markdown(line[3:].strip()), subtitle_style))
         elif line.startswith("## "):
-            story.append(Paragraph(line[3:].strip(), h1_style))
+            story.append(Paragraph(format_inline_markdown(line[3:].strip()), h1_style))
         elif line.startswith("### "):
-            story.append(Paragraph(line[4:].strip(), h2_style))
+            story.append(Paragraph(format_inline_markdown(line[4:].strip()), h2_style))
         elif line.startswith("#### "):
-            story.append(Paragraph(line[5:].strip(), h3_style))
+            story.append(Paragraph(format_inline_markdown(line[5:].strip()), h3_style))
         elif line.startswith("---"):
             story.append(HRFlowable(width="100%", thickness=1, color=colors.HexColor("#E2E8F0"), spaceAfter=8, spaceBefore=4))
         elif line.startswith("- ") or line.startswith("* "):
-            clean_b = line[2:].strip().replace("**", "<b>").replace("`", "")
-            # close bold tags properly
-            if clean_b.count("<b>") % 2 != 0:
-                clean_b += "</b>"
-            clean_b = clean_b.replace("<b>", "<b>", 1)  # retain
-            # replace pairs
-            parts = clean_b.split("<b>")
-            rebuilt = parts[0]
-            for p in parts[1:]:
-                if "</b>" not in p:
-                    rebuilt += f"<b>{p}</b>"
-                else:
-                    rebuilt += f"<b>{p}"
-            story.append(Paragraph(f"• {rebuilt}", bullet_style))
+            formatted_bullet = format_inline_markdown(line[2:].strip())
+            story.append(Paragraph(f"&bull; {formatted_bullet}", bullet_style))
         elif re.match(r"^\d+\.\s+", line):
-            story.append(Paragraph(line.replace("**", "<b>").replace("`", "") + ("</b>" if line.count("**") % 2 != 0 else ""), bullet_style))
+            formatted_num = format_inline_markdown(line.strip())
+            story.append(Paragraph(formatted_num, bullet_style))
         else:
-            clean_p = line.replace("**", "<b>").replace("`", "")
-            if clean_p.count("<b>") % 2 != 0:
-                clean_p += "</b>"
-            # Render italics
-            clean_p = re.sub(r"\*(.*?)\*", r"<i>\1</i>", clean_p)
-            story.append(Paragraph(clean_p, body_style))
+            formatted_p = format_inline_markdown(line.strip())
+            story.append(Paragraph(formatted_p, body_style))
 
         i += 1
 
@@ -284,4 +304,3 @@ def convert_markdown_to_pdf(md_path: str, pdf_path: str):
 
 if __name__ == "__main__":
     convert_markdown_to_pdf("docs/Phase3_Report.md", "docs/Phase3_Report.pdf")
-

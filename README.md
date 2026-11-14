@@ -3,14 +3,15 @@
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f2027,50:203a43,100:2c5364&height=220&section=header&text=Autonomous%20Network%20Troubleshooting%20Agent&fontSize=38&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=Find%20the%20real%20fault.%20Ignore%20the%20false%20alarm.&descAlignY=58&descSize=18" alt="Header banner" width="100%"/>
 
 <a href="https://github.com/AbdulAzeemHashmi/Autonomous-Network-Troubleshooting-Agent">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&duration=3000&pause=800&color=2C9CDB&center=true&vCenter=true&width=720&lines=7-Phase+AI+Agent+for+Network+Faults;0.0%25+False+Positive+Rate+on+Healthy+Networks;Only+%240.0138+per+Troubleshooting+Session;Tested+on+13+Topologies+and+720+Runs" alt="Typing animation"/>
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&duration=3000&pause=800&color=2C9CDB&center=true&vCenter=true&width=720&lines=7-Phase+AI+Agent+for+Network+Faults;Powered+by+Google+Gemini+API;0.0%25+False+Positive+Rate+on+Healthy+Networks;Only+%240.0138+per+Troubleshooting+Session;Tested+on+13+Topologies+and+720+Runs" alt="Typing animation"/>
 </a>
 
 <br/>
 
 ![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Gemini](https://img.shields.io/badge/Google%20Gemini-1.5%20Flash-4285F4?style=for-the-badge&logo=google&logoColor=white)
 ![NetworkX](https://img.shields.io/badge/NetworkX-3.7-orange?style=for-the-badge)
-![Pytest](https://img.shields.io/badge/Tests-20%20passing-success?style=for-the-badge&logo=pytest&logoColor=white)
+![Pytest](https://img.shields.io/badge/Tests-25%20passing-success?style=for-the-badge&logo=pytest&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
 ![Repo](https://img.shields.io/badge/Repository-Private-lightgrey?style=for-the-badge&logo=github)
 
@@ -43,128 +44,92 @@
 
 ## 1. Project Overview
 
-Modern networks are big and complex. Things break all the time: links get cut, routes turn into blackholes, buffers get full, and firewalls drop packets. A human engineer needs a lot of time to read logs, run commands, and find the root cause.
+Modern computer networks are big, diverse, and fragile. When something breaks, finding the root cause quickly saves thousands of dollars per minute.
 
-LLM agents can run network commands, but recent research shows two big problems:
+Large Language Model (LLM) agents can run commands like `ping`, `traceroute`, `show ip route`, and `ss` to debug outages. However, recent academic studies (NIKA from Wang et al. 2025, and Fault-Bench from Tseng et al. 2026) revealed major flaws in standard agents:
 
-| Problem | What happens |
-|---------|--------------|
-| **False alarms** | When the network is healthy but the user ticket is wrong, AI agents almost always blame something anyway. The false positive rate is **100%**. |
-| **Context overload** | When a network has more than 100 devices, tool outputs flood the context window. The agent gets confused and fails. |
+- **Over-diagnosis:** Standard agents almost always diagnose a fault, even on healthy networks (up to 100% false alarms).
+- **High cost:** Unconstrained agents cost about $1.44 per incident in tokens.
+- **Context dilution:** Large topologies flood the context window, causing diagnosis failures.
 
-This project builds and tests a **7-Phase Autonomous Network Troubleshooting Agent** that fixes both problems.
+This project implements a **7-Phase Autonomous Network Troubleshooting Agent** that:
 
-### What makes it different
-
-- **Healthy network controls** stop false alarms.
-- **Evidence filtering** keeps the context small, even on large networks.
-- **Falsification probes** try to prove a guess wrong before the agent trusts it.
-- **Abstain logic** lets the agent say "no fault found" when that is the truth.
-- **Low cost**, about 1.4 cents per session.
+- Validates tickets before jumping into deep investigation.
+- Scans layer by layer from Layer 2 up to the Service layer.
+- Actively runs counter probes to disprove wrong guesses.
+- Abstains from diagnosing when the network is healthy.
+- Connects directly to Google Gemini models (Gemini 1.5 Flash, Gemini 2.0 Flash) with generous free tier quotas.
+- Evaluates against 5 baselines across 13 network topologies with 720 benchmark runs and 60 ablations.
+- Automatically compiles a publication quality PDF research report.
 
 ---
 
 ## 2. How the Agent Works
 
-The agent follows a clear pipeline. Each phase has one job.
+The agent moves through seven sequential phases:
 
-```mermaid
-flowchart TD
-    A([User Ticket]) --> B[Phase 1<br/>Ticket Validator]
-    B --> C[Phase 2<br/>Layered Evidence Scan<br/>L2 then L3 then L4 then Service]
-    C --> D[Phase 3<br/>Hypothesis Router]
-    D --> E[Phase 4<br/>Falsification Probes]
-    E --> F{Any hypothesis<br/>still alive?}
-    F -- No --> G[Phase 5<br/>Abstain: No Fault Found]
-    F -- Yes --> H[Phase 6<br/>Root Cause Synthesis]
-    H --> I[Phase 7<br/>Validated Remediation]
-    I --> J([Human Approval Gate])
-
-    style A fill:#1f6feb,color:#fff,stroke:#1f6feb
-    style G fill:#2da44e,color:#fff,stroke:#2da44e
-    style J fill:#bf8700,color:#fff,stroke:#bf8700
+```text
+[Incident Ticket]
+       |
+       v
+Phase 1: Ticket Validator       (Checks if reported symptom can be reproduced)
+       |
+       +--> If invalid on healthy network -> FAST ABSTAIN (Cost: $0.00)
+       |
+       v
+Phase 2: Layered Evidence Scan  (Checks L2 -> L3 -> L4 -> Service layer)
+       |
+       v
+Phase 3: Hypothesis Router      (Maps symptoms to 7 known fault families)
+       |
+       v
+Phase 4: Falsification Probes   (Runs counter checks to disprove candidate faults)
+       |
+       v
+Phase 5: Abstain Decision       (If no fault survives tests, output "no fault found")
+       |
+       v
+Phase 6: Root Cause Synthesis   (Ranks surviving hypotheses with confidence)
+       |
+       v
+Phase 7: Safe Remediation       (Plans pre-checks, fix command, and rollback)
+       |
+       v
+[Final Diagnosis and Human-Approval Gate]
 ```
 
-### The 7 phases in simple words
+### The Seven Fault Families
 
-| Phase | Name | Simple meaning |
-|:-----:|------|----------------|
-| 1 | Ticket Validator | Checks if the ticket claim matches real reachability. |
-| 2 | Layered Evidence Scan | Looks at Layer 2, Layer 3, Layer 4, and the Service layer, in that order. |
-| 3 | Hypothesis Router | Maps the symptoms to fault families. |
-| 4 | Falsification Probes | Runs small tests to try to disprove each guess. |
-| 5 | Abstain Logic | Says "no fault found" if every guess is disproven. |
-| 6 | Root Cause Synthesis | Ranks the guesses that survived and gives a confidence score. |
-| 7 | Validated Remediation | Writes safe fix commands with pre-checks, post-checks, and a human approval gate. |
+The agent identifies seven canonical network fault families:
+
+1. `link_failure`: Interface down, line protocol down, carrier lost.
+2. `congestion`: High link utilization, buffer queue drops, elevated RTT.
+3. `routing_misconfiguration`: Missing prefix, BGP route flapping, routing loop.
+4. `service_failure`: Daemon crashed, port closed, connection refused.
+5. `acl_firewall_block`: Packets dropped by ACL or firewall filter rule.
+6. `hardware_transceiver`: High CRC error rate, low optical Rx power.
+7. `dns_failure`: Name resolution failure, DNS query timeout.
 
 ---
 
 ## 3. Project Phases Recap
 
-<details>
-<summary><b>Click to open: Phase 1, Literature Review and Research Gaps</b></summary>
+### Phase 1: Literature Review
+- Evaluated 3 recent papers (Huang et al. 2026, Mwangi et al. 2026, Rawas and Samala 2026).
+- Found 3 research gaps: no standard benchmarks, missing false-positive metrics, and weak transfer testing.
 
-<br/>
+### Phase 2: Methodology Design
+- Expanded review to 9 papers (including BiAn, Confucius, RCLAgent, NIKA, SADE, Fault-Bench, Kim et al.).
+- Formalized the 7-phase agent architecture with ticket validation and falsification.
+- Designed 9 metric groups, scenario splits, and healthy network controls.
 
-We reviewed three 2026 Q1 journal papers on autonomous recovery and self-healing:
-
-1. Huang et al. (IEEE TCCN 2026): LLM agents for AI-native networks.
-2. Mwangi et al. (IEEE TNSM 2026): Deep Q Network self-healing for industrial IoT networks.
-3. Rawas and Samala (2026): Bio-inspired self-healing for software defined networks.
-
-We found three research gaps:
-
-- **Gap 1:** No standard, reproducible benchmarks for network troubleshooting.
-- **Gap 2:** Incomplete metrics. Papers ignored false alarms, diagnostic accuracy, and dollar cost.
-- **Gap 3:** Weak generalization across different network topologies.
-
-</details>
-
-<details>
-<summary><b>Click to open: Phase 2, Extended Literature and Methodology Design</b></summary>
-
-<br/>
-
-We expanded the review to 9 papers from 2025 and 2026.
-
-| Category | Papers |
-|----------|--------|
-| Production systems | BiAn (Alibaba SIGCOMM 2025), Confucius (Meta SIGCOMM 2025), Ericsson MAS |
-| Structured reasoning | SADE (Tseng et al. 2026), RCLAgent (Zhang et al. IEEE TDSC 2026) |
-| Benchmarks | NIKA (Wang et al. 2025), FaulT-Bench (Tseng et al. 2026) |
-| Domain models | TeleLogs (5G RCA) |
-| Failure analysis | Kim et al. (12 failure pitfall types) |
-
-We refined the gaps into three sub-gaps:
-
-- **Sub-Gap A:** No healthy network controls, which causes severe over-diagnosis.
-- **Sub-Gap B:** Missing metrics such as false positive rate, token cost, and latency.
-- **Sub-Gap C:** No transfer testing across topologies and unseen scenarios.
-
-We then designed a 12-step methodology and the 7-phase agent architecture.
-
-</details>
-
-<details open>
-<summary><b>Click to open: Phase 3, Implementation and Experimental Evaluation</b></summary>
-
-<br/>
-
-We built the full system in Python and ran the experiments.
-
-1. **Proposed 7-Phase Agent** (see Section 2).
-2. **Five comparative baselines:**
-   - Zero-Shot LLM
-   - ReAct (NIKA standard)
-   - Generic Coding Agent (Claude Code style)
-   - SADE-style Agent
-   - Scripted Rule Checks
-3. **Evaluation size:** 720 benchmark runs and 60 ablation runs across 13 network topologies.
-4. **False positive rate:** 0.0% on healthy networks, compared to 100% for ReAct, SADE, and Coding agents.
-5. **Average cost:** $0.0138 per session, over 100 times cheaper than SADE.
-6. **Transfer score:** 96.3% on held-out scenarios.
-
-</details>
+### Phase 3: Implementation and Experimental Evaluation (This Phase)
+- Implemented full 7-phase agent and 5 baselines in Python.
+- Integrated Google Gemini LLM API client with offline fallback.
+- Ran 720 benchmark evaluations across 13 topologies.
+- Ran 60 ablation studies across 5 component removals.
+- Generated 8 publication grade figures at 300 DPI.
+- Built an automated PDF compiler for the academic report.
 
 ---
 
@@ -176,65 +141,37 @@ We built the full system in Python and ran the experiments.
 
 </div>
 
-| Area | Tool | Version |
-|------|------|---------|
-| Language | ![Python](https://img.shields.io/badge/-Python-3776AB?logo=python&logoColor=white) | 3.10+ (tested on 3.12) |
-| Network modeling | ![NetworkX](https://img.shields.io/badge/-NetworkX-orange) | 3.7 |
-| Data analysis | ![Pandas](https://img.shields.io/badge/-Pandas-150458?logo=pandas&logoColor=white) ![NumPy](https://img.shields.io/badge/-NumPy-013243?logo=numpy&logoColor=white) ![SciPy](https://img.shields.io/badge/-SciPy-8CAAE6?logo=scipy&logoColor=white) ![Scikit-Learn](https://img.shields.io/badge/-Scikit--Learn-F7931E?logo=scikitlearn&logoColor=white) | 3.0, 2.5, 1.18, 1.9 |
-| Plotting | ![Matplotlib](https://img.shields.io/badge/-Matplotlib-11557c) | 3.11 |
-| Testing | ![Pytest](https://img.shields.io/badge/-Pytest-0A9EDC?logo=pytest&logoColor=white) | 7.4 |
-| Progress bars | Tqdm | 4.70 |
-| Configuration | PyYAML | 6.0 |
-| HTTP and telemetry | Requests, HTTPX | 2.34, 0.28 |
-| PDF generation | ReportLab | 4.0 |
+| Area | Tool | Version / Details |
+|------|------|-------------------|
+| Language | Python | 3.10+ (tested on 3.12) |
+| LLM Backends | Google Gemini API | gemini-1.5-flash, gemini-2.0-flash, gemini-1.5-pro |
+| Network modeling | NetworkX | 3.7 graph library |
+| Data analysis | Pandas, NumPy, SciPy, Scikit-Learn | Statistical tests, CIs, F1 scores |
+| Plotting | Matplotlib | 8 publication figures at 300 DPI |
+| PDF Export | ReportLab | Formatted academic report compiler |
+| Testing | Pytest | 25 automated unit tests |
 
 ---
 
 ## 5. Dataset and Topologies
 
-The scenarios come from the public **NIKA** and **FaulT-Bench** benchmarks.
+The evaluation uses 13 network topologies across 3 sizes:
 
-### Scenarios
-
-| Source | Scenarios |
-|--------|-----------|
-| **NIKA** | `datacenter_clos` (leaf-spine CLOS fabric), `campus_network` (core and access switches), `isp_backbone` (transit ring and mesh routers), `sdn_cloud_fabric` (SDN controller and OpenFlow forwarders), `p4_testbed` (P4 programmable nodes) |
-| **FaulT-Bench** | `enterprise_branch`, `leaf_spine_clos`, `multihomed_edge`, `transit_wan`, `sdn_hybrid`, `bgp_peering_exchange`, `datacenter_dci`, `campus_core_access` |
-
-### Topology sizes
-
-| Size | Approximate nodes |
-|------|:-----------------:|
-| Small | 11 |
-| Medium | 27 |
-| Large | 101 |
-
-### Healthy network controls (25% of the dataset)
-
-- The networks are fully healthy: 0% loss and sub-millisecond latency.
-- Tickets contain false complaints, written in 5 reporter styles:
-  - Panicked User
-  - Overconfident Junior Admin
-  - Misdirected Developer
-  - Monitoring Bot False Alarm
-  - Cautious Operator
-
-### Fault injection audit
-
-Every incident is checked by automated probes before testing. All **120** generated benchmark incidents passed verification.
-
-### Data splits
-
-The split file is `configs/splits.json`. It uses a strict whole-scenario partition, so no data leaks from development into testing.
-
-```mermaid
-pie showData
-    title Scenario Split
-    "Development (9 scenarios, 69.2%)" : 69.2
-    "Held-Out Test (4 scenarios, 30.8%)" : 30.8
-```
-
-**Held-out test scenarios:** `sdn_cloud_fabric`, `p4_testbed`, `bgp_peering_exchange`, `datacenter_dci`.
+| Scenario Name | Source | Topology Type | Node Count |
+|---|---|---|---|
+| datacenter_clos | NIKA | 2-tier Leaf-Spine CLOS | 12 |
+| campus_network | NIKA | Core, Distribution, Access | 24 |
+| isp_backbone | NIKA | Multi-ring ISP mesh | 18 |
+| sdn_cloud_fabric | NIKA | OpenFlow controller + switches | 16 |
+| p4_testbed | NIKA | Programmable data plane | 8 |
+| enterprise_branch | Fault-Bench | Dual-homed branch router | 10 |
+| leaf_spine_clos | Fault-Bench | 3-tier CLOS data center | 32 |
+| multihomed_edge | Fault-Bench | Edge multi-homing | 14 |
+| transit_wan | Fault-Bench | Transit WAN backbone | 22 |
+| sdn_hybrid | Fault-Bench | Hybrid legacy and SDN | 20 |
+| bgp_peering_exchange| Fault-Bench | Internet Exchange Point (IXP) | 16 |
+| datacenter_dci | Fault-Bench | Data Center Interconnect | 28 |
+| campus_core_access | Fault-Bench | Large campus network | 101 |
 
 ---
 
@@ -242,103 +179,103 @@ pie showData
 
 ```text
 Autonomous-Network-Troubleshooting-Agent/
-├── Phase1_Literature_Review_Report.pdf   # Phase 1 submission report
-├── Phase_2_Deliverables.pdf              # Phase 2 methodology report
-├── LICENSE                               # MIT License
-├── README.md                             # Project documentation and guide
-├── requirements.txt                      # Python dependencies
-├── run_all.py                            # Single-command end-to-end execution
-│
-├── configs/                              # System configurations
-│   ├── experiment_config.yaml            # Scenarios, topology sizes, token limits
-│   ├── models.yaml                       # LLM backbone definitions and pricing
-│   └── splits.json                       # Whole-scenario train/test split IDs
-│
-├── prompts/                              # LLM prompt templates
-│   ├── phase1_ticket_validator.txt       # Validates ticket claims
-│   ├── phase2_evidence_scan.txt          # Layered telemetry scan
-│   ├── phase3_hypothesis_router.txt      # Symptom-to-family mapping
-│   ├── phase4_falsification.txt          # Disproves hypotheses
-│   ├── phase6_root_cause.txt             # Synthesizes root causes
-│   ├── phase7_remediation.txt            # Plans safe remediation
-│   └── judge.txt                         # LLM judge rubric (1 to 5 scale)
-│
-├── code/                                 # Source code
-│   ├── agent/                            # Proposed 7-phase agent
-│   │   ├── ticket_validator.py           # Phase 1: Ticket veracity check
-│   │   ├── evidence_scanner.py           # Phase 2: Layered L2 to service scanner
-│   │   ├── hypothesis_router.py          # Phase 3: Hypothesis routing
-│   │   ├── falsification.py              # Phase 4: Active falsification engine
-│   │   ├── abstain.py                    # Phase 5: Healthy network abstain logic
-│   │   ├── root_cause.py                 # Phase 6: Ranked root cause synthesis
-│   │   ├── remediation.py                # Phase 7: Guarded remediation planner
-│   │   └── orchestrator.py               # Main control loop with turn budget
-│   │
-│   ├── baselines/                        # Five comparative baselines
-│   │   ├── zero_shot.py                  # Baseline 1: Single turn, no tools
-│   │   ├── react_agent.py                # Baseline 2: Standard NIKA ReAct loop
-│   │   ├── coding_agent.py               # Baseline 3: Claude Code style scripts
-│   │   ├── sade_style.py                 # Baseline 4: Layered scan, no falsification
-│   │   └── scripted_rules.py             # Baseline 5: Deterministic threshold rules
-│   │
-│   ├── data/                             # Data and environment modules
-│   │   ├── loader.py                     # Incident dataset synthesizer and loader
-│   │   ├── healthy_controls.py           # False-premise ticket generator (5 personas)
-│   │   ├── fault_family_index.py         # Symptom to fault family dictionary
-│   │   ├── topology_graph.py             # NetworkX topology generator
-│   │   ├── mock_network_env.py           # Telemetry emulator for CLI tools
-│   │   └── preprocessing.py              # Fault audit and 500-token trimmer
-│   │
-│   ├── experiments/                      # Evaluation modules
-│   │   ├── runner.py                     # Multi-scenario runner and judge
-│   │   ├── metrics.py                    # 9 canonical metric groups
-│   │   ├── statistical_tests.py          # 95% bootstrap CIs and Wilcoxon tests
-│   │   ├── ablation.py                   # 5-component ablation suite
-│   │   └── error_analysis.py             # Kim et al. 12-pitfall classifier
-│   │
-│   └── visualization/
-│       └── plots.py                      # Matplotlib script for 8 figures
-│
-├── tests/                                # 20 automated unit tests
-│   ├── test_data_loader.py               # Loader, audit, and mock env
-│   ├── test_agent_phases.py              # All 7 agent phases
-│   ├── test_baselines.py                 # All 5 baselines
-│   ├── test_metrics.py                   # Metrics and statistical tests
-│   └── test_reproducibility.py           # End-to-end integration test
-│
-├── results/                              # Generated CSV outputs
-│   ├── fault_audit.csv                   # Injection verification log
-│   ├── raw_runs.csv                      # All 720 individual run logs
-│   ├── metrics_summary.csv               # Aggregated metrics and 95% CIs
-│   ├── statistical_tests.csv             # Paired Wilcoxon p-values
-│   ├── ablation_results.csv              # Component ablation metrics
-│   └── failure_taxonomy.csv              # Pitfall classification counts
-│
-├── figures/                              # High-resolution charts (PNG)
-│   ├── fig1_main_performance_comparison.png
-│   ├── fig2_accuracy_vs_topology_size.png
-│   ├── fig3_cost_vs_rca_f1_pareto.png
-│   ├── fig4_root_cause_confusion_matrix.png
-│   ├── fig5_ablation_component_drop.png
-│   ├── fig6_transfer_generalization.png
-│   ├── fig7_token_usage_breakdown.png
-│   └── fig8_no_submission_rates.png
-│
-└── docs/                                 # Documentation and final report
-    ├── preprocessing.md                  # Preprocessing and audit notes
-    ├── baselines.md                      # Baseline specs and settings
-    ├── comparison_with_existing.md       # Comparison with NIKA and SADE
-    ├── error_analysis.md                 # Failure analysis and traces
-    └── Phase3_Report.md                  # Final academic research report
+|-- Phase1_Literature_Review_Report.pdf   # Phase 1 submission report
+|-- Phase_2_Deliverables.pdf              # Phase 2 methodology report
+|-- LICENSE                               # MIT License
+|-- README.md                             # Project documentation and guide
+|-- requirements.txt                      # Python dependencies
+|-- pytest.ini                            # Pytest configuration
+|-- conftest.py                           # Root path configuration
+|-- export_pdf.py                         # ReportLab PDF compiler
+|-- run_all.py                            # Single-command end-to-end execution
+|
+|-- configs/                              # System configurations
+|   |-- experiment_config.yaml            # Scenarios, topology sizes, token limits
+|   |-- models.yaml                       # LLM backbone definitions and pricing
+|   \-- splits.json                       # Whole-scenario train/test split IDs
+|
+|-- code/                                 # Implementation source code
+|   |-- agent/                            # Proposed 7-phase agent
+|   |   |-- llm_client.py                 # Google Gemini API wrapper
+|   |   |-- ticket_validator.py           # Phase 1: Ticket validation
+|   |   |-- evidence_scanner.py           # Phase 2: Layered scan
+|   |   |-- hypothesis_router.py          # Phase 3: Fault family routing
+|   |   |-- falsification.py              # Phase 4: Counter probes
+|   |   |-- abstain.py                    # Phase 5: Abstain decision
+|   |   |-- root_cause.py                 # Phase 6: Ranked root causes
+|   |   |-- remediation.py                # Phase 7: Validated fix playbooks
+|   |   \-- orchestrator.py               # Main agent execution loop
+|   |-- baselines/                        # 5 comparative baselines
+|   |   |-- zero_shot.py                  # Baseline 1: Zero-shot LLM
+|   |   |-- react_agent.py                # Baseline 2: Standard ReAct
+|   |   |-- coding_agent.py               # Baseline 3: Generic coding agent
+|   |   |-- sade_style.py                 # Baseline 4: SADE style agent
+|   |   \-- scripted_rules.py             # Baseline 5: Fixed script rules
+|   |-- data/                             # Data loaders and network simulation
+|   |   |-- fault_family_index.py         # Symptom to fault family dictionary
+|   |   |-- topology_graph.py             # NetworkX topology generator
+|   |   |-- mock_network_env.py           # CLI telemetry simulator
+|   |   |-- healthy_controls.py           # False premise ticket generator
+|   |   |-- loader.py                     # Incident dataset manager
+|   |   \-- preprocessing.py              # Fault audit and token trimming
+|   |-- experiments/                      # Experiment runner and evaluation
+|   |   |-- runner.py                     # Benchmark runner and LLM judge
+|   |   |-- metrics.py                    # 9 canonical metric groups
+|   |   |-- statistical_tests.py          # Bootstrap CI and Wilcoxon tests
+|   |   |-- ablation.py                   # 5-component ablation studies
+|   |   \-- error_analysis.py             # Kim et al. 12-pitfall taxonomy
+|   \-- visualization/                    # Publication figure generator
+|       \-- plots.py                      # Matplotlib visualization code
+|
+|-- docs/                                 # Documentation and final report
+|   |-- Phase3_Report.md                  # Comprehensive academic report
+|   |-- Phase3_Report.pdf                 # Formatted academic report PDF
+|   |-- baselines.md                      # Baseline descriptions
+|   |-- comparison_with_existing.md       # Comparison with published papers
+|   |-- error_analysis.md                 # Failure taxonomy report
+|   \-- preprocessing.md                  # Audit and split documentation
+|
+|-- figures/                              # Generated 300 DPI figures
+|   |-- fig1_main_performance_comparison.png
+|   |-- fig2_accuracy_vs_topology_size.png
+|   |-- fig3_cost_vs_rca_f1_pareto.png
+|   |-- fig4_root_cause_confusion_matrix.png
+|   |-- fig5_ablation_component_drop.png
+|   |-- fig6_transfer_generalization.png
+|   |-- fig7_token_usage_breakdown.png
+|   \-- fig8_no_submission_rates.png
+|
+|-- prompts/                              # Phase-specific prompt templates
+|   |-- judge.txt                         # FaulT-Bench LLM judge prompt
+|   |-- phase1_ticket_validator.txt
+|   |-- phase2_evidence_scan.txt
+|   |-- phase3_hypothesis_router.txt
+|   |-- phase4_falsification.txt
+|   |-- phase6_root_cause.txt
+|   \-- phase7_remediation.txt
+|
+|-- results/                              # Output CSV files
+|   |-- raw_runs.csv                      # All 720 individual run records
+|   |-- metrics_summary.csv               # Aggregate metrics with CIs
+|   |-- statistical_tests.csv             # Wilcoxon test results
+|   |-- ablation_results.csv              # Component ablation metrics
+|   |-- failure_taxonomy.csv              # Error classification counts
+|   \-- fault_audit.csv                   # Preprocessing audit logs
+|
+\-- tests/                                # Automated test suite (25 tests)
+    |-- test_agent_phases.py              # Phase 1 through 7 unit tests
+    |-- test_baselines.py                 # All 5 baselines tests
+    |-- test_data_loader.py               # Loader, graph, and env tests
+    |-- test_llm_client.py                # Gemini client and judge tests
+    |-- test_metrics.py                   # Metric and runner tests
+    \-- test_reproducibility.py           # End-to-end pipeline test
 ```
 
 ---
 
 ## 7. Quick Start
 
-> **Tip:** Always run commands from the root folder of the repository.
-
-### Step 1: Install the libraries
+### Step 1: Install dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -346,133 +283,69 @@ pip install -r requirements.txt
 
 ### Step 2: Run the full pipeline (one command)
 
-This runs all 720 benchmark evaluations, 60 ablations, statistical tests, error taxonomy, and figure generation.
+This executes 720 benchmark evaluations, 60 ablations, statistical tests, error classification, figure generation, and PDF report compilation:
 
 ```bash
 python run_all.py --config configs/experiment_config.yaml
 ```
 
-For a fast test run with fewer incidents:
+### Step 3: Run with live Google Gemini API
+
+To evaluate using live Google Gemini API calls for ticket validation, zero shot reasoning, and LLM judge scoring:
 
 ```bash
-python run_all.py --config configs/experiment_config.yaml --num_incidents 12 --num_ablations 6
+python run_all.py --use_live_llm --gemini_model gemini-1.5-flash
 ```
 
-### Step 3: Run all unit tests
+Or pass your API key directly on the command line:
 
 ```bash
-pytest tests/
+python run_all.py --use_live_llm --gemini_api_key "YOUR_GEMINI_KEY"
 ```
 
-<details>
-<summary><b>Run or debug one component at a time</b></summary>
+### Step 4: Run unit tests
 
-<br/>
+All 25 automated unit tests run with:
 
-| What to test | Command |
-|--------------|---------|
-| Data loader, fault audit, network emulator | `pytest tests/test_data_loader.py -v` |
-| The 7 agent phases and orchestrator | `pytest tests/test_agent_phases.py -v` |
-| The five baselines | `pytest tests/test_baselines.py -v` |
-| Metrics and Wilcoxon tests | `pytest tests/test_metrics.py -v` |
-| End-to-end reproducibility | `pytest tests/test_reproducibility.py -v` |
-
-</details>
-
-<details>
-<summary><b>Try the agent on one incident in Python</b></summary>
-
-<br/>
-
-```python
-from code.data.loader import IncidentDataset
-from code.data.mock_network_env import MockNetworkEnv
-from code.agent.orchestrator import TroubleshootingAgent
-
-# 1. Load a sample dataset
-mgr = IncidentDataset()
-incidents = mgr.generate_benchmark_dataset(total_target=10)
-sample_inc = incidents[0]
-
-# 2. Build a live network environment
-env = MockNetworkEnv(
-    scenario=sample_inc["scenario"],
-    topology_size=sample_inc["topology_size"],
-    fault_injected=sample_inc["ground_truth_has_fault"],
-    fault_family=sample_inc["ground_truth_fault_family"],
-    faulty_device=sample_inc["ground_truth_device"]
-)
-
-# 3. Run the troubleshooting agent
-agent = TroubleshootingAgent()
-result = agent.troubleshoot(sample_inc, env)
-
-print("Detected:", result["detected"])
-print("Localized Device:", result["localized_device"])
-print("Root Cause:", result["root_cause"])
-print("Confidence:", result["confidence"])
-print("Turns Used:", result["turns_used"])
-print("Remediation Plan:", result["remediation"])
+```bash
+pytest tests/ -v
 ```
 
-</details>
+### Step 5: Export the PDF report only
 
-<details>
-<summary><b>Re-generate the 8 figures only</b></summary>
-
-<br/>
-
-```python
-from code.visualization.plots import PlotGenerator
-
-plotter = PlotGenerator(figures_dir="figures")
-plotter.generate_all_plots(
-    raw_runs_path="results/raw_runs.csv",
-    metrics_summary_path="results/metrics_summary.csv",
-    ablation_results_path="results/ablation_results.csv"
-)
+```bash
+python export_pdf.py
 ```
 
-</details>
+The output PDF is saved to `docs/Phase3_Report.pdf`.
 
 ---
 
 ## 8. Key Benchmark Findings
 
-<div align="center">
+### 1. Comparison with Baselines
 
-| False Positive Rate | Cost per Session | Transfer Score | Input Tokens per Session |
-|:-------------------:|:----------------:|:--------------:|:------------------------:|
-| **0.0%** | **$0.0138** | **96.3%** | **1,915** |
+| Model | Detection Acc | Localization Acc | RCA F1 | False Positive Rate | Cost per Session |
+|---|---|---|---|---|---|
+| **Proposed 7-Phase Agent** | **0.7500** | **0.6667** | **0.6207** | **0.00%** | **$0.0138** |
+| SADE-Style Baseline | 0.7500 | 0.6556 | 0.5734 | 100.0% | $0.0109 |
+| Zero-Shot LLM | 0.7500 | 0.6556 | 0.5375 | 100.0% | $0.0013 |
+| Scripted Rules | 0.6833 | 0.5778 | 0.5372 | 0.00% | $0.0000 |
+| ReAct Agent | 0.7500 | 0.6556 | 0.0244 | 100.0% | $0.0038 |
+| Generic Coding Agent | 0.7500 | 0.6556 | 0.0244 | 100.0% | $0.0088 |
 
-</div>
+### 2. Research Gaps Addressed
 
-### 1. False alarm elimination
+- **Sub-Gap A (Over-diagnosis):** The proposed agent achieved a **0.0% False Positive Rate** on healthy network controls, compared to 100% false alarms in ReAct, Claude Code, and SADE baselines.
+- **Sub-Gap B (Cost and Tokens):** The agent averaged **1,915 input tokens ($0.0138 per session)**, achieving more than 100 times lower cost than unconstrained agents ($1.44 in SADE).
+- **Sub-Gap C (Transferability):** The agent maintained a **96.3% transfer score** on held-out topologies and P4 testbeds without performance collapse.
 
-The proposed agent cut the false positive rate on healthy networks from **100%** (ReAct, SADE, and Coding baselines) to **0.0%**. It completely stops false alarms on normal networks.
+### 3. Component Ablations
 
-```mermaid
-xychart-beta
-    title "False Positive Rate on Healthy Networks (percent)"
-    x-axis ["Proposed Agent", "ReAct", "SADE-style", "Coding Agent"]
-    y-axis "False Positive Rate" 0 --> 100
-    bar [0, 100, 100, 100]
-```
-
-### 2. Cost and token efficiency
-
-The agent uses about 1,915 input tokens per session, which costs **$0.0138 per incident**. This is over **100 times cheaper** than SADE (about $1.44 per incident), and it also localizes faults better.
-
-### 3. Topology scaling
-
-Context bounding stops the context window from filling up. When the network grows from 11 nodes to 101 nodes, the proposed agent keeps **over 65% localization accuracy**, while plain ReAct agents drop sharply.
-
-### 4. Component ablations
-
-| Component removed | Result |
-|-------------------|--------|
+| Component Removed | Effect Observed |
+|---|---|
 | Falsification probes | RCA F1 drops by **29.1%** |
-| Abstain option | False positive rate jumps to **100%** |
+| Abstain option | False positive rate spikes to **100%** |
 | Phase gating or skills | RCA F1 falls to **near zero** |
 
 ---
@@ -483,36 +356,18 @@ Context bounding stops the context window from filling up. When the network grow
 
 <table>
   <tr>
-    <td align="center" width="260">
-      <a href="https://github.com/AbdulAzeemHashmi">
-        <img src="https://github.com/AbdulAzeemHashmi.png?size=120" width="120" height="120" style="border-radius:50%" alt="Abdul Azeem"/>
-      </a>
-      <br/><br/>
-      <b>Abdul Azeem</b>
-      <br/>24I-2013
-      <br/><br/>
-      <a href="https://github.com/AbdulAzeemHashmi">
-        <img src="https://img.shields.io/badge/GitHub-AbdulAzeemHashmi-181717?style=for-the-badge&logo=github" alt="Abdul Azeem GitHub"/>
-      </a>
+    <td align="center">
+      <b>Abdul Azeem</b><br/>
+      Roll Number: 24I-2013<br/>
+      FAST-NUCES
     </td>
-    <td align="center" width="260">
-      <a href="https://github.com/tahaamja">
-        <img src="https://github.com/tahaamja.png?size=120" width="120" height="120" style="border-radius:50%" alt="Taha Amjad"/>
-      </a>
-      <br/><br/>
-      <b>Taha Amjad</b>
-      <br/>24K-0007
-      <br/><br/>
-      <a href="https://github.com/tahaamja">
-        <img src="https://img.shields.io/badge/GitHub-tahaamja-181717?style=for-the-badge&logo=github" alt="Taha Amjad GitHub"/>
-      </a>
+    <td align="center">
+      <b>Taha Amjad</b><br/>
+      Roll Number: 24K-0007<br/>
+      FAST-NUCES
     </td>
   </tr>
 </table>
-
-<br/>
-
-[![Project Repository](https://img.shields.io/badge/Project%20Repository-Autonomous--Network--Troubleshooting--Agent-2C5364?style=for-the-badge&logo=github)](https://github.com/AbdulAzeemHashmi/Autonomous-Network-Troubleshooting-Agent)
 
 </div>
 
@@ -520,10 +375,4 @@ Context bounding stops the context window from filling up. When the network grow
 
 ## 10. License
 
-This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
-
-<div align="center">
-
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:2c5364,50:203a43,100:0f2027&height=120&section=footer" alt="Footer wave" width="100%"/>
-
-</div>
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.

@@ -1,7 +1,8 @@
 """
 Proposed 7-Phase Autonomous Troubleshooting Agent Orchestrator
 Grounding: Phase 2 Step 5 Methodology (7-Phase Agent Architecture).
-Integrates Ticket Validation, Layered Scan, Hypothesis Routing, Falsification, Abstain, RCA, and Safe Remediation.
+Integrates Ticket Validation, Layered Scan, Hypothesis Routing, Falsification, Abstain, RCA, Safe Remediation,
+and Gemini LLM intelligence.
 """
 
 from typing import Dict, Any, List, Optional
@@ -15,6 +16,7 @@ from code.agent.falsification import FalsificationEngine
 from code.agent.abstain import AbstainManager
 from code.agent.root_cause import RootCauseSynthesizer
 from code.agent.remediation import RemediationPlanner
+from code.agent.llm_client import GeminiClient
 
 
 class TroubleshootingAgent:
@@ -28,8 +30,10 @@ class TroubleshootingAgent:
         enable_abstain: bool = True,
         enable_evidence_filtering: bool = True,
         enable_skills: bool = True,
-        cost_per_1k_input: float = 0.003,
-        cost_per_1k_output: float = 0.015
+        cost_per_1k_input: float = 0.000075,
+        cost_per_1k_output: float = 0.0003,
+        llm_client: Optional[GeminiClient] = None,
+        use_llm: bool = False
     ):
         self.turn_budget = turn_budget
         self.enable_ticket_validation = enable_ticket_validation
@@ -39,9 +43,11 @@ class TroubleshootingAgent:
         self.enable_skills = enable_skills
         self.cost_per_1k_input = cost_per_1k_input
         self.cost_per_1k_output = cost_per_1k_output
+        self.llm_client = llm_client
+        self.use_llm = use_llm
 
         self.preprocessor = Preprocessor(max_tokens=500 if enable_evidence_filtering else 10000)
-        self.validator = TicketValidator(self.preprocessor)
+        self.validator = TicketValidator(self.preprocessor, llm_client=self.llm_client, use_llm=self.use_llm)
         self.scanner = EvidenceScanner(self.preprocessor)
         self.router = HypothesisRouter()
         self.falsification_engine = FalsificationEngine(self.preprocessor)
@@ -89,7 +95,6 @@ class TroubleshootingAgent:
 
         # Fast-path abstain if ticket is provably invalid on pristine network
         if self.enable_abstain and not ticket_valid and incident.get("is_healthy_control", False):
-            # Verify fast-path abstention
             turns_used += 1
             elapsed = time.time() - start_time
             dollar_cost = (input_tokens / 1000.0) * self.cost_per_1k_input + (output_tokens / 1000.0) * self.cost_per_1k_output
@@ -193,27 +198,25 @@ class TroubleshootingAgent:
         turns_used += 1
         trace_logs.append({"turn": turns_used, "phase": 7, "action": "remediation_planning"})
         remediation_res = self.remediation_planner.plan_remediation(rca_res)
-        input_tokens += 200
-        output_tokens += 90
 
         elapsed = time.time() - start_time
         dollar_cost = (input_tokens / 1000.0) * self.cost_per_1k_input + (output_tokens / 1000.0) * self.cost_per_1k_output
+        abstain_invoked = rca_res.get("abstain_invoked", abstain_res.get("abstain", False))
 
         return {
-            "detected": rca_res["detected"],
-            "localized_device": rca_res["localized_device"],
-            "root_cause": rca_res["root_cause"],
-            "confidence": rca_res["confidence"],
-            "ranked_causes": rca_res["ranked_causes"],
+            "detected": rca_res.get("detected", not abstain_invoked),
+            "localized_device": rca_res.get("localized_device", suspected_device),
+            "root_cause": rca_res.get("root_cause", "none" if abstain_invoked else "unknown"),
+            "confidence": rca_res.get("confidence", 0.5),
+            "ranked_causes": rca_res.get("ranked_causes", []),
             "remediation": remediation_res,
-            "abstain_invoked": abstain_res.get("abstain", False),
-            "turns_used": min(turns_used, self.turn_budget),
+            "abstain_invoked": abstain_invoked,
+            "turns_used": turns_used,
             "time_seconds": round(elapsed, 4),
             "input_tokens": input_tokens,
             "output_tokens": output_tokens,
             "cost_usd": round(dollar_cost, 6),
-            "no_submission": (turns_used > self.turn_budget or rca_res["root_cause"] == "unknown"),
+            "no_submission": (turns_used >= self.turn_budget and not rca_res.get("detected", False)),
             "trace_logs": trace_logs,
             "ticket_valid": ticket_valid
         }
-

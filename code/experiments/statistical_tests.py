@@ -66,7 +66,6 @@ class StatisticalAnalyzer:
 
         try:
             stat, p_val = wilcoxon(p_arr, b_arr, alternative="two-sided")
-            # Rank biserial correlation or standard effect size r = Z / sqrt(N)
             n = len(diff[diff != 0])
             z_score = np.abs(np.mean(diff) / (np.std(diff) + 1e-9))
             effect_size = float(z_score / np.sqrt(n)) if n > 0 else 0.0
@@ -86,3 +85,35 @@ class StatisticalAnalyzer:
                 "error": str(e)
             }
 
+    @classmethod
+    def run_significance_suite(cls, runs_df: pd.DataFrame) -> pd.DataFrame:
+        """Runs paired Wilcoxon signed-rank tests comparing Proposed_7Phase_Agent vs all baselines."""
+        prop_df = runs_df[runs_df["model_name"] == "Proposed_7Phase_Agent"].sort_values("incident_id")
+        if prop_df.empty:
+            return pd.DataFrame()
+
+        rows = []
+        baselines = [m for m in runs_df["model_name"].unique() if m != "Proposed_7Phase_Agent"]
+        for base in baselines:
+            b_df = runs_df[runs_df["model_name"] == base].sort_values("incident_id")
+            merged = pd.merge(prop_df, b_df, on="incident_id", suffixes=("_prop", "_base"))
+            if merged.empty:
+                continue
+
+            test_res = cls.paired_wilcoxon_test(
+                merged["overall_judge_score_prop"].tolist(),
+                merged["overall_judge_score_base"].tolist()
+            )
+
+            rows.append({
+                "baseline": base,
+                "metric": "overall_judge_score",
+                "proposed_mean": round(float(merged["overall_judge_score_prop"].mean()), 3),
+                "baseline_mean": round(float(merged["overall_judge_score_base"].mean()), 3),
+                "wilcoxon_statistic": test_res.get("statistic", 0.0),
+                "p_value": test_res.get("p_value", 1.0),
+                "significant_at_05": test_res.get("significant_at_05", False),
+                "effect_size": test_res.get("effect_size", 0.0)
+            })
+
+        return pd.DataFrame(rows)

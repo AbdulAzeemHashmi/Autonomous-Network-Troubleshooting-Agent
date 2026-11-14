@@ -1,7 +1,7 @@
-model_name,total_runs,detection_accuracy,localization_accuracy,rca_f1_macro,rca_f1_weighted,false_positive_rate,mean_steps,mean_time_seconds,mean_input_tokens,mean_output_tokens,mean_cost_usd,no_submission_rate,mean_judge_score,dev_f1,held_out_f1,transfer_score,rca_acc_mean,rca_acc_ci_lower,rca_acc_ci_upper
-Proposed_7Phase_Agent,6,0.8333,0.8,0.5714,0.6667,0.0,9.17,0.003,2070.0,585.0,0.014985,0.0,4.31,0.4,1.0,2.5,0.6667,0.3333,1.0
-Baseline_Zero_Shot,6,0.8333,0.8,0.5833,0.5833,1.0,1.0,0.0,140.0,60.0,0.00132,0.0,3.76,0.6667,0.3333,0.5,0.6667,0.3333,1.0
-Baseline_Scripted_Rules,6,0.8333,0.8,0.5714,0.6667,0.0,4.0,0.0,0.0,0.0,0.0,0.0,3.93,0.4,1.0,2.5,0.6667,0.3333,1.0
-Baseline_SADE_Style,6,0.8333,0.8,0.4444,0.4444,1.0,6.0,0.0,1550.0,420.0,0.01095,0.0,3.62,0.1667,1.0,6.0,0.5,0.1667,0.8333
-Baseline_Generic_Coding,6,0.8333,0.8,0.0476,0.0476,1.0,2.0,0.0,950.0,400.0,0.00885,0.0,3.36,0.1,0.0,0.0,0.1667,0.0,0.5
-Baseline_ReAct,6,0.8333,0.8,0.0476,0.0476,1.0,1.0,0.0,670.0,120.0,0.00381,0.0,3.36,0.1,0.0,0.0,0.1667,0.0,0.5
+model_name,total_runs,detection_accuracy,localization_accuracy,rca_f1_macro,rca_f1_weighted,false_positive_rate,mean_steps,mean_time_seconds,mean_input_tokens,mean_output_tokens,mean_cost_usd,no_submission_rate,mean_judge_score,dev_f1,held_out_f1,transfer_score
+Baseline_Generic_Coding,120,0.75,0.6556,0.0244,0.0212,1.0,2.0,0.0,950.0,400.0,0.00885,0.0,3.27,0.0237,0.0263,1.1111
+Baseline_ReAct,120,0.75,0.6556,0.0244,0.0212,1.0,1.0,0.0,670.0,120.0,0.00381,0.0,3.27,0.0237,0.0263,1.1111
+Baseline_SADE_Style,120,0.75,0.6556,0.5734,0.4903,1.0,6.0,0.0,1550.0,420.0,0.01095,0.0,3.54,0.5632,0.5964,1.0591
+Baseline_Scripted_Rules,120,0.6833,0.5778,0.5372,0.5171,0.0,4.0,0.0,0.0,0.0,0.0,0.0,3.72,0.5385,0.5291,0.9826
+Baseline_Zero_Shot,120,0.75,0.6556,0.5375,0.4658,1.0,1.0,0.0,142.0,60.0,2.8e-05,0.0,3.62,0.5344,0.5455,1.0207
+Proposed_7Phase_Agent,120,0.75,0.6667,0.6207,0.5985,0.0,8.67,0.0,1765.3,472.7,0.000274,0.0,4.13,0.6262,0.6032,0.9632

@@ -4,6 +4,14 @@ turn_budget: 20
 random_seeds: [42, 101, 2024, 7, 99]
 default_seed: 42
 
+llm:
+  provider: "gemini"
+  model: "gemini-1.5-flash"
+  api_key_env: "GEMINI_API_KEY"
+  temperature: 0.1
+  timeout: 15
+  use_live_llm: false
+
 scenarios:
   nika:
     - "datacenter_clos"
@@ -39,4 +47,3 @@ paths:
   figures_dir: "figures"
   logs_dir: "logs"
   splits_file: "configs/splits.json"
-

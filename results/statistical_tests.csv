@@ -1,6 +1,6 @@
-comparison,statistic,p_value,significant_at_05,effect_size,n_pairs,note
-Proposed_7Phase_Agent vs Baseline_SADE_Style,0.0,1.0,False,0.4472,6.0,
-Proposed_7Phase_Agent vs Baseline_ReAct,0.0,0.25,False,0.5774,6.0,
-Proposed_7Phase_Agent vs Baseline_Generic_Coding,0.0,0.25,False,0.5774,6.0,
-Proposed_7Phase_Agent vs Baseline_Zero_Shot,1.5,1.0,False,0.0,6.0,
-Proposed_7Phase_Agent vs Baseline_Scripted_Rules,0.0,1.0,False,0.0,,Zero difference between paired samples
+baseline,metric,proposed_mean,baseline_mean,wilcoxon_statistic,p_value,significant_at_05,effect_size
+Baseline_SADE_Style,overall_judge_score,4.125,3.544,673.0,0.0,True,0.0579
+Baseline_ReAct,overall_judge_score,4.125,3.271,565.0,0.0,True,0.0758
+Baseline_Generic_Coding,overall_judge_score,4.125,3.271,565.0,0.0,True,0.0758
+Baseline_Zero_Shot,overall_judge_score,4.125,3.618,1063.0,0.0,True,0.0412
+Baseline_Scripted_Rules,overall_judge_score,4.125,3.723,0.0,0.0,True,0.1011

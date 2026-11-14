@@ -1,5 +1,33 @@
 # LLM Backbones Configuration
+# Grounding: Phase 2 Step 7 (LLM Backbones) and Gemini API Integration
 backbones:
+  gemini-1.5-flash:
+    provider: "google"
+    model_name: "gemini-1.5-flash"
+    cost_per_1k_input: 0.000075
+    cost_per_1k_output: 0.0003
+    context_window: 1048576
+    supports_tools: true
+    free_tier: true
+
+  gemini-2.0-flash:
+    provider: "google"
+    model_name: "gemini-2.0-flash"
+    cost_per_1k_input: 0.0001
+    cost_per_1k_output: 0.0004
+    context_window: 1048576
+    supports_tools: true
+    free_tier: true
+
+  gemini-1.5-pro:
+    provider: "google"
+    model_name: "gemini-1.5-pro"
+    cost_per_1k_input: 0.00125
+    cost_per_1k_output: 0.005
+    context_window: 2097152
+    supports_tools: true
+    free_tier: true
+
   gpt-5:
     provider: "openai"
     model_name: "gpt-5"
@@ -32,6 +60,5 @@ backbones:
     context_window: 32768
     supports_tools: true
 
-default_backbone: "claude-sonnet-4-6"
-judge_backbone: "gpt-5"
-
+default_backbone: "gemini-1.5-flash"
+judge_backbone: "gemini-1.5-flash"
