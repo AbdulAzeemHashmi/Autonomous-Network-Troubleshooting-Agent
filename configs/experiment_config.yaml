@@ -28,6 +28,9 @@ scenarios:
     - "bgp_peering_exchange"
     - "datacenter_dci"
     - "campus_core_access"
+  course_benchmarks:
+    - "abilene_backbone"
+    - "netman_aiops"
 
 topology_sizes:
   small:

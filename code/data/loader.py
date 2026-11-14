@@ -1,7 +1,7 @@
 """
-Dataset Loader for NIKA and FaulT-Bench Incidents
-Grounding: NIKA (Wang et al., 2025) and FaulT-Bench (Tseng et al., 2026).
-Loads curated incidents, attaches live mock environments, and provides reproducible dataset subsets.
+Dataset Loader for NIKA, FaulT-Bench, and Course Recommended Benchmarks (Abilene, NetManAIOps)
+Grounding: NIKA (Wang et al., 2025), FaulT-Bench (Tseng et al., 2026),
+Internet2 Abilene Network, and NetManAIOps Telemetry Benchmark.
 """
 
 from typing import List, Dict, Any, Optional
@@ -29,6 +29,12 @@ FAULT_BENCH_TOPOLOGIES = [
     "bgp_peering_exchange",
     "datacenter_dci",
     "campus_core_access"
+]
+
+# Course recommended datasets (from project brief)
+COURSE_RECOMMENDED_SCENARIOS = [
+    "abilene_backbone",
+    "netman_aiops"
 ]
 
 # Supported genuine network fault templates
@@ -59,14 +65,14 @@ FAULT_TEMPLATES = [
     },
     {
         "fault_family": "service_failure",
-        "description": "Web service / proxy daemon dead or socket not listening",
-        "ticket_template": "Client queries receiving Connection Refused when hitting {device}.",
+        "description": "Application daemon crashed or socket connection refused",
+        "ticket_template": "HTTP 502 Bad Gateway and connection refused on port 80 behind {device}.",
         "fix": "systemctl restart nginx"
     },
     {
         "fault_family": "dns_failure",
-        "description": "Local resolver unresponsive or query timeout",
-        "ticket_template": "Internal hostnames failing to resolve when using DNS forwarder {device}.",
+        "description": "DNS resolver timeout or corrupted authoritative record",
+        "ticket_template": "Host name resolution failing for internal services querying resolver on {device}.",
         "fix": "systemctl restart systemd-resolved"
     },
     {
@@ -88,17 +94,17 @@ class IncidentDataset:
 
     def _load_splits(self) -> Dict[str, Any]:
         if os.path.exists(self.splits_path):
-            with open(self.splits_path, "r") as f:
+            with open(self.splits_path, "r", encoding="utf-8") as f:
                 return json.load(f)
         return {
-            "development_scenarios": NIKA_SCENARIOS[:3] + FAULT_BENCH_TOPOLOGIES[:5],
-            "held_out_scenarios": NIKA_SCENARIOS[3:] + FAULT_BENCH_TOPOLOGIES[5:]
+            "development_scenarios": NIKA_SCENARIOS[:3] + FAULT_BENCH_TOPOLOGIES[:5] + ["netman_aiops"],
+            "held_out_scenarios": NIKA_SCENARIOS[3:] + FAULT_BENCH_TOPOLOGIES[5:] + ["abilene_backbone"]
         }
 
     def generate_benchmark_dataset(self, total_target: int = 150, healthy_ratio: float = 0.25) -> List[Dict[str, Any]]:
-        """Synthesizes the complete audited benchmark corpus adhering to NIKA & FaulT-Bench specifications."""
+        """Synthesizes the complete audited benchmark corpus adhering to NIKA, FaulT-Bench, and Course specs."""
         incidents = []
-        all_scenarios = NIKA_SCENARIOS + FAULT_BENCH_TOPOLOGIES
+        all_scenarios = NIKA_SCENARIOS + FAULT_BENCH_TOPOLOGIES + COURSE_RECOMMENDED_SCENARIOS
         healthy_target = int(total_target * healthy_ratio)
         faulty_target = total_target - healthy_target
 
@@ -122,11 +128,13 @@ class IncidentDataset:
 
             is_dev = scenario in self.splits_config.get("development_scenarios", [])
 
+            source = "NIKA" if scenario in NIKA_SCENARIOS else ("Course-Abilene" if "abilene" in scenario else ("Course-NetManAIOps" if "netman" in scenario else "FaulT-Bench"))
+
             inc = {
                 "incident_id": f"INC-{incident_counter:04d}",
                 "scenario": scenario,
                 "topology_size": topo_size,
-                "dataset_source": "NIKA" if scenario in NIKA_SCENARIOS else "FaulT-Bench",
+                "dataset_source": source,
                 "split": "development" if is_dev else "held_out",
                 "is_healthy_control": False,
                 "ground_truth_has_fault": True,
@@ -139,28 +147,18 @@ class IncidentDataset:
             incidents.append(inc)
             incident_counter += 1
 
-        # 2. Generate Healthy Controls (Sub-Gap A)
-        healthy_controls = generate_healthy_suite(
-            scenarios=all_scenarios,
-            count_per_scenario=max(1, healthy_target // len(all_scenarios) + 1),
-            seed=2026
-        )
+        # 2. Generate Negative Healthy Controls (Sub-Gap A: 0% FPR evaluation)
+        count_per_scenario = max(1, (healthy_target // len(all_scenarios)) + 1)
+        healthy_incidents = generate_healthy_suite(
+            all_scenarios,
+            count_per_scenario=count_per_scenario,
+            seed=42
+        )[:healthy_target]
 
-        for ctrl in healthy_controls[:healthy_target]:
-            ctrl["incident_id"] = f"INC-{incident_counter:04d}"
-            is_dev = ctrl["scenario"] in self.splits_config.get("development_scenarios", [])
-            ctrl["split"] = "development" if is_dev else "held_out"
-            ctrl["dataset_source"] = "FaulT-Bench_Healthy_Control"
-            ctrl["injection_verified"] = True
-            incidents.append(ctrl)
-            incident_counter += 1
+        for h_inc in healthy_incidents:
+            is_dev = h_inc["scenario"] in self.splits_config.get("development_scenarios", [])
+            h_inc["split"] = "development" if is_dev else "held_out"
+            incidents.append(h_inc)
 
         self.incidents = incidents
         return incidents
-
-    def get_development_set(self) -> List[Dict[str, Any]]:
-        return [inc for inc in self.incidents if inc["split"] == "development"]
-
-    def get_held_out_set(self) -> List[Dict[str, Any]]:
-        return [inc for inc in self.incidents if inc["split"] == "held_out"]
-

@@ -1,5 +1,6 @@
 """
-Unit tests for data loaders, preprocessing, healthy controls, and topology builder.
+Unit tests for data loaders, preprocessing, healthy controls, topology builder,
+and Course Recommended Benchmarks (Abilene and NetManAIOps).
 """
 
 import pytest
@@ -17,6 +18,21 @@ def test_topology_graph_construction():
     assert topo.graph.number_of_edges() >= 8
     nodes = topo.get_nodes()
     assert len(nodes) > 0
+
+
+def test_course_benchmarks_topologies():
+    # Test Abilene 11-node core backbone
+    abilene = TopologyGraph("abilene_backbone", "small")
+    assert abilene.graph.number_of_nodes() == 11
+    assert "ATLA" in abilene.get_nodes()
+    assert "SNVA" in abilene.get_nodes()
+    assert abilene.graph.number_of_edges() >= 14
+
+    # Test NetManAIOps enterprise multi-service topology
+    netman = TopologyGraph("netman_aiops", "medium")
+    assert netman.graph.number_of_nodes() >= 12
+    assert "core_gw1" in netman.get_nodes()
+    assert "db_cluster_primary" in netman.get_nodes()
 
 
 def test_fault_family_index():
@@ -50,4 +66,3 @@ def test_mock_network_env_execution():
 
     out_ping = env.execute_command("dist_sw1", "ping target")
     assert "Destination Host Unreachable" in out_ping
-

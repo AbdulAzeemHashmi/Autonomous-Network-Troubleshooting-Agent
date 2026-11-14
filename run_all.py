@@ -54,7 +54,13 @@ def main():
 
     # Step 2: Run Component Ablation Studies
     print("\n>>> STEP 2 / 4: Executing Component Ablation Studies...")
-    ablation_study = AblationStudy(num_incidents=args.num_ablations, seed=args.seed)
+    ablation_study = AblationStudy(
+        num_incidents=args.num_ablations,
+        seed=args.seed,
+        use_live_llm=args.use_live_llm,
+        gemini_api_key=args.gemini_api_key,
+        gemini_model=args.gemini_model
+    )
     ablation_df = ablation_study.run_ablations(output_csv="results/ablation_results.csv")
 
     # Step 3: Failure Taxonomy & Error Analysis

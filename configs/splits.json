@@ -1,5 +1,5 @@
 {
-  "description": "Whole-scenario partition preventing data leakage between development and evaluation sets.",
+  "description": "Whole-scenario partition preventing data leakage between development and evaluation sets, incorporating NIKA, FaulT-Bench, and Course Recommended Benchmarks (Abilene and NetManAIOps).",
   "development_scenarios": [
     "datacenter_clos",
     "campus_network",
@@ -9,17 +9,18 @@
     "multihomed_edge",
     "transit_wan",
     "sdn_hybrid",
-    "campus_core_access"
+    "campus_core_access",
+    "netman_aiops"
   ],
   "held_out_scenarios": [
     "sdn_cloud_fabric",
     "p4_testbed",
     "bgp_peering_exchange",
-    "datacenter_dci"
+    "datacenter_dci",
+    "abilene_backbone"
   ],
   "split_ratio": {
-    "development": 0.692,
-    "held_out": 0.308
+    "development": 0.667,
+    "held_out": 0.333
   }
 }
-
