@@ -70,3 +70,4 @@ def test_llm_judge_with_gemini_client():
     assert "overall_judge_score" in scores
     assert 1.0 <= scores["overall_judge_score"] <= 5.0
     assert scores["outcome_score"] == 5.0
+

@@ -176,3 +176,4 @@ class GeminiClient:
                 "confidence": 0.88
             })
         return json.dumps({"status": "acknowledged", "model": self.model_name})
+
