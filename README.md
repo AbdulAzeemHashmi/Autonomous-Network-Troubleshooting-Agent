@@ -11,7 +11,7 @@
 ![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![Gemini](https://img.shields.io/badge/Google%20Gemini-1.5%20Flash-4285F4?style=for-the-badge&logo=google&logoColor=white)
 ![NetworkX](https://img.shields.io/badge/NetworkX-3.7-orange?style=for-the-badge)
-![Pytest](https://img.shields.io/badge/Tests-28%20passing-success?style=for-the-badge&logo=pytest&logoColor=white)
+![Pytest](https://img.shields.io/badge/Tests-32%20passing-success?style=for-the-badge&logo=pytest&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
 ![Repo](https://img.shields.io/badge/Repository-Private-lightgrey?style=for-the-badge&logo=github)
 
@@ -160,7 +160,7 @@ The agent knows seven main types of network faults.
 | Data analysis | ![Pandas](https://img.shields.io/badge/-Pandas-150458?logo=pandas&logoColor=white) ![NumPy](https://img.shields.io/badge/-NumPy-013243?logo=numpy&logoColor=white) ![SciPy](https://img.shields.io/badge/-SciPy-8CAAE6?logo=scipy&logoColor=white) ![Scikit-Learn](https://img.shields.io/badge/-Scikit--Learn-F7931E?logo=scikitlearn&logoColor=white) | Statistical tests, confidence intervals, F1 scores |
 | Plotting | ![Matplotlib](https://img.shields.io/badge/-Matplotlib-11557c) | 8 publication figures at 300 DPI |
 | PDF export | ReportLab | Academic report compiler |
-| Testing | ![Pytest](https://img.shields.io/badge/-Pytest-0A9EDC?logo=pytest&logoColor=white) | 28 automated unit tests |
+| Testing | ![Pytest](https://img.shields.io/badge/-Pytest-0A9EDC?logo=pytest&logoColor=white) | 32 automated unit tests |
 
 ---
 
@@ -273,15 +273,17 @@ Autonomous-Network-Troubleshooting-Agent/
 │   ├── metrics_summary.csv               # Aggregate metrics with CIs
 │   ├── statistical_tests.csv             # Wilcoxon test results
 │   ├── ablation_results.csv              # Component ablation metrics
+│   ├── robustness_results.csv            # Scale, persona, and sensitivity stress tests
 │   ├── failure_taxonomy.csv              # Error classification counts
 │   └── fault_audit.csv                   # Preprocessing audit logs
 │
-└── tests/                                # Automated test suite (28 tests)
+└── tests/                                # Automated test suite (32 tests)
     ├── test_agent_phases.py              # Phase 1 to 7 unit tests
     ├── test_baselines.py                 # All 5 baseline tests
     ├── test_data_loader.py               # Loader, graph, and env tests
     ├── test_llm_client.py                # Gemini client and judge tests
     ├── test_metrics.py                   # Metric and runner tests
+    ├── test_robustness.py                # Robustness and sensitivity tests
     └── test_reproducibility.py           # End-to-end pipeline test
 ```
 
@@ -323,7 +325,7 @@ python run_all.py --use_live_llm --gemini_api_key "YOUR_GEMINI_KEY"
 
 ### Step 4: Run unit tests
 
-All 28 automated unit tests run with:
+All 32 automated unit tests run with:
 
 ```bash
 pytest tests/ -v
