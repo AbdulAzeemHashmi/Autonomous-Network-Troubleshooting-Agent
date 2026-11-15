@@ -93,7 +93,8 @@ def main():
     plotter.generate_all_plots(
         raw_runs_path="results/raw_runs.csv",
         metrics_summary_path="results/metrics_summary.csv",
-        ablation_results_path="results/ablation_results.csv"
+        ablation_results_path="results/ablation_results.csv",
+        robustness_results_path="results/robustness_results.csv"
     )
 
     # Step 6: Export Academic PDF Report
@@ -117,7 +118,7 @@ def main():
     print("  - Robustness Results:      results/robustness_results.csv")
     print("  - Failure Taxonomy:        results/failure_taxonomy.csv")
     print("  - Error Analysis Report:   docs/error_analysis.md")
-    print("  - Publication Figures:     figures/ (8 PNG figures)")
+    print("  - Publication Figures:     figures/ (9 PNG figures)")
     if not args.skip_pdf and os.path.exists(pdf_path):
         print(f"  - Academic PDF Report:     {pdf_path}")
     print("================================================================================")

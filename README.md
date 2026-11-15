@@ -158,7 +158,7 @@ The agent knows seven main types of network faults.
 | LLM backend | ![Gemini](https://img.shields.io/badge/-Google%20Gemini-4285F4?logo=google&logoColor=white) | gemini-1.5-flash, gemini-2.0-flash, gemini-1.5-pro |
 | Network modeling | ![NetworkX](https://img.shields.io/badge/-NetworkX-orange) | 3.7 graph library |
 | Data analysis | ![Pandas](https://img.shields.io/badge/-Pandas-150458?logo=pandas&logoColor=white) ![NumPy](https://img.shields.io/badge/-NumPy-013243?logo=numpy&logoColor=white) ![SciPy](https://img.shields.io/badge/-SciPy-8CAAE6?logo=scipy&logoColor=white) ![Scikit-Learn](https://img.shields.io/badge/-Scikit--Learn-F7931E?logo=scikitlearn&logoColor=white) | Statistical tests, confidence intervals, F1 scores |
-| Plotting | ![Matplotlib](https://img.shields.io/badge/-Matplotlib-11557c) | 8 publication figures at 300 DPI |
+| Plotting | ![Matplotlib](https://img.shields.io/badge/-Matplotlib-11557c) | 9 publication figures at 300 DPI |
 | PDF export | ReportLab | Academic report compiler |
 | Testing | ![Pytest](https://img.shields.io/badge/-Pytest-0A9EDC?logo=pytest&logoColor=white) | 32 automated unit tests |
 
@@ -201,6 +201,8 @@ Autonomous-Network-Troubleshooting-Agent/
 ├── conftest.py                           # Root path configuration
 ├── export_pdf.py                         # ReportLab PDF compiler
 ├── interactive_cli.py                    # Interactive single-incident demo
+├── run_experiments.bat                  # One-click Windows batch runner
+├── run_experiments.ps1                  # One-click Windows PowerShell runner
 ├── run_all.py                            # Single-command end-to-end run
 │
 ├── configs/                              # System configurations
@@ -257,7 +259,8 @@ Autonomous-Network-Troubleshooting-Agent/
 │   ├── fig5_ablation_component_drop.png
 │   ├── fig6_transfer_generalization.png
 │   ├── fig7_token_usage_breakdown.png
-│   └── fig8_no_submission_rates.png
+│   ├── fig8_no_submission_rates.png
+│   └── fig9_robustness_stress_testing.png
 │
 ├── prompts/                              # Phase-specific prompt templates
 │   ├── judge.txt                         # Fault-Bench LLM judge prompt
@@ -301,10 +304,17 @@ pip install -r requirements.txt
 
 ### Step 2: Run the full pipeline (one command)
 
-This runs 720 benchmark evaluations, 60 ablations, statistical tests, error classification, figure generation, and PDF report compilation.
+This runs 720 benchmark evaluations, 60 ablations, robustness stress tests, statistical tests, error classification, 9 publication figures, and PDF report compilation.
 
 ```bash
+# Python runner
 python run_all.py --config configs/experiment_config.yaml
+
+# Or one-click on Windows PowerShell:
+.\run_experiments.ps1
+
+# Or one-click on Windows CMD:
+run_experiments.bat
 ```
 
 ### Step 3: Run with the live Google Gemini API

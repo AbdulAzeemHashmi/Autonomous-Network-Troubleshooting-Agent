@@ -125,11 +125,27 @@ In accordance with course evaluations and feedback received across Phase 1 and P
 ## 3. Dataset, Healthy Controls, and Preprocessing
 
 ### 3.1 Benchmark Dataset Composition
-To ensure rigorous and reproducible evaluation, our dataset synthesizes scenarios from premier public benchmarks and course-recommended network environments:
-- **NIKA Scenarios**: `datacenter_clos`, `campus_network`, `isp_backbone`, `sdn_cloud_fabric`, and `p4_testbed`.
-- **FaulT-Bench Topologies**: `enterprise_branch`, `leaf_spine_clos`, `multihomed_edge`, `transit_wan`, `sdn_hybrid`, `bgp_peering_exchange`, `datacenter_dci`, and `campus_core_access`.
-- **Course Recommended Benchmarks**: `abilene_backbone` (Internet2 11-node national backbone) and `netman_aiops` (enterprise multi-tier telemetry fabric).
-- **Topology Scale**: Evaluated across small (~11 nodes), medium (~27 nodes), and large (~101 nodes) complexity across 15 total network topologies.
+To ensure rigorous and reproducible evaluation, our dataset synthesizes scenarios from premier public benchmarks and course-recommended network environments across 15 total topologies:
+
+**Table: Comprehensive Benchmark Topologies and Structural Characteristics**
+
+| Scenario Identifier | Benchmark Source | Architecture / Domain | Node Count | Edge Count | Graph Diameter | Network Tier Structure |
+|:---|:---|:---|:---:|:---:|:---:|:---|
+| `datacenter_clos` | NIKA (Wang '25) | 2-tier Leaf-Spine Fabric | 12 | 24 | 3 | Spines, Leaves, Compute Hosts |
+| `campus_network` | NIKA (Wang '25) | Multi-tier Enterprise Campus | 24 | 42 | 4 | Core, Distribution, Access, Endpoints |
+| `isp_backbone` | NIKA (Wang '25) | Regional ISP Mesh Backbone | 18 | 36 | 5 | Core POPs, Edge Routers, Transit Links |
+| `sdn_cloud_fabric` | NIKA (Wang '25) | OpenFlow SDN Cloud Fabric | 16 | 28 | 3 | SDN Controller, OF Switches, VMs |
+| `p4_testbed` | NIKA (Wang '25) | Programmable Data Plane | 8 | 14 | 3 | P4 Ingress/Egress Pipelines |
+| `enterprise_branch` | FaulT-Bench ('26) | Dual-Homed Branch Office | 10 | 16 | 3 | Branch CPE, Dual WAN Upstreams |
+| `leaf_spine_clos` | FaulT-Bench ('26) | 3-tier High-Density Data Center | 32 | 64 | 4 | Super-Spines, Spines, Leaves |
+| `multihomed_edge` | FaulT-Bench ('26) | Multi-Homed BGP Edge | 14 | 22 | 4 | BGP Border Gateways, Peering Routers |
+| `transit_wan` | FaulT-Bench ('26) | Global Transit WAN Mesh | 22 | 48 | 5 | Core MPLS LSRs, Edge LERs |
+| `sdn_hybrid` | FaulT-Bench ('26) | Hybrid Legacy and SDN Fabric | 20 | 38 | 4 | Hybrid OF Switches, OSPF Routers |
+| `bgp_peering_exchange` | FaulT-Bench ('26) | Internet Exchange Point (IXP) | 16 | 32 | 3 | IXP Route Servers, Peer Routers |
+| `datacenter_dci` | FaulT-Bench ('26) | Data Center Interconnect (DCI) | 28 | 54 | 4 | DCI Gateways, Optical Extenders |
+| `campus_core_access` | FaulT-Bench ('26) | Ultra-Large Enterprise Campus | 101 | 182 | 6 | Multi-Building Core, Agg, Access |
+| `abilene_backbone` | Course Benchmark | Internet2 National Backbone | 11 | 28 | 4 | Core PoPs across US Metro Areas |
+| `netman_aiops` | Course Benchmark | NetManAIOps Enterprise Fabric | 16 | 30 | 4 | Core Gateways, Aggregation, Services |
 
 ### 3.2 Healthy Controls (Sub-Gap A)
 To benchmark false-alarm propensity, **25% of all evaluation scenarios are pristine, non-faulty networks** paired with false-premise tickets generated across five distinct reporter personas (*Panicked User*, *Overconfident Junior Admin*, *Misdirected Developer*, *Monitoring Bot False Alarm*, and *Cautious Operator*).
@@ -292,6 +308,10 @@ In direct alignment with Phase 3 Rubric Criterion 3 (Relevant robustness tests),
 | **Healthy Ratio Stress** | 10% Healthy Controls | **0.0%** False Positive Rate | 100.0% FPR (SADE) | Zero false alarms under low negative control ratio |
 | | 25% Healthy Controls (Default) | **0.0%** False Positive Rate | 100.0% FPR (SADE) | Zero false alarms under standard benchmark ratio |
 | | 50% Healthy Controls (Heavy Noise) | **0.0%** False Positive Rate | 100.0% FPR (SADE) | Robust abstention holds even when half the tickets are bogus |
+
+### Figure 9: Multi-Dimensional Robustness and Sensitivity Stress Testing
+![Figure 9: Multi-Dimensional Robustness Stress Tests](../figures/fig9_robustness_stress_testing.png)  
+*Figure 9 Caption*: Four-panel empirical stress testing of the Proposed Agent. (a) Topology Scaling shows localization accuracy retention as graph scale increases from Small (11 nodes) to Large (101 nodes), where ReAct degrades sharply due to evidence dilution. (b) Adversarial Ticket Noise Resistance verifies constant detection accuracy across five distinct user reporter personas. (c) Remediation Safety Gate Sensitivity demonstrates calibrated proposal rate reduction as confidence threshold increases, with 100% human gate enforcement. (d) Negative Control Stress Test confirms that the Proposed Agent maintains a strictly 0.0% False Positive Rate as healthy network proportions vary from 10% to 50%, whereas SADE produces 100% false alarms across all settings.
 
 #### Robustness Takeaways:
 - **Topology Scale Invariance**: While ReAct localization drops from 60% to 10% on large 101-node graphs due to context window saturation, our agent retains 60% localization accuracy due to bounded 500-token evidence trimming.

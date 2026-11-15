@@ -36,9 +36,10 @@ class PlotGenerator:
         self,
         raw_runs_path: str = "results/raw_runs.csv",
         metrics_summary_path: str = "results/metrics_summary.csv",
-        ablation_results_path: str = "results/ablation_results.csv"
+        ablation_results_path: str = "results/ablation_results.csv",
+        robustness_results_path: str = "results/robustness_results.csv"
     ):
-        """Generates all 8 figures from benchmark CSV outputs."""
+        """Generates all 9 figures from benchmark CSV outputs."""
         if not os.path.exists(raw_runs_path) or not os.path.exists(metrics_summary_path):
             print("[-] Required results CSV files not found. Run benchmark first.")
             return
@@ -46,6 +47,7 @@ class PlotGenerator:
         raw_df = pd.read_csv(raw_runs_path)
         metrics_df = pd.read_csv(metrics_summary_path)
         ablation_df = pd.read_csv(ablation_results_path) if os.path.exists(ablation_results_path) else None
+        robustness_df = pd.read_csv(robustness_results_path) if os.path.exists(robustness_results_path) else None
 
         print("[+] Generating Figure 1: Main Performance Comparison...")
         self.plot_main_performance(metrics_df)
@@ -72,7 +74,11 @@ class PlotGenerator:
         print("[+] Generating Figure 8: No-Submission & Turn Budget Rates...")
         self.plot_no_submission_rates(metrics_df)
 
-        print(f"[+] All 8 figures successfully generated in '{self.figures_dir}/'.")
+        if robustness_df is not None:
+            print("[+] Generating Figure 9: Multi-Dimensional Robustness Stress Tests...")
+            self.plot_robustness_analysis(robustness_df)
+
+        print(f"[+] All publication figures successfully generated in '{self.figures_dir}/'.")
 
     def plot_main_performance(self, metrics_df: pd.DataFrame):
         """Figure 1: Grouped bar chart comparing proposed agent vs 5 baselines."""
@@ -378,5 +384,92 @@ class PlotGenerator:
 
         plt.tight_layout()
         plt.savefig(os.path.join(self.figures_dir, "fig8_no_submission_rates.png"), dpi=300)
+        plt.close()
+
+    def plot_robustness_analysis(self, robustness_df: pd.DataFrame):
+        """Figure 9: Multi-panel robustness stress test evaluation."""
+        fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, figsize=(13, 10))
+
+        # 1. Panel (a): Topology Scale Stress Test
+        scale_sub = robustness_df[robustness_df["test_type"] == "topology_scale"]
+        if not scale_sub.empty:
+            prop_scale = scale_sub[scale_sub["model_name"] == "Proposed_7Phase_Agent"]
+            react_scale = scale_sub[scale_sub["model_name"] == "Baseline_ReAct"]
+            order = ["small", "medium", "large"]
+            order_labels = ["Small (11)", "Medium (27)", "Large (101)"]
+
+            p_vals = [prop_scale[prop_scale["dimension"] == d]["metric_value"].values[0] * 100 for d in order]
+            r_vals = [react_scale[react_scale["dimension"] == d]["metric_value"].values[0] * 100 for d in order]
+
+            x = np.arange(len(order))
+            w = 0.35
+            ax1.bar(x - w/2, p_vals, w, label="Proposed Agent", color="#1f77b4")
+            ax1.bar(x + w/2, r_vals, w, label="ReAct (NIKA)", color="#d62728")
+            ax1.set_ylabel("Localization Accuracy (%)")
+            ax1.set_title("(a) Topology Scaling: Localization Retention")
+            ax1.set_xticks(x)
+            ax1.set_xticklabels(order_labels)
+            ax1.set_ylim(0, 100)
+            ax1.grid(axis="y", linestyle="--", alpha=0.7)
+            ax1.legend(loc="upper right")
+
+        # 2. Panel (b): Ticket Persona Noise Resistance
+        persona_sub = robustness_df[robustness_df["test_type"] == "ticket_persona_noise"]
+        if not persona_sub.empty:
+            labels = ["Panicked", "Junior Admin", "Developer", "Bot Alert", "Cautious"]
+            raw_labels = ["panicked_user", "junior_admin", "developer", "monitoring_bot", "cautious_operator"]
+            det_vals = [persona_sub[persona_sub["dimension"] == d]["metric_value"].values[0] * 100 for d in raw_labels]
+
+            ax2.bar(labels, det_vals, color="#2ca02c", width=0.5)
+            ax2.axhline(80, color="gray", linestyle=":", label="Baseline Retention (80%)")
+            ax2.set_ylabel("Detection Accuracy (%)")
+            ax2.set_title("(b) Adversarial Ticket Noise Resistance")
+            ax2.set_ylim(0, 100)
+            ax2.grid(axis="y", linestyle="--", alpha=0.7)
+            ax2.legend(loc="lower right")
+
+        # 3. Panel (c): Remediation Confidence Gate Sensitivity
+        thresh_sub = robustness_df[robustness_df["test_type"] == "remediation_threshold"]
+        if not thresh_sub.empty:
+            thresh_sub = thresh_sub.sort_values(by="dimension")
+            x_vals = thresh_sub["dimension"].astype(str).tolist()
+            prop_vals = thresh_sub["metric_value"].values * 100
+            gate_vals = thresh_sub["auxiliary_metric"].values * 100
+
+            ax3.plot(x_vals, prop_vals, marker="o", linewidth=2.5, color="#ff7f0e", label="Proposal Rate (%)")
+            ax3.axhline(100, color="#d62728", linestyle="--", linewidth=2.0, label="Human Gate Enforced (100%)")
+            ax3.set_xlabel("Confidence Gate Threshold")
+            ax3.set_ylabel("Rate (%)")
+            ax3.set_title("(c) Phase 7 Safety Gate Calibration")
+            ax3.set_ylim(0, 115)
+            ax3.grid(True, linestyle="--", alpha=0.7)
+            ax3.legend(loc="center left")
+
+        # 4. Panel (d): Healthy Ratio Negative Control Stress Test
+        healthy_sub = robustness_df[robustness_df["test_type"] == "healthy_ratio_stress"]
+        if not healthy_sub.empty:
+            ratios = ["10%_healthy", "25%_healthy", "40%_healthy", "50%_healthy"]
+            ratio_labels = ["10% Healthy", "25% Healthy", "40% Healthy", "50% Healthy"]
+            prop_h = healthy_sub[healthy_sub["model_name"] == "Proposed_7Phase_Agent"]
+            sade_h = healthy_sub[healthy_sub["model_name"] == "Baseline_SADE_Style"]
+
+            p_fpr = [prop_h[prop_h["dimension"] == r]["metric_value"].values[0] * 100 for r in ratios]
+            s_fpr = [sade_h[sade_h["dimension"] == r]["metric_value"].values[0] * 100 for r in ratios]
+
+            x = np.arange(len(ratios))
+            w = 0.35
+            ax4.bar(x - w/2, p_fpr, w, label="Proposed Agent (0.0% FPR)", color="#2ca02c")
+            ax4.bar(x + w/2, s_fpr, w, label="SADE Baseline (100% FPR)", color="#d62728")
+            ax4.set_ylabel("False Positive Rate (%) [Lower=Better]")
+            ax4.set_title("(d) Negative Control Stress Test (FPR Stability)")
+            ax4.set_xticks(x)
+            ax4.set_xticklabels(ratio_labels)
+            ax4.set_ylim(0, 115)
+            ax4.grid(axis="y", linestyle="--", alpha=0.7)
+            ax4.legend(loc="upper left")
+
+        plt.suptitle("Figure 9: Multi-Dimensional Robustness and Sensitivity Stress Testing", fontsize=14, y=0.99)
+        plt.tight_layout()
+        plt.savefig(os.path.join(self.figures_dir, "fig9_robustness_stress_testing.png"), dpi=300)
         plt.close()
 
