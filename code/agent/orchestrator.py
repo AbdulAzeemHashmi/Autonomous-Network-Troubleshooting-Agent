@@ -32,6 +32,7 @@ class TroubleshootingAgent:
         enable_skills: bool = True,
         cost_per_1k_input: float = 0.000075,
         cost_per_1k_output: float = 0.0003,
+        confidence_threshold: float = 0.80,
         llm_client: Optional[GeminiClient] = None,
         use_llm: bool = False
     ):
@@ -43,6 +44,7 @@ class TroubleshootingAgent:
         self.enable_skills = enable_skills
         self.cost_per_1k_input = cost_per_1k_input
         self.cost_per_1k_output = cost_per_1k_output
+        self.confidence_threshold = confidence_threshold
         self.llm_client = llm_client
         self.use_llm = use_llm
 
@@ -53,7 +55,7 @@ class TroubleshootingAgent:
         self.falsification_engine = FalsificationEngine(self.preprocessor)
         self.abstain_mgr = AbstainManager()
         self.rca_synthesizer = RootCauseSynthesizer()
-        self.remediation_planner = RemediationPlanner(confidence_threshold=0.80)
+        self.remediation_planner = RemediationPlanner(confidence_threshold=self.confidence_threshold)
 
     def troubleshoot(
         self,

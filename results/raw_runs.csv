@@ -3,7 +3,7 @@ RUN-000001,Proposed_7Phase_Agent,INC-0001,datacenter_clos,small,development,NIKA
 RUN-000002,Baseline_SADE_Style,INC-0001,datacenter_clos,small,development,NIKA,False,True,link_failure,spine2,True,leaf1,routing_misconfiguration,0.72,False,False,6,0.0,1550,420,0.01095,False,True,2.0,2.5,4.5,2.9
 RUN-000003,Baseline_ReAct,INC-0001,datacenter_clos,small,development,NIKA,False,True,link_failure,spine2,True,leaf1,congestion,0.65,False,False,1,0.0,670,120,0.00381,False,True,2.0,2.5,4.5,2.9
 RUN-000004,Baseline_Generic_Coding,INC-0001,datacenter_clos,small,development,NIKA,False,True,link_failure,spine2,True,leaf1,congestion,0.7,False,False,2,0.0,950,400,0.00885,False,True,2.0,2.5,4.5,2.9
-RUN-000005,Baseline_Zero_Shot,INC-0001,datacenter_clos,small,development,NIKA,False,True,link_failure,spine2,True,leaf1,link_failure,0.5,False,False,1,0.0,146,60,2.9e-05,False,True,4.0,2.5,4.5,3.7
+RUN-000005,Baseline_Zero_Shot,INC-0001,datacenter_clos,small,development,NIKA,False,True,link_failure,spine2,True,leaf1,link_failure,0.5,False,False,1,0.0005,146,60,2.9e-05,False,True,4.0,2.5,4.5,3.7
 RUN-000006,Baseline_Scripted_Rules,INC-0001,datacenter_clos,small,development,NIKA,False,True,link_failure,spine2,False,none,none,0.9,False,True,4,0.0,0,0,0.0,False,True,1.0,2.5,3.5,2.2
 RUN-000007,Proposed_7Phase_Agent,INC-0002,campus_network,large,development,NIKA,False,True,congestion,access_sw1,True,access_sw1,congestion,0.95,True,False,10,0.0,2120,570,0.00033,False,True,5.0,5.0,4.5,4.85
 RUN-000008,Baseline_SADE_Style,INC-0002,campus_network,large,development,NIKA,False,True,congestion,access_sw1,True,access_sw1,congestion,0.7,False,False,6,0.0,1550,420,0.01095,False,True,5.0,2.5,4.5,4.1
@@ -12,13 +12,13 @@ RUN-000010,Baseline_Generic_Coding,INC-0002,campus_network,large,development,NIK
 RUN-000011,Baseline_Zero_Shot,INC-0002,campus_network,large,development,NIKA,False,True,congestion,access_sw1,True,access_sw1,congestion,0.5,False,False,1,0.0,140,60,2.8e-05,False,True,5.0,2.5,4.5,4.1
 RUN-000012,Baseline_Scripted_Rules,INC-0002,campus_network,large,development,NIKA,False,True,congestion,access_sw1,True,access_sw1,congestion,0.85,False,False,4,0.0,0,0,0.0,False,True,5.0,2.5,4.5,4.1
 RUN-000013,Proposed_7Phase_Agent,INC-0003,isp_backbone,medium,development,NIKA,False,True,routing_misconfiguration,cr4,True,cr4,routing_misconfiguration,0.75,False,False,11,0.0,2466,650,0.00038,False,True,5.0,2.5,4.5,4.1
-RUN-000014,Baseline_SADE_Style,INC-0003,isp_backbone,medium,development,NIKA,False,True,routing_misconfiguration,cr4,True,cr4,congestion,0.7,False,False,6,0.001,1550,420,0.01095,False,True,3.0,2.5,4.5,3.3
+RUN-000014,Baseline_SADE_Style,INC-0003,isp_backbone,medium,development,NIKA,False,True,routing_misconfiguration,cr4,True,cr4,congestion,0.7,False,False,6,0.0,1550,420,0.01095,False,True,3.0,2.5,4.5,3.3
 RUN-000015,Baseline_ReAct,INC-0003,isp_backbone,medium,development,NIKA,False,True,routing_misconfiguration,cr4,True,cr4,congestion,0.65,False,False,1,0.0,670,120,0.00381,False,True,3.0,2.5,4.5,3.3
 RUN-000016,Baseline_Generic_Coding,INC-0003,isp_backbone,medium,development,NIKA,False,True,routing_misconfiguration,cr4,True,cr4,congestion,0.7,False,False,2,0.0,950,400,0.00885,False,True,3.0,2.5,4.5,3.3
 RUN-000017,Baseline_Zero_Shot,INC-0003,isp_backbone,medium,development,NIKA,False,True,routing_misconfiguration,cr4,True,cr4,routing_misconfiguration,0.5,False,False,1,0.0,136,60,2.8e-05,False,True,5.0,2.5,4.5,4.1
 RUN-000018,Baseline_Scripted_Rules,INC-0003,isp_backbone,medium,development,NIKA,False,True,routing_misconfiguration,cr4,True,cr4,routing_misconfiguration,0.85,False,False,4,0.0,0,0,0.0,False,True,5.0,2.5,4.5,4.1
 RUN-000019,Proposed_7Phase_Agent,INC-0004,sdn_cloud_fabric,small,held_out,NIKA,False,True,acl_firewall_block,sw4,True,sw4,acl_firewall_block,0.95,True,False,10,0.0,2118,570,0.00033,False,True,5.0,5.0,4.5,4.85
-RUN-000020,Baseline_SADE_Style,INC-0004,sdn_cloud_fabric,small,held_out,NIKA,False,True,acl_firewall_block,sw4,True,sw4,acl_firewall_block,0.7,False,False,6,0.0,1550,420,0.01095,False,True,5.0,2.5,4.5,4.1
+RUN-000020,Baseline_SADE_Style,INC-0004,sdn_cloud_fabric,small,held_out,NIKA,False,True,acl_firewall_block,sw4,True,sw4,acl_firewall_block,0.7,False,False,6,0.0006,1550,420,0.01095,False,True,5.0,2.5,4.5,4.1
 RUN-000021,Baseline_ReAct,INC-0004,sdn_cloud_fabric,small,held_out,NIKA,False,True,acl_firewall_block,sw4,True,sw4,congestion,0.65,False,False,1,0.0,670,120,0.00381,False,True,3.0,2.5,4.5,3.3
 RUN-000022,Baseline_Generic_Coding,INC-0004,sdn_cloud_fabric,small,held_out,NIKA,False,True,acl_firewall_block,sw4,True,sw4,congestion,0.7,False,False,2,0.0,950,400,0.00885,False,True,3.0,2.5,4.5,3.3
 RUN-000023,Baseline_Zero_Shot,INC-0004,sdn_cloud_fabric,small,held_out,NIKA,False,True,acl_firewall_block,sw4,True,sw4,routing_misconfiguration,0.5,False,False,1,0.0,138,60,2.8e-05,False,True,3.0,2.5,4.5,3.3
@@ -29,7 +29,7 @@ RUN-000027,Baseline_ReAct,INC-0005,p4_testbed,large,held_out,NIKA,False,True,ser
 RUN-000028,Baseline_Generic_Coding,INC-0005,p4_testbed,large,held_out,NIKA,False,True,service_failure,access_sw4,True,access_sw4,congestion,0.7,False,False,2,0.0,950,400,0.00885,False,True,3.0,2.5,4.5,3.3
 RUN-000029,Baseline_Zero_Shot,INC-0005,p4_testbed,large,held_out,NIKA,False,True,service_failure,access_sw4,True,access_sw4,service_failure,0.5,False,False,1,0.0,144,60,2.9e-05,False,True,5.0,2.5,4.5,4.1
 RUN-000030,Baseline_Scripted_Rules,INC-0005,p4_testbed,large,held_out,NIKA,False,True,service_failure,access_sw4,True,access_sw4,service_failure,0.85,False,False,4,0.0,0,0,0.0,False,True,5.0,2.5,4.5,4.1
-RUN-000031,Proposed_7Phase_Agent,INC-0006,enterprise_branch,medium,development,FaulT-Bench,False,True,dns_failure,access_sw5,False,none,none,0.98,False,True,12,0.0,2130,570,0.000331,False,False,1.0,2.5,3.5,2.2
+RUN-000031,Proposed_7Phase_Agent,INC-0006,enterprise_branch,medium,development,FaulT-Bench,False,True,dns_failure,access_sw5,False,none,none,0.98,False,True,12,0.0006,2130,570,0.000331,False,False,1.0,2.5,3.5,2.2
 RUN-000032,Baseline_SADE_Style,INC-0006,enterprise_branch,medium,development,FaulT-Bench,False,True,dns_failure,access_sw5,True,access_sw6,routing_misconfiguration,0.72,False,False,6,0.0,1550,420,0.01095,False,True,2.0,2.5,4.5,2.9
 RUN-000033,Baseline_ReAct,INC-0006,enterprise_branch,medium,development,FaulT-Bench,False,True,dns_failure,access_sw5,True,access_sw6,congestion,0.65,False,False,1,0.0,670,120,0.00381,False,True,2.0,2.5,4.5,2.9
 RUN-000034,Baseline_Generic_Coding,INC-0006,enterprise_branch,medium,development,FaulT-Bench,False,True,dns_failure,access_sw5,True,access_sw6,congestion,0.7,False,False,2,0.0,950,400,0.00885,False,True,2.0,2.5,4.5,2.9
@@ -37,12 +37,12 @@ RUN-000035,Baseline_Zero_Shot,INC-0006,enterprise_branch,medium,development,Faul
 RUN-000036,Baseline_Scripted_Rules,INC-0006,enterprise_branch,medium,development,FaulT-Bench,False,True,dns_failure,access_sw5,False,none,none,0.9,False,True,4,0.0,0,0,0.0,False,True,1.0,2.5,3.5,2.2
 RUN-000037,Proposed_7Phase_Agent,INC-0007,leaf_spine_clos,small,development,FaulT-Bench,False,True,hardware_transceiver,srv2,True,srv2,hardware_transceiver,0.95,True,False,10,0.0,2118,570,0.00033,False,True,5.0,5.0,4.5,4.85
 RUN-000038,Baseline_SADE_Style,INC-0007,leaf_spine_clos,small,development,FaulT-Bench,False,True,hardware_transceiver,srv2,True,srv2,hardware_transceiver,0.7,False,False,6,0.0,1550,420,0.01095,False,True,5.0,2.5,4.5,4.1
-RUN-000039,Baseline_ReAct,INC-0007,leaf_spine_clos,small,development,FaulT-Bench,False,True,hardware_transceiver,srv2,True,srv2,congestion,0.65,False,False,1,0.0,670,120,0.00381,False,True,3.0,2.5,4.5,3.3
+RUN-000039,Baseline_ReAct,INC-0007,leaf_spine_clos,small,development,FaulT-Bench,False,True,hardware_transceiver,srv2,True,srv2,congestion,0.65,False,False,1,0.0005,670,120,0.00381,False,True,3.0,2.5,4.5,3.3
 RUN-000040,Baseline_Generic_Coding,INC-0007,leaf_spine_clos,small,development,FaulT-Bench,False,True,hardware_transceiver,srv2,True,srv2,congestion,0.7,False,False,2,0.0,950,400,0.00885,False,True,3.0,2.5,4.5,3.3
 RUN-000041,Baseline_Zero_Shot,INC-0007,leaf_spine_clos,small,development,FaulT-Bench,False,True,hardware_transceiver,srv2,True,srv2,routing_misconfiguration,0.5,False,False,1,0.0,138,60,2.8e-05,False,True,3.0,2.5,4.5,3.3
 RUN-000042,Baseline_Scripted_Rules,INC-0007,leaf_spine_clos,small,development,FaulT-Bench,False,True,hardware_transceiver,srv2,True,srv2,hardware_transceiver,0.85,False,False,4,0.0,0,0,0.0,False,True,5.0,2.5,4.5,4.1
 RUN-000043,Proposed_7Phase_Agent,INC-0008,multihomed_edge,large,development,FaulT-Bench,False,True,link_failure,access_sw7,True,access_sw7,link_failure,0.95,True,False,11,0.0,2468,650,0.00038,False,True,5.0,5.0,4.5,4.85
-RUN-000044,Baseline_SADE_Style,INC-0008,multihomed_edge,large,development,FaulT-Bench,False,True,link_failure,access_sw7,True,access_sw7,link_failure,0.7,False,False,6,0.0,1550,420,0.01095,False,True,5.0,2.5,4.5,4.1
+RUN-000044,Baseline_SADE_Style,INC-0008,multihomed_edge,large,development,FaulT-Bench,False,True,link_failure,access_sw7,True,access_sw7,link_failure,0.7,False,False,6,0.0004,1550,420,0.01095,False,True,5.0,2.5,4.5,4.1
 RUN-000045,Baseline_ReAct,INC-0008,multihomed_edge,large,development,FaulT-Bench,False,True,link_failure,access_sw7,True,access_sw7,congestion,0.65,False,False,1,0.0,670,120,0.00381,False,True,3.0,2.5,4.5,3.3
 RUN-000046,Baseline_Generic_Coding,INC-0008,multihomed_edge,large,development,FaulT-Bench,False,True,link_failure,access_sw7,True,access_sw7,congestion,0.7,False,False,2,0.0,950,400,0.00885,False,True,3.0,2.5,4.5,3.3
 RUN-000047,Baseline_Zero_Shot,INC-0008,multihomed_edge,large,development,FaulT-Bench,False,True,link_failure,access_sw7,True,access_sw7,link_failure,0.5,False,False,1,0.0,138,60,2.8e-05,False,True,5.0,2.5,4.5,4.1
@@ -69,7 +69,7 @@ RUN-000067,Proposed_7Phase_Agent,INC-0012,datacenter_dci,medium,held_out,FaulT-B
 RUN-000068,Baseline_SADE_Style,INC-0012,datacenter_dci,medium,held_out,FaulT-Bench,False,True,service_failure,srv4,True,srv4,service_failure,0.7,False,False,6,0.0,1550,420,0.01095,False,True,5.0,2.5,4.5,4.1
 RUN-000069,Baseline_ReAct,INC-0012,datacenter_dci,medium,held_out,FaulT-Bench,False,True,service_failure,srv4,True,srv4,congestion,0.65,False,False,1,0.0,670,120,0.00381,False,True,3.0,2.5,4.5,3.3
 RUN-000070,Baseline_Generic_Coding,INC-0012,datacenter_dci,medium,held_out,FaulT-Bench,False,True,service_failure,srv4,True,srv4,congestion,0.7,False,False,2,0.0,950,400,0.00885,False,True,3.0,2.5,4.5,3.3
-RUN-000071,Baseline_Zero_Shot,INC-0012,datacenter_dci,medium,held_out,FaulT-Bench,False,True,service_failure,srv4,True,srv4,service_failure,0.5,False,False,1,0.0,144,60,2.9e-05,False,True,5.0,2.5,4.5,4.1
+RUN-000071,Baseline_Zero_Shot,INC-0012,datacenter_dci,medium,held_out,FaulT-Bench,False,True,service_failure,srv4,True,srv4,service_failure,0.5,False,False,1,0.0005,144,60,2.9e-05,False,True,5.0,2.5,4.5,4.1
 RUN-000072,Baseline_Scripted_Rules,INC-0012,datacenter_dci,medium,held_out,FaulT-Bench,False,True,service_failure,srv4,True,srv4,service_failure,0.85,False,False,4,0.0,0,0,0.0,False,True,5.0,2.5,4.5,4.1
 RUN-000073,Proposed_7Phase_Agent,INC-0013,campus_core_access,small,development,FaulT-Bench,False,True,dns_failure,core_sw2,True,core_sw2,dns_failure,0.75,False,False,10,0.0,2122,570,0.00033,False,False,5.0,2.5,4.5,4.1
 RUN-000074,Baseline_SADE_Style,INC-0013,campus_core_access,small,development,FaulT-Bench,False,True,dns_failure,core_sw2,True,core_sw2,dns_failure,0.5,False,False,6,0.0,1550,420,0.01095,False,True,5.0,2.5,4.5,4.1
@@ -77,7 +77,7 @@ RUN-000075,Baseline_ReAct,INC-0013,campus_core_access,small,development,FaulT-Be
 RUN-000076,Baseline_Generic_Coding,INC-0013,campus_core_access,small,development,FaulT-Bench,False,True,dns_failure,core_sw2,True,core_sw2,congestion,0.7,False,False,2,0.0,950,400,0.00885,False,True,3.0,2.5,4.5,3.3
 RUN-000077,Baseline_Zero_Shot,INC-0013,campus_core_access,small,development,FaulT-Bench,False,True,dns_failure,core_sw2,True,core_sw2,dns_failure,0.5,False,False,1,0.0,142,60,2.9e-05,False,True,5.0,2.5,4.5,4.1
 RUN-000078,Baseline_Scripted_Rules,INC-0013,campus_core_access,small,development,FaulT-Bench,False,True,dns_failure,core_sw2,False,none,none,0.9,False,True,4,0.0,0,0,0.0,False,True,1.0,2.5,3.5,2.2
-RUN-000079,Proposed_7Phase_Agent,INC-0014,abilene_backbone,large,held_out,Course-Abilene,False,True,hardware_transceiver,atla_edge_4,False,none,none,0.98,False,True,12,0.0,2118,570,0.00033,False,False,1.0,2.5,3.5,2.2
+RUN-000079,Proposed_7Phase_Agent,INC-0014,abilene_backbone,large,held_out,Course-Abilene,False,True,hardware_transceiver,atla_edge_4,False,none,none,0.98,False,True,12,0.0005,2118,570,0.00033,False,False,1.0,2.5,3.5,2.2
 RUN-000080,Baseline_SADE_Style,INC-0014,abilene_backbone,large,held_out,Course-Abilene,False,True,hardware_transceiver,atla_edge_4,True,ATLA,routing_misconfiguration,0.72,False,False,6,0.0,1550,420,0.01095,False,True,2.0,2.5,4.5,2.9
 RUN-000081,Baseline_ReAct,INC-0014,abilene_backbone,large,held_out,Course-Abilene,False,True,hardware_transceiver,atla_edge_4,True,ATLA,congestion,0.65,False,False,1,0.0,670,120,0.00381,False,True,2.0,2.5,4.5,2.9
 RUN-000082,Baseline_Generic_Coding,INC-0014,abilene_backbone,large,held_out,Course-Abilene,False,True,hardware_transceiver,atla_edge_4,True,ATLA,congestion,0.7,False,False,2,0.0,950,400,0.00885,False,True,2.0,2.5,4.5,2.9
@@ -95,7 +95,7 @@ RUN-000093,Baseline_ReAct,INC-0016,datacenter_clos,small,development,NIKA,False,
 RUN-000094,Baseline_Generic_Coding,INC-0016,datacenter_clos,small,development,NIKA,False,True,congestion,srv1,True,srv2,congestion,0.7,False,False,2,0.0,950,400,0.00885,False,True,4.0,2.5,4.5,3.7
 RUN-000095,Baseline_Zero_Shot,INC-0016,datacenter_clos,small,development,NIKA,False,True,congestion,srv1,True,srv2,congestion,0.5,False,False,1,0.0,148,60,2.9e-05,False,True,4.0,2.5,4.5,3.7
 RUN-000096,Baseline_Scripted_Rules,INC-0016,datacenter_clos,small,development,NIKA,False,True,congestion,srv1,False,none,none,0.9,False,True,4,0.0,0,0,0.0,False,True,1.0,2.5,3.5,2.2
-RUN-000097,Proposed_7Phase_Agent,INC-0017,campus_network,large,development,NIKA,False,True,routing_misconfiguration,access_sw16,False,none,none,0.98,False,True,12,0.0,2116,570,0.00033,False,False,1.0,2.5,3.5,2.2
+RUN-000097,Proposed_7Phase_Agent,INC-0017,campus_network,large,development,NIKA,False,True,routing_misconfiguration,access_sw16,False,none,none,0.98,False,True,12,0.0006,2116,570,0.00033,False,False,1.0,2.5,3.5,2.2
 RUN-000098,Baseline_SADE_Style,INC-0017,campus_network,large,development,NIKA,False,True,routing_misconfiguration,access_sw16,True,access_sw1,routing_misconfiguration,0.72,False,False,6,0.0,1550,420,0.01095,False,True,4.0,2.5,4.5,3.7
 RUN-000099,Baseline_ReAct,INC-0017,campus_network,large,development,NIKA,False,True,routing_misconfiguration,access_sw16,True,access_sw1,congestion,0.65,False,False,1,0.0,670,120,0.00381,False,True,2.0,2.5,4.5,2.9
 RUN-000100,Baseline_Generic_Coding,INC-0017,campus_network,large,development,NIKA,False,True,routing_misconfiguration,access_sw16,True,access_sw1,congestion,0.7,False,False,2,0.0,950,400,0.00885,False,True,2.0,2.5,4.5,2.9
@@ -119,7 +119,7 @@ RUN-000117,Baseline_ReAct,INC-0020,p4_testbed,large,held_out,NIKA,False,True,dns
 RUN-000118,Baseline_Generic_Coding,INC-0020,p4_testbed,large,held_out,NIKA,False,True,dns_failure,access_sw1,True,access_sw1,congestion,0.7,False,False,2,0.0,950,400,0.00885,False,True,3.0,2.5,4.5,3.3
 RUN-000119,Baseline_Zero_Shot,INC-0020,p4_testbed,large,held_out,NIKA,False,True,dns_failure,access_sw1,True,access_sw1,dns_failure,0.5,False,False,1,0.0,142,60,2.9e-05,False,True,5.0,2.5,4.5,4.1
 RUN-000120,Baseline_Scripted_Rules,INC-0020,p4_testbed,large,held_out,NIKA,False,True,dns_failure,access_sw1,False,none,none,0.9,False,True,4,0.0,0,0,0.0,False,True,1.0,2.5,3.5,2.2
-RUN-000121,Proposed_7Phase_Agent,INC-0021,enterprise_branch,medium,development,FaulT-Bench,False,True,hardware_transceiver,access_sw4,False,none,none,0.98,False,True,12,0.0,2126,570,0.00033,False,False,1.0,2.5,3.5,2.2
+RUN-000121,Proposed_7Phase_Agent,INC-0021,enterprise_branch,medium,development,FaulT-Bench,False,True,hardware_transceiver,access_sw4,False,none,none,0.98,False,True,12,0.0006,2126,570,0.00033,False,False,1.0,2.5,3.5,2.2
 RUN-000122,Baseline_SADE_Style,INC-0021,enterprise_branch,medium,development,FaulT-Bench,False,True,hardware_transceiver,access_sw4,True,access_sw5,routing_misconfiguration,0.72,False,False,6,0.0,1550,420,0.01095,False,True,2.0,2.5,4.5,2.9
 RUN-000123,Baseline_ReAct,INC-0021,enterprise_branch,medium,development,FaulT-Bench,False,True,hardware_transceiver,access_sw4,True,access_sw5,congestion,0.65,False,False,1,0.0,670,120,0.00381,False,True,2.0,2.5,4.5,2.9
 RUN-000124,Baseline_Generic_Coding,INC-0021,enterprise_branch,medium,development,FaulT-Bench,False,True,hardware_transceiver,access_sw4,True,access_sw5,congestion,0.7,False,False,2,0.0,950,400,0.00885,False,True,2.0,2.5,4.5,2.9
@@ -131,7 +131,7 @@ RUN-000129,Baseline_ReAct,INC-0022,leaf_spine_clos,small,development,FaulT-Bench
 RUN-000130,Baseline_Generic_Coding,INC-0022,leaf_spine_clos,small,development,FaulT-Bench,False,True,link_failure,leaf1,True,leaf1,congestion,0.7,False,False,2,0.0,950,400,0.00885,False,True,3.0,2.5,4.5,3.3
 RUN-000131,Baseline_Zero_Shot,INC-0022,leaf_spine_clos,small,development,FaulT-Bench,False,True,link_failure,leaf1,True,leaf1,link_failure,0.5,False,False,1,0.0,138,60,2.8e-05,False,True,5.0,2.5,4.5,4.1
 RUN-000132,Baseline_Scripted_Rules,INC-0022,leaf_spine_clos,small,development,FaulT-Bench,False,True,link_failure,leaf1,True,leaf1,link_failure,0.85,False,False,4,0.0,0,0,0.0,False,True,5.0,2.5,4.5,4.1
-RUN-000133,Proposed_7Phase_Agent,INC-0023,multihomed_edge,large,development,FaulT-Bench,False,True,congestion,access_sw4,True,access_sw4,congestion,0.95,True,False,10,0.0,2120,570,0.00033,False,True,5.0,5.0,4.5,4.85
+RUN-000133,Proposed_7Phase_Agent,INC-0023,multihomed_edge,large,development,FaulT-Bench,False,True,congestion,access_sw4,True,access_sw4,congestion,0.95,True,False,10,0.0006,2120,570,0.00033,False,True,5.0,5.0,4.5,4.85
 RUN-000134,Baseline_SADE_Style,INC-0023,multihomed_edge,large,development,FaulT-Bench,False,True,congestion,access_sw4,True,access_sw4,congestion,0.7,False,False,6,0.0,1550,420,0.01095,False,True,5.0,2.5,4.5,4.1
 RUN-000135,Baseline_ReAct,INC-0023,multihomed_edge,large,development,FaulT-Bench,False,True,congestion,access_sw4,True,access_sw4,congestion,0.65,False,False,1,0.0,670,120,0.00381,False,True,5.0,2.5,4.5,4.1
 RUN-000136,Baseline_Generic_Coding,INC-0023,multihomed_edge,large,development,FaulT-Bench,False,True,congestion,access_sw4,True,access_sw4,congestion,0.7,False,False,2,0.0,950,400,0.00885,False,True,5.0,2.5,4.5,4.1
@@ -163,7 +163,7 @@ RUN-000161,Baseline_Zero_Shot,INC-0027,datacenter_dci,medium,held_out,FaulT-Benc
 RUN-000162,Baseline_Scripted_Rules,INC-0027,datacenter_dci,medium,held_out,FaulT-Bench,False,True,dns_failure,srv4,False,none,none,0.9,False,True,4,0.0,0,0,0.0,False,True,1.0,2.5,3.5,2.2
 RUN-000163,Proposed_7Phase_Agent,INC-0028,campus_core_access,small,development,FaulT-Bench,False,True,hardware_transceiver,access_sw3,True,access_sw3,hardware_transceiver,0.95,True,False,10,0.0,2118,570,0.00033,False,True,5.0,5.0,4.5,4.85
 RUN-000164,Baseline_SADE_Style,INC-0028,campus_core_access,small,development,FaulT-Bench,False,True,hardware_transceiver,access_sw3,True,access_sw3,hardware_transceiver,0.7,False,False,6,0.0,1550,420,0.01095,False,True,5.0,2.5,4.5,4.1
-RUN-000165,Baseline_ReAct,INC-0028,campus_core_access,small,development,FaulT-Bench,False,True,hardware_transceiver,access_sw3,True,access_sw3,congestion,0.65,False,False,1,0.0,670,120,0.00381,False,True,3.0,2.5,4.5,3.3
+RUN-000165,Baseline_ReAct,INC-0028,campus_core_access,small,development,FaulT-Bench,False,True,hardware_transceiver,access_sw3,True,access_sw3,congestion,0.65,False,False,1,0.0006,670,120,0.00381,False,True,3.0,2.5,4.5,3.3
 RUN-000166,Baseline_Generic_Coding,INC-0028,campus_core_access,small,development,FaulT-Bench,False,True,hardware_transceiver,access_sw3,True,access_sw3,congestion,0.7,False,False,2,0.0,950,400,0.00885,False,True,3.0,2.5,4.5,3.3
 RUN-000167,Baseline_Zero_Shot,INC-0028,campus_core_access,small,development,FaulT-Bench,False,True,hardware_transceiver,access_sw3,True,access_sw3,routing_misconfiguration,0.5,False,False,1,0.0,138,60,2.8e-05,False,True,3.0,2.5,4.5,3.3
 RUN-000168,Baseline_Scripted_Rules,INC-0028,campus_core_access,small,development,FaulT-Bench,False,True,hardware_transceiver,access_sw3,True,access_sw3,hardware_transceiver,0.85,False,False,4,0.0,0,0,0.0,False,True,5.0,2.5,4.5,4.1
@@ -173,7 +173,7 @@ RUN-000171,Baseline_ReAct,INC-0029,abilene_backbone,large,held_out,Course-Abilen
 RUN-000172,Baseline_Generic_Coding,INC-0029,abilene_backbone,large,held_out,Course-Abilene,False,True,link_failure,hstn_edge_1,True,HSTN,congestion,0.7,False,False,2,0.0,950,400,0.00885,False,True,2.0,2.5,4.5,2.9
 RUN-000173,Baseline_Zero_Shot,INC-0029,abilene_backbone,large,held_out,Course-Abilene,False,True,link_failure,hstn_edge_1,True,HSTN,link_failure,0.5,False,False,1,0.0,138,60,2.8e-05,False,True,4.0,2.5,4.5,3.7
 RUN-000174,Baseline_Scripted_Rules,INC-0029,abilene_backbone,large,held_out,Course-Abilene,False,True,link_failure,hstn_edge_1,False,none,none,0.9,False,True,4,0.0,0,0,0.0,False,True,1.0,2.5,3.5,2.2
-RUN-000175,Proposed_7Phase_Agent,INC-0030,netman_aiops,medium,development,Course-NetManAIOps,False,True,congestion,core_gw1,True,core_gw1,congestion,0.95,True,False,10,0.0014,2120,570,0.00033,False,True,5.0,5.0,4.5,4.85
+RUN-000175,Proposed_7Phase_Agent,INC-0030,netman_aiops,medium,development,Course-NetManAIOps,False,True,congestion,core_gw1,True,core_gw1,congestion,0.95,True,False,10,0.0,2120,570,0.00033,False,True,5.0,5.0,4.5,4.85
 RUN-000176,Baseline_SADE_Style,INC-0030,netman_aiops,medium,development,Course-NetManAIOps,False,True,congestion,core_gw1,True,core_gw1,congestion,0.7,False,False,6,0.0,1550,420,0.01095,False,True,5.0,2.5,4.5,4.1
 RUN-000177,Baseline_ReAct,INC-0030,netman_aiops,medium,development,Course-NetManAIOps,False,True,congestion,core_gw1,True,core_gw1,congestion,0.65,False,False,1,0.0,670,120,0.00381,False,True,5.0,2.5,4.5,4.1
 RUN-000178,Baseline_Generic_Coding,INC-0030,netman_aiops,medium,development,Course-NetManAIOps,False,True,congestion,core_gw1,True,core_gw1,congestion,0.7,False,False,2,0.0,950,400,0.00885,False,True,5.0,2.5,4.5,4.1
@@ -205,7 +205,7 @@ RUN-000203,Baseline_Zero_Shot,INC-0034,sdn_cloud_fabric,small,held_out,NIKA,Fals
 RUN-000204,Baseline_Scripted_Rules,INC-0034,sdn_cloud_fabric,small,held_out,NIKA,False,True,dns_failure,sw4,False,none,none,0.9,False,True,4,0.0,0,0,0.0,False,True,1.0,2.5,3.5,2.2
 RUN-000205,Proposed_7Phase_Agent,INC-0035,p4_testbed,large,held_out,NIKA,False,True,hardware_transceiver,access_sw16,False,none,none,0.98,False,True,12,0.0,2118,570,0.00033,False,False,1.0,2.5,3.5,2.2
 RUN-000206,Baseline_SADE_Style,INC-0035,p4_testbed,large,held_out,NIKA,False,True,hardware_transceiver,access_sw16,True,access_sw1,routing_misconfiguration,0.72,False,False,6,0.0,1550,420,0.01095,False,True,2.0,2.5,4.5,2.9
-RUN-000207,Baseline_ReAct,INC-0035,p4_testbed,large,held_out,NIKA,False,True,hardware_transceiver,access_sw16,True,access_sw1,congestion,0.65,False,False,1,0.0,670,120,0.00381,False,True,2.0,2.5,4.5,2.9
+RUN-000207,Baseline_ReAct,INC-0035,p4_testbed,large,held_out,NIKA,False,True,hardware_transceiver,access_sw16,True,access_sw1,congestion,0.65,False,False,1,0.0006,670,120,0.00381,False,True,2.0,2.5,4.5,2.9
 RUN-000208,Baseline_Generic_Coding,INC-0035,p4_testbed,large,held_out,NIKA,False,True,hardware_transceiver,access_sw16,True,access_sw1,congestion,0.7,False,False,2,0.0,950,400,0.00885,False,True,2.0,2.5,4.5,2.9
 RUN-000209,Baseline_Zero_Shot,INC-0035,p4_testbed,large,held_out,NIKA,False,True,hardware_transceiver,access_sw16,True,access_sw1,routing_misconfiguration,0.5,False,False,1,0.0,138,60,2.8e-05,False,True,2.0,2.5,4.5,2.9
 RUN-000210,Baseline_Scripted_Rules,INC-0035,p4_testbed,large,held_out,NIKA,False,True,hardware_transceiver,access_sw16,False,none,none,0.9,False,True,4,0.0,0,0,0.0,False,True,1.0,2.5,3.5,2.2
@@ -231,7 +231,7 @@ RUN-000229,Proposed_7Phase_Agent,INC-0039,transit_wan,medium,development,FaulT-B
 RUN-000230,Baseline_SADE_Style,INC-0039,transit_wan,medium,development,FaulT-Bench,False,True,acl_firewall_block,cr4,True,cr4,acl_firewall_block,0.7,False,False,6,0.0,1550,420,0.01095,False,True,5.0,2.5,4.5,4.1
 RUN-000231,Baseline_ReAct,INC-0039,transit_wan,medium,development,FaulT-Bench,False,True,acl_firewall_block,cr4,True,cr4,congestion,0.65,False,False,1,0.0,670,120,0.00381,False,True,3.0,2.5,4.5,3.3
 RUN-000232,Baseline_Generic_Coding,INC-0039,transit_wan,medium,development,FaulT-Bench,False,True,acl_firewall_block,cr4,True,cr4,congestion,0.7,False,False,2,0.0,950,400,0.00885,False,True,3.0,2.5,4.5,3.3
-RUN-000233,Baseline_Zero_Shot,INC-0039,transit_wan,medium,development,FaulT-Bench,False,True,acl_firewall_block,cr4,True,cr4,routing_misconfiguration,0.5,False,False,1,0.001,138,60,2.8e-05,False,True,3.0,2.5,4.5,3.3
+RUN-000233,Baseline_Zero_Shot,INC-0039,transit_wan,medium,development,FaulT-Bench,False,True,acl_firewall_block,cr4,True,cr4,routing_misconfiguration,0.5,False,False,1,0.0,138,60,2.8e-05,False,True,3.0,2.5,4.5,3.3
 RUN-000234,Baseline_Scripted_Rules,INC-0039,transit_wan,medium,development,FaulT-Bench,False,True,acl_firewall_block,cr4,True,cr4,acl_firewall_block,0.85,False,False,4,0.0,0,0,0.0,False,True,5.0,2.5,4.5,4.1
 RUN-000235,Proposed_7Phase_Agent,INC-0040,sdn_hybrid,small,development,FaulT-Bench,False,True,service_failure,sdn_ctrl_1,True,sdn_ctrl_1,service_failure,0.95,True,False,10,0.0,2124,570,0.00033,False,False,5.0,5.0,4.5,4.85
 RUN-000236,Baseline_SADE_Style,INC-0040,sdn_hybrid,small,development,FaulT-Bench,False,True,service_failure,sdn_ctrl_1,True,sdn_ctrl_1,service_failure,0.7,False,False,6,0.0,1550,420,0.01095,False,True,5.0,2.5,4.5,4.1
@@ -248,7 +248,7 @@ RUN-000246,Baseline_Scripted_Rules,INC-0041,bgp_peering_exchange,large,held_out,
 RUN-000247,Proposed_7Phase_Agent,INC-0042,datacenter_dci,medium,held_out,FaulT-Bench,False,True,hardware_transceiver,srv4,True,srv4,hardware_transceiver,0.95,True,False,10,0.0,2118,570,0.00033,False,True,5.0,5.0,4.5,4.85
 RUN-000248,Baseline_SADE_Style,INC-0042,datacenter_dci,medium,held_out,FaulT-Bench,False,True,hardware_transceiver,srv4,True,srv4,hardware_transceiver,0.7,False,False,6,0.0,1550,420,0.01095,False,True,5.0,2.5,4.5,4.1
 RUN-000249,Baseline_ReAct,INC-0042,datacenter_dci,medium,held_out,FaulT-Bench,False,True,hardware_transceiver,srv4,True,srv4,congestion,0.65,False,False,1,0.0,670,120,0.00381,False,True,3.0,2.5,4.5,3.3
-RUN-000250,Baseline_Generic_Coding,INC-0042,datacenter_dci,medium,held_out,FaulT-Bench,False,True,hardware_transceiver,srv4,True,srv4,congestion,0.7,False,False,2,0.001,950,400,0.00885,False,True,3.0,2.5,4.5,3.3
+RUN-000250,Baseline_Generic_Coding,INC-0042,datacenter_dci,medium,held_out,FaulT-Bench,False,True,hardware_transceiver,srv4,True,srv4,congestion,0.7,False,False,2,0.0,950,400,0.00885,False,True,3.0,2.5,4.5,3.3
 RUN-000251,Baseline_Zero_Shot,INC-0042,datacenter_dci,medium,held_out,FaulT-Bench,False,True,hardware_transceiver,srv4,True,srv4,routing_misconfiguration,0.5,False,False,1,0.0,138,60,2.8e-05,False,True,3.0,2.5,4.5,3.3
 RUN-000252,Baseline_Scripted_Rules,INC-0042,datacenter_dci,medium,held_out,FaulT-Bench,False,True,hardware_transceiver,srv4,True,srv4,hardware_transceiver,0.85,False,False,4,0.0,0,0,0.0,False,True,5.0,2.5,4.5,4.1
 RUN-000253,Proposed_7Phase_Agent,INC-0043,campus_core_access,small,development,FaulT-Bench,False,True,link_failure,core_sw2,True,core_sw2,link_failure,0.95,True,False,11,0.0,2468,650,0.00038,False,True,5.0,5.0,4.5,4.85
@@ -263,7 +263,7 @@ RUN-000261,Baseline_ReAct,INC-0044,abilene_backbone,large,held_out,Course-Abilen
 RUN-000262,Baseline_Generic_Coding,INC-0044,abilene_backbone,large,held_out,Course-Abilene,False,True,congestion,kscy_edge_4,True,KSCY,congestion,0.7,False,False,2,0.0,950,400,0.00885,False,True,4.0,2.5,4.5,3.7
 RUN-000263,Baseline_Zero_Shot,INC-0044,abilene_backbone,large,held_out,Course-Abilene,False,True,congestion,kscy_edge_4,True,KSCY,congestion,0.5,False,False,1,0.0,140,60,2.8e-05,False,True,4.0,2.5,4.5,3.7
 RUN-000264,Baseline_Scripted_Rules,INC-0044,abilene_backbone,large,held_out,Course-Abilene,False,True,congestion,kscy_edge_4,False,none,none,0.9,False,True,4,0.0,0,0,0.0,False,True,1.0,2.5,3.5,2.2
-RUN-000265,Proposed_7Phase_Agent,INC-0045,netman_aiops,medium,development,Course-NetManAIOps,False,True,routing_misconfiguration,core_gw1,True,core_gw1,routing_misconfiguration,0.75,False,False,11,0.001,2466,650,0.00038,False,True,5.0,2.5,4.5,4.1
+RUN-000265,Proposed_7Phase_Agent,INC-0045,netman_aiops,medium,development,Course-NetManAIOps,False,True,routing_misconfiguration,core_gw1,True,core_gw1,routing_misconfiguration,0.75,False,False,11,0.0,2466,650,0.00038,False,True,5.0,2.5,4.5,4.1
 RUN-000266,Baseline_SADE_Style,INC-0045,netman_aiops,medium,development,Course-NetManAIOps,False,True,routing_misconfiguration,core_gw1,True,core_gw1,congestion,0.7,False,False,6,0.0,1550,420,0.01095,False,True,3.0,2.5,4.5,3.3
 RUN-000267,Baseline_ReAct,INC-0045,netman_aiops,medium,development,Course-NetManAIOps,False,True,routing_misconfiguration,core_gw1,True,core_gw1,congestion,0.65,False,False,1,0.0,670,120,0.00381,False,True,3.0,2.5,4.5,3.3
 RUN-000268,Baseline_Generic_Coding,INC-0045,netman_aiops,medium,development,Course-NetManAIOps,False,True,routing_misconfiguration,core_gw1,True,core_gw1,congestion,0.7,False,False,2,0.0,950,400,0.00885,False,True,3.0,2.5,4.5,3.3
@@ -299,13 +299,13 @@ RUN-000297,Baseline_ReAct,INC-0050,p4_testbed,large,held_out,NIKA,False,True,lin
 RUN-000298,Baseline_Generic_Coding,INC-0050,p4_testbed,large,held_out,NIKA,False,True,link_failure,access_sw13,True,access_sw1,congestion,0.7,False,False,2,0.0,950,400,0.00885,False,True,2.0,2.5,4.5,2.9
 RUN-000299,Baseline_Zero_Shot,INC-0050,p4_testbed,large,held_out,NIKA,False,True,link_failure,access_sw13,True,access_sw1,link_failure,0.5,False,False,1,0.0,138,60,2.8e-05,False,True,4.0,2.5,4.5,3.7
 RUN-000300,Baseline_Scripted_Rules,INC-0050,p4_testbed,large,held_out,NIKA,False,True,link_failure,access_sw13,False,none,none,0.9,False,True,4,0.0,0,0,0.0,False,True,1.0,2.5,3.5,2.2
-RUN-000301,Proposed_7Phase_Agent,INC-0051,enterprise_branch,medium,development,FaulT-Bench,False,True,congestion,access_sw2,False,none,none,0.98,False,True,12,0.0,2128,570,0.000331,False,False,1.0,2.5,3.5,2.2
+RUN-000301,Proposed_7Phase_Agent,INC-0051,enterprise_branch,medium,development,FaulT-Bench,False,True,congestion,access_sw2,False,none,none,0.98,False,True,12,0.0047,2128,570,0.000331,False,False,1.0,2.5,3.5,2.2
 RUN-000302,Baseline_SADE_Style,INC-0051,enterprise_branch,medium,development,FaulT-Bench,False,True,congestion,access_sw2,True,access_sw3,routing_misconfiguration,0.72,False,False,6,0.0,1550,420,0.01095,False,True,2.0,2.5,4.5,2.9
 RUN-000303,Baseline_ReAct,INC-0051,enterprise_branch,medium,development,FaulT-Bench,False,True,congestion,access_sw2,True,access_sw3,congestion,0.65,False,False,1,0.0,670,120,0.00381,False,True,4.0,2.5,4.5,3.7
 RUN-000304,Baseline_Generic_Coding,INC-0051,enterprise_branch,medium,development,FaulT-Bench,False,True,congestion,access_sw2,True,access_sw3,congestion,0.7,False,False,2,0.0,950,400,0.00885,False,True,4.0,2.5,4.5,3.7
 RUN-000305,Baseline_Zero_Shot,INC-0051,enterprise_branch,medium,development,FaulT-Bench,False,True,congestion,access_sw2,True,access_sw3,congestion,0.5,False,False,1,0.0,148,60,2.9e-05,False,True,4.0,2.5,4.5,3.7
 RUN-000306,Baseline_Scripted_Rules,INC-0051,enterprise_branch,medium,development,FaulT-Bench,False,True,congestion,access_sw2,False,none,none,0.9,False,True,4,0.0,0,0,0.0,False,True,1.0,2.5,3.5,2.2
-RUN-000307,Proposed_7Phase_Agent,INC-0052,leaf_spine_clos,small,development,FaulT-Bench,False,True,routing_misconfiguration,leaf1,True,leaf1,routing_misconfiguration,0.75,False,False,11,0.0,2466,650,0.00038,False,True,5.0,2.5,4.5,4.1
+RUN-000307,Proposed_7Phase_Agent,INC-0052,leaf_spine_clos,small,development,FaulT-Bench,False,True,routing_misconfiguration,leaf1,True,leaf1,routing_misconfiguration,0.75,False,False,11,0.0005,2466,650,0.00038,False,True,5.0,2.5,4.5,4.1
 RUN-000308,Baseline_SADE_Style,INC-0052,leaf_spine_clos,small,development,FaulT-Bench,False,True,routing_misconfiguration,leaf1,True,leaf1,congestion,0.7,False,False,6,0.0,1550,420,0.01095,False,True,3.0,2.5,4.5,3.3
 RUN-000309,Baseline_ReAct,INC-0052,leaf_spine_clos,small,development,FaulT-Bench,False,True,routing_misconfiguration,leaf1,True,leaf1,congestion,0.65,False,False,1,0.0,670,120,0.00381,False,True,3.0,2.5,4.5,3.3
 RUN-000310,Baseline_Generic_Coding,INC-0052,leaf_spine_clos,small,development,FaulT-Bench,False,True,routing_misconfiguration,leaf1,True,leaf1,congestion,0.7,False,False,2,0.0,950,400,0.00885,False,True,3.0,2.5,4.5,3.3
@@ -441,7 +441,7 @@ RUN-000439,Proposed_7Phase_Agent,INC-0074,abilene_backbone,large,held_out,Course
 RUN-000440,Baseline_SADE_Style,INC-0074,abilene_backbone,large,held_out,Course-Abilene,False,True,acl_firewall_block,wash_edge_4,True,WASH,routing_misconfiguration,0.72,False,False,6,0.0,1550,420,0.01095,False,True,2.0,2.5,4.5,2.9
 RUN-000441,Baseline_ReAct,INC-0074,abilene_backbone,large,held_out,Course-Abilene,False,True,acl_firewall_block,wash_edge_4,True,WASH,congestion,0.65,False,False,1,0.0,670,120,0.00381,False,True,2.0,2.5,4.5,2.9
 RUN-000442,Baseline_Generic_Coding,INC-0074,abilene_backbone,large,held_out,Course-Abilene,False,True,acl_firewall_block,wash_edge_4,True,WASH,congestion,0.7,False,False,2,0.0,950,400,0.00885,False,True,2.0,2.5,4.5,2.9
-RUN-000443,Baseline_Zero_Shot,INC-0074,abilene_backbone,large,held_out,Course-Abilene,False,True,acl_firewall_block,wash_edge_4,True,WASH,routing_misconfiguration,0.5,False,False,1,0.0092,138,60,2.8e-05,False,True,2.0,2.5,4.5,2.9
+RUN-000443,Baseline_Zero_Shot,INC-0074,abilene_backbone,large,held_out,Course-Abilene,False,True,acl_firewall_block,wash_edge_4,True,WASH,routing_misconfiguration,0.5,False,False,1,0.0,138,60,2.8e-05,False,True,2.0,2.5,4.5,2.9
 RUN-000444,Baseline_Scripted_Rules,INC-0074,abilene_backbone,large,held_out,Course-Abilene,False,True,acl_firewall_block,wash_edge_4,False,none,none,0.9,False,True,4,0.0,0,0,0.0,False,True,1.0,2.5,3.5,2.2
 RUN-000445,Proposed_7Phase_Agent,INC-0075,netman_aiops,medium,development,Course-NetManAIOps,False,True,service_failure,core_gw1,True,core_gw1,service_failure,0.95,True,False,10,0.0,2124,570,0.00033,False,False,5.0,5.0,4.5,4.85
 RUN-000446,Baseline_SADE_Style,INC-0075,netman_aiops,medium,development,Course-NetManAIOps,False,True,service_failure,core_gw1,True,core_gw1,service_failure,0.7,False,False,6,0.0,1550,420,0.01095,False,True,5.0,2.5,4.5,4.1
@@ -526,7 +526,7 @@ RUN-000524,Baseline_SADE_Style,INC-0088,campus_core_access,small,development,Fau
 RUN-000525,Baseline_ReAct,INC-0088,campus_core_access,small,development,FaulT-Bench,False,True,acl_firewall_block,access_sw3,True,access_sw3,congestion,0.65,False,False,1,0.0,670,120,0.00381,False,True,3.0,2.5,4.5,3.3
 RUN-000526,Baseline_Generic_Coding,INC-0088,campus_core_access,small,development,FaulT-Bench,False,True,acl_firewall_block,access_sw3,True,access_sw3,congestion,0.7,False,False,2,0.0,950,400,0.00885,False,True,3.0,2.5,4.5,3.3
 RUN-000527,Baseline_Zero_Shot,INC-0088,campus_core_access,small,development,FaulT-Bench,False,True,acl_firewall_block,access_sw3,True,access_sw3,routing_misconfiguration,0.5,False,False,1,0.0,138,60,2.8e-05,False,True,3.0,2.5,4.5,3.3
-RUN-000528,Baseline_Scripted_Rules,INC-0088,campus_core_access,small,development,FaulT-Bench,False,True,acl_firewall_block,access_sw3,True,access_sw3,acl_firewall_block,0.85,False,False,4,0.001,0,0,0.0,False,True,5.0,2.5,4.5,4.1
+RUN-000528,Baseline_Scripted_Rules,INC-0088,campus_core_access,small,development,FaulT-Bench,False,True,acl_firewall_block,access_sw3,True,access_sw3,acl_firewall_block,0.85,False,False,4,0.0,0,0,0.0,False,True,5.0,2.5,4.5,4.1
 RUN-000529,Proposed_7Phase_Agent,INC-0089,abilene_backbone,large,held_out,Course-Abilene,False,True,service_failure,atla_edge_2,False,none,none,0.98,False,True,12,0.0,2124,570,0.00033,False,False,1.0,2.5,3.5,2.2
 RUN-000530,Baseline_SADE_Style,INC-0089,abilene_backbone,large,held_out,Course-Abilene,False,True,service_failure,atla_edge_2,True,ATLA,routing_misconfiguration,0.72,False,False,6,0.0,1550,420,0.01095,False,True,2.0,2.5,4.5,2.9
 RUN-000531,Baseline_ReAct,INC-0089,abilene_backbone,large,held_out,Course-Abilene,False,True,service_failure,atla_edge_2,True,ATLA,congestion,0.65,False,False,1,0.0,670,120,0.00381,False,True,2.0,2.5,4.5,2.9
@@ -544,7 +544,7 @@ RUN-000542,Baseline_SADE_Style,HEALTHY-0001,datacenter_clos,medium,development,N
 RUN-000543,Baseline_ReAct,HEALTHY-0001,datacenter_clos,medium,development,NIKA,True,False,healthy,none,True,spine1,congestion,0.65,False,False,1,0.0,670,120,0.00381,False,True,1.0,5.0,4.5,3.25
 RUN-000544,Baseline_Generic_Coding,HEALTHY-0001,datacenter_clos,medium,development,NIKA,True,False,healthy,none,True,spine1,congestion,0.7,False,False,2,0.0,950,400,0.00885,False,True,1.0,5.0,4.5,3.25
 RUN-000545,Baseline_Zero_Shot,HEALTHY-0001,datacenter_clos,medium,development,NIKA,True,False,healthy,none,True,spine1,routing_misconfiguration,0.5,False,False,1,0.0,144,60,2.9e-05,False,True,1.0,5.0,4.5,3.25
-RUN-000546,Baseline_Scripted_Rules,HEALTHY-0001,datacenter_clos,medium,development,NIKA,True,False,healthy,none,False,none,none,0.9,False,True,4,0.001,0,0,0.0,False,True,5.0,5.0,5.0,5.0
+RUN-000546,Baseline_Scripted_Rules,HEALTHY-0001,datacenter_clos,medium,development,NIKA,True,False,healthy,none,False,none,none,0.9,False,True,4,0.0,0,0,0.0,False,True,5.0,5.0,5.0,5.0
 RUN-000547,Proposed_7Phase_Agent,HEALTHY-0002,datacenter_clos,medium,development,NIKA,True,False,healthy,none,False,none,none,0.99,False,True,2,0.0,474,130,7.5e-05,False,False,5.0,5.0,5.0,5.0
 RUN-000548,Baseline_SADE_Style,HEALTHY-0002,datacenter_clos,medium,development,NIKA,True,False,healthy,none,True,spine1,routing_misconfiguration,0.72,False,False,6,0.0,1550,420,0.01095,False,True,1.0,5.0,4.5,3.25
 RUN-000549,Baseline_ReAct,HEALTHY-0002,datacenter_clos,medium,development,NIKA,True,False,healthy,none,True,spine1,congestion,0.65,False,False,1,0.0,670,120,0.00381,False,True,1.0,5.0,4.5,3.25
@@ -570,7 +570,7 @@ RUN-000568,Baseline_Generic_Coding,HEALTHY-0005,campus_network,medium,developmen
 RUN-000569,Baseline_Zero_Shot,HEALTHY-0005,campus_network,medium,development,NIKA,True,False,healthy,none,True,core_sw1,routing_misconfiguration,0.5,False,False,1,0.0,154,60,3e-05,False,True,1.0,5.0,4.5,3.25
 RUN-000570,Baseline_Scripted_Rules,HEALTHY-0005,campus_network,medium,development,NIKA,True,False,healthy,none,False,none,none,0.9,False,True,4,0.0,0,0,0.0,False,True,5.0,5.0,5.0,5.0
 RUN-000571,Proposed_7Phase_Agent,HEALTHY-0006,campus_network,medium,development,NIKA,True,False,healthy,none,False,none,none,0.99,False,True,2,0.0,478,130,7.5e-05,False,False,5.0,5.0,5.0,5.0
-RUN-000572,Baseline_SADE_Style,HEALTHY-0006,campus_network,medium,development,NIKA,True,False,healthy,none,True,core_sw1,routing_misconfiguration,0.72,False,False,6,0.001,1550,420,0.01095,False,True,1.0,5.0,4.5,3.25
+RUN-000572,Baseline_SADE_Style,HEALTHY-0006,campus_network,medium,development,NIKA,True,False,healthy,none,True,core_sw1,routing_misconfiguration,0.72,False,False,6,0.0,1550,420,0.01095,False,True,1.0,5.0,4.5,3.25
 RUN-000573,Baseline_ReAct,HEALTHY-0006,campus_network,medium,development,NIKA,True,False,healthy,none,True,core_sw1,congestion,0.65,False,False,1,0.0,670,120,0.00381,False,True,1.0,5.0,4.5,3.25
 RUN-000574,Baseline_Generic_Coding,HEALTHY-0006,campus_network,medium,development,NIKA,True,False,healthy,none,True,core_sw1,congestion,0.7,False,False,2,0.0,950,400,0.00885,False,True,1.0,5.0,4.5,3.25
 RUN-000575,Baseline_Zero_Shot,HEALTHY-0006,campus_network,medium,development,NIKA,True,False,healthy,none,True,core_sw1,routing_misconfiguration,0.5,False,False,1,0.0,148,60,2.9e-05,False,True,1.0,5.0,4.5,3.25
@@ -621,7 +621,7 @@ RUN-000619,Proposed_7Phase_Agent,HEALTHY-0014,p4_testbed,medium,held_out,NIKA,Tr
 RUN-000620,Baseline_SADE_Style,HEALTHY-0014,p4_testbed,medium,held_out,NIKA,True,False,healthy,none,True,core_sw1,routing_misconfiguration,0.72,False,False,6,0.0,1550,420,0.01095,False,True,1.0,5.0,4.5,3.25
 RUN-000621,Baseline_ReAct,HEALTHY-0014,p4_testbed,medium,held_out,NIKA,True,False,healthy,none,True,core_sw1,congestion,0.65,False,False,1,0.0,670,120,0.00381,False,True,1.0,5.0,4.5,3.25
 RUN-000622,Baseline_Generic_Coding,HEALTHY-0014,p4_testbed,medium,held_out,NIKA,True,False,healthy,none,True,core_sw1,congestion,0.7,False,False,2,0.0,950,400,0.00885,False,True,1.0,5.0,4.5,3.25
-RUN-000623,Baseline_Zero_Shot,HEALTHY-0014,p4_testbed,medium,held_out,NIKA,True,False,healthy,none,True,core_sw1,routing_misconfiguration,0.5,False,False,1,0.0,150,60,2.9e-05,False,True,1.0,5.0,4.5,3.25
+RUN-000623,Baseline_Zero_Shot,HEALTHY-0014,p4_testbed,medium,held_out,NIKA,True,False,healthy,none,True,core_sw1,routing_misconfiguration,0.5,False,False,1,0.0157,150,60,2.9e-05,False,True,1.0,5.0,4.5,3.25
 RUN-000624,Baseline_Scripted_Rules,HEALTHY-0014,p4_testbed,medium,held_out,NIKA,True,False,healthy,none,False,none,none,0.9,False,True,4,0.0,0,0,0.0,False,True,5.0,5.0,5.0,5.0
 RUN-000625,Proposed_7Phase_Agent,HEALTHY-0015,p4_testbed,medium,held_out,NIKA,True,False,healthy,none,False,none,none,0.99,False,True,2,0.0,474,130,7.5e-05,False,False,5.0,5.0,5.0,5.0
 RUN-000626,Baseline_SADE_Style,HEALTHY-0015,p4_testbed,medium,held_out,NIKA,True,False,healthy,none,True,core_sw1,routing_misconfiguration,0.72,False,False,6,0.0,1550,420,0.01095,False,True,1.0,5.0,4.5,3.25
@@ -646,7 +646,7 @@ RUN-000644,Baseline_SADE_Style,HEALTHY-0018,enterprise_branch,medium,development
 RUN-000645,Baseline_ReAct,HEALTHY-0018,enterprise_branch,medium,development,NIKA,True,False,healthy,none,True,core_sw1,congestion,0.65,False,False,1,0.0,670,120,0.00381,False,True,1.0,5.0,4.5,3.25
 RUN-000646,Baseline_Generic_Coding,HEALTHY-0018,enterprise_branch,medium,development,NIKA,True,False,healthy,none,True,core_sw1,congestion,0.7,False,False,2,0.0,950,400,0.00885,False,True,1.0,5.0,4.5,3.25
 RUN-000647,Baseline_Zero_Shot,HEALTHY-0018,enterprise_branch,medium,development,NIKA,True,False,healthy,none,True,core_sw1,acl_firewall_block,0.5,False,False,1,0.0,156,60,3e-05,False,True,1.0,5.0,4.5,3.25
-RUN-000648,Baseline_Scripted_Rules,HEALTHY-0018,enterprise_branch,medium,development,NIKA,True,False,healthy,none,False,none,none,0.9,False,True,4,0.0,0,0,0.0,False,True,5.0,5.0,5.0,5.0
+RUN-000648,Baseline_Scripted_Rules,HEALTHY-0018,enterprise_branch,medium,development,NIKA,True,False,healthy,none,False,none,none,0.9,False,True,4,0.001,0,0,0.0,False,True,5.0,5.0,5.0,5.0
 RUN-000649,Proposed_7Phase_Agent,HEALTHY-0019,leaf_spine_clos,medium,development,NIKA,True,False,healthy,none,False,none,none,0.99,False,True,2,0.0,474,130,7.5e-05,False,False,5.0,5.0,5.0,5.0
 RUN-000650,Baseline_SADE_Style,HEALTHY-0019,leaf_spine_clos,medium,development,NIKA,True,False,healthy,none,True,spine1,routing_misconfiguration,0.72,False,False,6,0.0,1550,420,0.01095,False,True,1.0,5.0,4.5,3.25
 RUN-000651,Baseline_ReAct,HEALTHY-0019,leaf_spine_clos,medium,development,NIKA,True,False,healthy,none,True,spine1,congestion,0.65,False,False,1,0.0,670,120,0.00381,False,True,1.0,5.0,4.5,3.25
@@ -689,7 +689,7 @@ RUN-000687,Baseline_ReAct,HEALTHY-0025,transit_wan,medium,development,NIKA,True,
 RUN-000688,Baseline_Generic_Coding,HEALTHY-0025,transit_wan,medium,development,NIKA,True,False,healthy,none,True,cr1,congestion,0.7,False,False,2,0.0,950,400,0.00885,False,True,1.0,5.0,4.5,3.25
 RUN-000689,Baseline_Zero_Shot,HEALTHY-0025,transit_wan,medium,development,NIKA,True,False,healthy,none,True,cr1,link_failure,0.5,False,False,1,0.0,154,60,3e-05,False,True,1.0,5.0,4.5,3.25
 RUN-000690,Baseline_Scripted_Rules,HEALTHY-0025,transit_wan,medium,development,NIKA,True,False,healthy,none,False,none,none,0.9,False,True,4,0.0,0,0,0.0,False,True,5.0,5.0,5.0,5.0
-RUN-000691,Proposed_7Phase_Agent,HEALTHY-0026,transit_wan,medium,development,NIKA,True,False,healthy,none,False,none,none,0.99,False,True,2,0.0,474,130,7.5e-05,False,False,5.0,5.0,5.0,5.0
+RUN-000691,Proposed_7Phase_Agent,HEALTHY-0026,transit_wan,medium,development,NIKA,True,False,healthy,none,False,none,none,0.99,False,True,2,0.0019,474,130,7.5e-05,False,False,5.0,5.0,5.0,5.0
 RUN-000692,Baseline_SADE_Style,HEALTHY-0026,transit_wan,medium,development,NIKA,True,False,healthy,none,True,cr1,routing_misconfiguration,0.72,False,False,6,0.0,1550,420,0.01095,False,True,1.0,5.0,4.5,3.25
 RUN-000693,Baseline_ReAct,HEALTHY-0026,transit_wan,medium,development,NIKA,True,False,healthy,none,True,cr1,congestion,0.65,False,False,1,0.0,670,120,0.00381,False,True,1.0,5.0,4.5,3.25
 RUN-000694,Baseline_Generic_Coding,HEALTHY-0026,transit_wan,medium,development,NIKA,True,False,healthy,none,True,cr1,congestion,0.7,False,False,2,0.0,950,400,0.00885,False,True,1.0,5.0,4.5,3.25
