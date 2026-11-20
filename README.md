@@ -187,17 +187,6 @@ The agent knows seven main types of network faults.
 
 </details>
 
-<details>
-<summary><b>Click to open: Phase 5, Public Release (Current)</b></summary>
-
-<br/>
-
-- Changed the repository from private to public on GitHub.
-- Updated this README with clone steps, contribution rules, security tips, and a citation guide.
-- Added live GitHub badges for stars, forks, issues, and last commit.
-
-</details>
-
 ---
 
 ## 4. Technology Stack
