@@ -38,6 +38,7 @@
 <a href="#7-quick-start"><img src="https://img.shields.io/badge/Get%20Started-Quick%20Start-2C9CDB?style=for-the-badge&logo=rocket&logoColor=white" alt="Get started"/></a>
 <a href="#8-key-benchmark-findings"><img src="https://img.shields.io/badge/See%20Results-Benchmarks-2da44e?style=for-the-badge&logo=chartdotjs&logoColor=white" alt="See results"/></a>
 <a href="#9-contributing"><img src="https://img.shields.io/badge/Join%20In-Contribute-bf8700?style=for-the-badge&logo=github&logoColor=white" alt="Contribute"/></a>
+<a href="https://github.com/AbdulAzeemHashmi/Autonomous-Network-Troubleshooting-Agent/stargazers"><img src="https://img.shields.io/github/stars/AbdulAzeemHashmi/Autonomous-Network-Troubleshooting-Agent?style=for-the-badge&logo=github&label=Stars&color=yellow" alt="Live GitHub stars count"/></a>
 
 <br/><br/>
 
@@ -624,8 +625,8 @@ If this project helps your study or research, please give it a star on GitHub an
 
 <div align="center">
 
-<a href="https://star-history.com/#AbdulAzeemHashmi/Autonomous-Network-Troubleshooting-Agent&Date">
-  <img src="https://api.star-history.com/svg?repos=AbdulAzeemHashmi/Autonomous-Network-Troubleshooting-Agent&type=Date" alt="Star history chart" width="600"/>
+<a href="https://github.com/AbdulAzeemHashmi/Autonomous-Network-Troubleshooting-Agent/stargazers">
+  <img src="https://img.shields.io/github/stars/AbdulAzeemHashmi/Autonomous-Network-Troubleshooting-Agent?style=for-the-badge&logo=github&label=Live%20GitHub%20Stars&color=yellow" alt="Live GitHub stars count"/>
 </a>
 
 </div>
