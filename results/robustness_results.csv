@@ -1,23 +1,23 @@
 test_type,dimension,model_name,metric_name,metric_value,auxiliary_metric,notes
 topology_scale,small,Proposed_7Phase_Agent,localization_accuracy,0.75,0.7083,Topology node scale: small
 topology_scale,small,Baseline_ReAct,localization_accuracy,0.75,0.0317,Topology node scale: small
-topology_scale,medium,Proposed_7Phase_Agent,localization_accuracy,0.7143,0.5556,Topology node scale: medium
+topology_scale,medium,Proposed_7Phase_Agent,localization_accuracy,0.7143,0.7188,Topology node scale: medium
 topology_scale,medium,Baseline_ReAct,localization_accuracy,0.7143,0.0227,Topology node scale: medium
-topology_scale,large,Proposed_7Phase_Agent,localization_accuracy,0.625,0.5,Topology node scale: large
-topology_scale,large,Baseline_ReAct,localization_accuracy,0.625,0.0571,Topology node scale: large
-ticket_persona_noise,panicked_user,Proposed_7Phase_Agent,detection_accuracy,0.8,0.0,Reporter ticket style: panicked_user
-ticket_persona_noise,junior_admin,Proposed_7Phase_Agent,detection_accuracy,0.8,0.0,Reporter ticket style: junior_admin
-ticket_persona_noise,developer,Proposed_7Phase_Agent,detection_accuracy,0.8,0.0,Reporter ticket style: developer
-ticket_persona_noise,monitoring_bot,Proposed_7Phase_Agent,detection_accuracy,0.8,0.0,Reporter ticket style: monitoring_bot
-ticket_persona_noise,cautious_operator,Proposed_7Phase_Agent,detection_accuracy,0.8,0.0,Reporter ticket style: cautious_operator
-remediation_threshold,0.6,Proposed_7Phase_Agent,remediation_proposal_rate,0.52,0.52,Confidence gate: 0.6
-remediation_threshold,0.7,Proposed_7Phase_Agent,remediation_proposal_rate,0.52,0.52,Confidence gate: 0.7
-remediation_threshold,0.8,Proposed_7Phase_Agent,remediation_proposal_rate,0.4,0.52,Confidence gate: 0.8
-remediation_threshold,0.9,Proposed_7Phase_Agent,remediation_proposal_rate,0.4,0.52,Confidence gate: 0.9
-remediation_threshold,0.95,Proposed_7Phase_Agent,remediation_proposal_rate,0.4,0.52,Confidence gate: 0.95
-healthy_ratio_stress,10%_healthy,Proposed_7Phase_Agent,false_positive_rate,0.0,0.7,Healthy controls fraction: 0.1
+topology_scale,large,Proposed_7Phase_Agent,localization_accuracy,0.875,0.75,Topology node scale: large
+topology_scale,large,Baseline_ReAct,localization_accuracy,0.875,0.0571,Topology node scale: large
+ticket_persona_noise,panicked_user,Proposed_7Phase_Agent,detection_accuracy,0.85,0.0,Reporter ticket style: panicked_user
+ticket_persona_noise,junior_admin,Proposed_7Phase_Agent,detection_accuracy,0.85,0.0,Reporter ticket style: junior_admin
+ticket_persona_noise,developer,Proposed_7Phase_Agent,detection_accuracy,0.85,0.0,Reporter ticket style: developer
+ticket_persona_noise,monitoring_bot,Proposed_7Phase_Agent,detection_accuracy,0.85,0.0,Reporter ticket style: monitoring_bot
+ticket_persona_noise,cautious_operator,Proposed_7Phase_Agent,detection_accuracy,0.85,0.0,Reporter ticket style: cautious_operator
+remediation_threshold,0.6,Proposed_7Phase_Agent,remediation_proposal_rate,0.6,0.6,Confidence gate: 0.6
+remediation_threshold,0.7,Proposed_7Phase_Agent,remediation_proposal_rate,0.6,0.6,Confidence gate: 0.7
+remediation_threshold,0.8,Proposed_7Phase_Agent,remediation_proposal_rate,0.44,0.6,Confidence gate: 0.8
+remediation_threshold,0.9,Proposed_7Phase_Agent,remediation_proposal_rate,0.44,0.6,Confidence gate: 0.9
+remediation_threshold,0.95,Proposed_7Phase_Agent,remediation_proposal_rate,0.44,0.6,Confidence gate: 0.95
+healthy_ratio_stress,10%_healthy,Proposed_7Phase_Agent,false_positive_rate,0.0,0.8,Healthy controls fraction: 0.1
 healthy_ratio_stress,10%_healthy,Baseline_SADE_Style,false_positive_rate,1.0,0.9,Healthy controls fraction: 0.1
-healthy_ratio_stress,25%_healthy,Proposed_7Phase_Agent,false_positive_rate,0.0,0.8,Healthy controls fraction: 0.25
+healthy_ratio_stress,25%_healthy,Proposed_7Phase_Agent,false_positive_rate,0.0,0.85,Healthy controls fraction: 0.25
 healthy_ratio_stress,25%_healthy,Baseline_SADE_Style,false_positive_rate,1.0,0.75,Healthy controls fraction: 0.25
 healthy_ratio_stress,40%_healthy,Proposed_7Phase_Agent,false_positive_rate,0.0,0.85,Healthy controls fraction: 0.4
 healthy_ratio_stress,40%_healthy,Baseline_SADE_Style,false_positive_rate,1.0,0.6,Healthy controls fraction: 0.4
