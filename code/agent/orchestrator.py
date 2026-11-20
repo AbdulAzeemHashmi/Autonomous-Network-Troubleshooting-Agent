@@ -7,6 +7,7 @@ and Gemini LLM intelligence.
 
 from typing import Dict, Any, List, Optional
 import time
+import re
 from code.data.mock_network_env import MockNetworkEnv
 from code.data.preprocessing import Preprocessor
 from code.agent.ticket_validator import TicketValidator
@@ -92,6 +93,10 @@ class TroubleshootingAgent:
         else:
             nodes = env.topo.get_nodes()
             suspected_device = nodes[0] if nodes else "unknown"
+            for n in sorted(nodes, key=len, reverse=True):
+                if re.search(r'\b' + re.escape(n) + r'\b', ticket_text, re.IGNORECASE):
+                    suspected_device = n
+                    break
             ticket_valid = True
             val_res = {"ticket_valid": True, "suspected_device": suspected_device, "reason": "Ticket validation disabled by ablation"}
 
