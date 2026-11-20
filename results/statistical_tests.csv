@@ -1,6 +1,6 @@
 baseline,metric,proposed_mean,baseline_mean,wilcoxon_statistic,p_value,significant_at_05,effect_size
-Baseline_SADE_Style,overall_judge_score,4.359,3.648,295.0,0.0,True,0.0835
-Baseline_ReAct,overall_judge_score,4.359,3.314,264.0,0.0,True,0.1085
-Baseline_Generic_Coding,overall_judge_score,4.359,3.314,264.0,0.0,True,0.1085
-Baseline_Zero_Shot,overall_judge_score,4.359,3.661,574.0,0.0,True,0.0672
-Baseline_Scripted_Rules,overall_judge_score,4.359,3.882,0.0,0.0,True,0.1093
+Baseline_SADE_Style,overall_judge_score,4.308,3.625,1.0,0.0625,False,0.3895
+Baseline_ReAct,overall_judge_score,4.308,3.358,1.0,0.0625,False,0.4666
+Baseline_Generic_Coding,overall_judge_score,4.308,3.358,1.0,0.0625,False,0.4666
+Baseline_Zero_Shot,overall_judge_score,4.308,3.758,3.0,0.3125,False,0.2273
+Baseline_Scripted_Rules,overall_judge_score,4.308,3.933,0.0,0.25,False,0.5774
