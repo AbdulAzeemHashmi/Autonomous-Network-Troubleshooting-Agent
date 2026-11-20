@@ -15,11 +15,18 @@ from typing import Dict, Any, Optional
 # Suppress FutureWarning from deprecated google-generativeai package
 warnings.filterwarnings("ignore", category=FutureWarning, module="google.generativeai")
 
+genai = None
 try:
-    import google.generativeai as genai
+    import importlib
+    genai = importlib.import_module("google.generativeai")
     HAS_GENAI = True
-except ImportError:
-    HAS_GENAI = False
+except (ImportError, Exception):
+    try:
+        import importlib
+        genai = importlib.import_module("google.genai")
+        HAS_GENAI = True
+    except (ImportError, Exception):
+        HAS_GENAI = False
 
 import requests
 
