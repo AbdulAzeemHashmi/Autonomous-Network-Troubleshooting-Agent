@@ -37,8 +37,8 @@ class TicketValidator:
         # Extract mentioned device or fallback to topology nodes
         nodes = env.topo.get_nodes()
         suspected_device = None
-        for node in nodes:
-            if node.lower() in ticket_text.lower():
+        for node in sorted(nodes, key=len, reverse=True):
+            if re.search(r'\b' + re.escape(node) + r'\b', ticket_text, re.IGNORECASE):
                 suspected_device = node
                 break
 
