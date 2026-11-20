@@ -3,7 +3,7 @@
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f2027,50:203a43,100:2c5364&height=220&section=header&text=Autonomous%20Network%20Troubleshooting%20Agent&fontSize=38&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=Find%20the%20real%20fault.%20Ignore%20the%20false%20alarm.&descAlignY=58&descSize=18" alt="Header banner" width="100%"/>
 
 <a href="https://github.com/AbdulAzeemHashmi/Autonomous-Network-Troubleshooting-Agent">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&duration=3000&pause=800&color=2C9CDB&center=true&vCenter=true&width=760&lines=7-Phase+AI+Agent+for+Network+Faults;Powered+by+Google+Gemini+API;85.0%25+Detection+%7C+87.4%25+RCA+F1+(credited);0.0%25+False+Positive+Rate+on+Healthy+Networks;120+Incidents+%7C+60+Ablations+%7C+Phase+4+Paper" alt="Typing animation"/>
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&duration=3000&pause=800&color=2C9CDB&center=true&vCenter=true&width=760&lines=Now+Open+Source+and+Public+on+GitHub;7-Phase+AI+Agent+for+Network+Faults;Powered+by+Google+Gemini+API;85.0%25+Detection+%7C+87.4%25+RCA+F1+(credited);0.0%25+False+Positive+Rate+on+Healthy+Networks;120+Incidents+%7C+60+Ablations+%7C+Phase+4+Paper" alt="Typing animation"/>
 </a>
 
 <br/>
@@ -13,7 +13,7 @@
 ![NetworkX](https://img.shields.io/badge/NetworkX-3.7-orange?style=for-the-badge)
 ![Pytest](https://img.shields.io/badge/Tests-32%20passing-success?style=for-the-badge&logo=pytest&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
-![Repo](https://img.shields.io/badge/Repository-Private-lightgrey?style=for-the-badge&logo=github)
+![Repo](https://img.shields.io/badge/Repository-Public-brightgreen?style=for-the-badge&logo=github)
 
 ![Detection Accuracy](https://img.shields.io/badge/Detection%20Accuracy-85.0%25-brightgreen?style=flat-square)
 ![RCA F1](https://img.shields.io/badge/RCA%20F1%20(credited)-87.4%25-brightgreen?style=flat-square)
@@ -26,6 +26,21 @@
 
 <br/>
 
+![Stars](https://img.shields.io/github/stars/AbdulAzeemHashmi/Autonomous-Network-Troubleshooting-Agent?style=flat-square&logo=github&color=yellow)
+![Forks](https://img.shields.io/github/forks/AbdulAzeemHashmi/Autonomous-Network-Troubleshooting-Agent?style=flat-square&logo=github&color=blue)
+![Issues](https://img.shields.io/github/issues/AbdulAzeemHashmi/Autonomous-Network-Troubleshooting-Agent?style=flat-square&logo=github&color=orange)
+![Last Commit](https://img.shields.io/github/last-commit/AbdulAzeemHashmi/Autonomous-Network-Troubleshooting-Agent?style=flat-square&logo=git&color=success)
+![Repo Size](https://img.shields.io/github/repo-size/AbdulAzeemHashmi/Autonomous-Network-Troubleshooting-Agent?style=flat-square&color=lightgrey)
+![Top Language](https://img.shields.io/github/languages/top/AbdulAzeemHashmi/Autonomous-Network-Troubleshooting-Agent?style=flat-square&logo=python&logoColor=white)
+
+<br/>
+
+<a href="#7-quick-start"><img src="https://img.shields.io/badge/Get%20Started-Quick%20Start-2C9CDB?style=for-the-badge&logo=rocket&logoColor=white" alt="Get started"/></a>
+<a href="#8-key-benchmark-findings"><img src="https://img.shields.io/badge/See%20Results-Benchmarks-2da44e?style=for-the-badge&logo=chartdotjs&logoColor=white" alt="See results"/></a>
+<a href="#9-contributing"><img src="https://img.shields.io/badge/Join%20In-Contribute-bf8700?style=for-the-badge&logo=github&logoColor=white" alt="Contribute"/></a>
+
+<br/><br/>
+
 **Course:** Computer Networks (CS-3001) | **University:** FAST National University of Computer and Emerging Sciences (NUCES)
 
 </div>
@@ -36,15 +51,19 @@
 
 | # | Section | # | Section |
 |---|---------|---|---------|
-| 1 | [Project Overview](#1-project-overview) | 6 | [Folder Structure](#6-folder-structure) |
-| 2 | [How the Agent Works](#2-how-the-agent-works) | 7 | [Quick Start](#7-quick-start) |
-| 3 | [Project Phases Recap](#3-project-phases-recap) | 8 | [Key Benchmark Findings](#8-key-benchmark-findings) |
-| 4 | [Technology Stack](#4-technology-stack) | 9 | [Team](#9-team) |
-| 5 | [Dataset and Topologies](#5-dataset-and-topologies) | 10 | [License](#10-license) |
+| 1 | [Project Overview](#1-project-overview) | 8 | [Key Benchmark Findings](#8-key-benchmark-findings) |
+| 2 | [How the Agent Works](#2-how-the-agent-works) | 9 | [Contributing](#9-contributing) |
+| 3 | [Project Phases Recap](#3-project-phases-recap) | 10 | [Security and API Keys](#10-security-and-api-keys) |
+| 4 | [Technology Stack](#4-technology-stack) | 11 | [How to Cite](#11-how-to-cite) |
+| 5 | [Dataset and Topologies](#5-dataset-and-topologies) | 12 | [Team](#12-team) |
+| 6 | [Folder Structure](#6-folder-structure) | 13 | [License](#13-license) |
+| 7 | [Quick Start](#7-quick-start) | | |
 
 ---
 
 ## 1. Project Overview
+
+> **Good news:** This repository is now **public**. Anyone can read the code, run the experiments, and build on this work.
 
 Modern computer networks are big, different from each other, and easy to break. When something fails, finding the root cause fast can save a lot of money.
 
@@ -64,8 +83,17 @@ This project builds a **7-Phase Autonomous Network Troubleshooting Agent** that:
 - Abstains (says "no fault found") when the network is healthy.
 - Connects to Google Gemini models (Gemini 1.5 Flash, Gemini 2.0 Flash), which have generous free tier quotas.
 - Is tested against 5 baselines across 120 incidents (6 agents x 120 = 720 total runs) and 60 ablation runs.
-- Builds a publication-quality PDF research report automatically.
+- Builds a publication quality PDF research report automatically.
 - Includes a full Phase 4 research paper in Springer Nature format with statistical analysis and reproducibility scripts.
+
+### Why this project is useful
+
+| Who you are | How this repository helps you |
+|-------------|-------------------------------|
+| **Student** | Learn how an AI agent can debug a network step by step. |
+| **Researcher** | Reuse the benchmark, the 5 baselines, and the statistics scripts. |
+| **Network engineer** | See how falsification probes reduce false alarms. |
+| **Developer** | Study a clean Python agent with 32 passing tests. |
 
 ---
 
@@ -140,7 +168,7 @@ The agent knows seven main types of network faults.
 - Added a Google Gemini LLM API client with resilient offline fallback.
 - Ran 720 benchmark evaluations across 120 incidents and 15 network scenarios.
 - Ran 60 ablation studies across 5 component removals.
-- Generated 9 publication-grade figures at 300 DPI.
+- Generated 9 publication grade figures at 300 DPI.
 - Built an automatic ReportLab PDF compiler for the academic evaluation report.
 
 </details>
@@ -150,12 +178,23 @@ The agent knows seven main types of network faults.
 
 <br/>
 
-- Authored a complete, self-contained publication research paper formatted in the Springer Nature `sn-jnl` template (two-column layout, `sn-basic` citation style).
-- Resolved device-name parsing collisions using whole-token regex word-boundary matching, lifting fault recall to 80.0% (72/90) and detection accuracy to 85.0% (102/120).
-- Performed rigorous statistical analysis: 5,000 bootstrap resamples for 95% confidence intervals and exact two-sided McNemar tests on discordant incident pairs.
-- Conducted ground-truth leakage audit (zero discrepancy when healthy flags are hidden).
-- Harmonized root-cause evaluation labels (`"healthy"` vs `"none"`), measuring both raw logged F1 (0.691) and credited abstention F1 (0.874).
+- Authored a complete, self-contained publication research paper formatted in the Springer Nature `sn-jnl` template (two column layout, `sn-basic` citation style).
+- Resolved device name parsing collisions using whole token regex word boundary matching, lifting fault recall to 80.0% (72/90) and detection accuracy to 85.0% (102/120).
+- Performed rigorous statistical analysis: 5,000 bootstrap resamples for 95% confidence intervals and exact two sided McNemar tests on discordant incident pairs.
+- Conducted a ground truth leakage audit (zero discrepancy when healthy flags are hidden).
+- Harmonized root cause evaluation labels (`"healthy"` vs `"none"`), measuring both raw logged F1 (0.691) and credited abstention F1 (0.874).
 - Packaged the complete LaTeX source, reproducibility scripts, vector figures, and compiled PDF (`Phase4_Research_Paper.pdf`).
+
+</details>
+
+<details>
+<summary><b>Click to open: Phase 5, Public Release (Current)</b></summary>
+
+<br/>
+
+- Changed the repository from private to public on GitHub.
+- Updated this README with clone steps, contribution rules, security tips, and a citation guide.
+- Added live GitHub badges for stars, forks, issues, and last commit.
 
 </details>
 
@@ -344,13 +383,35 @@ Autonomous-Network-Troubleshooting-Agent/
 
 > **Tip:** Run all commands from the root folder of the repository.
 
-### Step 1: Install dependencies
+### Step 1: Clone the public repository
+
+Anyone can now download the code. No login or special access is needed.
+
+```bash
+git clone https://github.com/AbdulAzeemHashmi/Autonomous-Network-Troubleshooting-Agent.git
+cd Autonomous-Network-Troubleshooting-Agent
+```
+
+### Step 2: Create a virtual environment (recommended)
+
+```bash
+# Create the environment
+python -m venv venv
+
+# Activate on Windows
+venv\Scripts\activate
+
+# Activate on Linux or macOS
+source venv/bin/activate
+```
+
+### Step 3: Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### Step 2: Run the full pipeline (one command)
+### Step 4: Run the full pipeline (one command)
 
 This runs 720 benchmark evaluations, 60 ablations, robustness stress tests, statistical tests, error classification, 9 publication figures, and PDF report compilation.
 
@@ -365,9 +426,9 @@ python run_all.py --config configs/experiment_config.yaml
 run_experiments.bat
 ```
 
-### Step 3: Run with the live Google Gemini API
+### Step 5: Run with the live Google Gemini API
 
-Use live Gemini calls for ticket validation, zero-shot reasoning, and LLM judge scoring.
+Use live Gemini calls for ticket validation, zero-shot reasoning, and LLM judge scoring. You can get a free key from Google AI Studio.
 
 ```bash
 python run_all.py --use_live_llm --gemini_model gemini-1.5-flash
@@ -379,9 +440,9 @@ Or pass your API key on the command line:
 python run_all.py --use_live_llm --gemini_api_key "YOUR_GEMINI_KEY"
 ```
 
-> **Security note:** Never commit your real API key to GitHub. Keep it private.
+> **Security note:** The repository is public. Never commit your real API key to GitHub. See [Security and API Keys](#10-security-and-api-keys).
 
-### Step 4: Run unit tests
+### Step 6: Run unit tests
 
 All 32 automated unit tests run with:
 
@@ -389,7 +450,7 @@ All 32 automated unit tests run with:
 pytest tests/ -v
 ```
 
-### Step 5: Run the interactive demo
+### Step 7: Run the interactive demo
 
 Troubleshoot one incident step by step on any of the 15 topologies.
 
@@ -404,13 +465,22 @@ python interactive_cli.py --scenario abilene_backbone --healthy
 python interactive_cli.py --scenario netman_aiops --use_live_llm
 ```
 
-### Step 6: Export the PDF report only
+### Step 8: Export the PDF report only
 
 ```bash
 python export_pdf.py
 ```
 
 The PDF is saved to `docs/Phase3_Report.pdf`.
+
+### Read the papers without running any code
+
+| Document | File |
+|----------|------|
+| Phase 1 literature review | [Phase1_Literature_Review_Report.pdf](Phase1_Literature_Review_Report.pdf) |
+| Phase 2 methodology | [Phase_2_Deliverables.pdf](Phase_2_Deliverables.pdf) |
+| Phase 3 evaluation report | [docs/Phase3_Report.pdf](docs/Phase3_Report.pdf) |
+| Phase 4 research paper | [Phase4_Research_Paper.pdf](Phase4_Research_Paper.pdf) |
 
 ---
 
@@ -471,7 +541,109 @@ xychart-beta
 
 ---
 
-## 9. Team
+## 9. Contributing
+
+Now that the repository is public, contributions are welcome. You can fix a bug, improve the docs, add a new topology, or test a new baseline.
+
+### How to contribute
+
+```mermaid
+flowchart LR
+    A["Fork the repo"] --> B["Create a branch"]
+    B --> C["Make your changes"]
+    C --> D["Run pytest"]
+    D --> E["Open a Pull Request"]
+    E --> F(["Review and merge"])
+
+    style A fill:#1f6feb,color:#fff,stroke:#1f6feb
+    style F fill:#2da44e,color:#fff,stroke:#2da44e
+```
+
+```bash
+# 1. Fork the repository on GitHub, then clone your fork
+git clone https://github.com/YOUR_USERNAME/Autonomous-Network-Troubleshooting-Agent.git
+
+# 2. Create a new branch
+git checkout -b my-new-feature
+
+# 3. Make your changes, then run all tests
+pytest tests/ -v
+
+# 4. Commit and push
+git add .
+git commit -m "Add my new feature"
+git push origin my-new-feature
+```
+
+After that, open a Pull Request on GitHub and describe what you changed.
+
+### Simple contribution rules
+
+| Rule | Why it matters |
+|------|----------------|
+| All 32 tests must pass before you open a Pull Request. | It keeps the main branch stable. |
+| Add a test for every new feature or bug fix. | It protects the work from future breaks. |
+| Keep code and comments simple and clear. | It helps new readers learn faster. |
+| Never include API keys, passwords, or private data. | The repository is public. |
+
+### Found a bug or have an idea?
+
+Open an issue on the [Issues page](https://github.com/AbdulAzeemHashmi/Autonomous-Network-Troubleshooting-Agent/issues). Please include:
+
+- What you did.
+- What you expected to happen.
+- What actually happened.
+- Your Python version and operating system.
+
+---
+
+## 10. Security and API Keys
+
+<div align="center">
+
+![Security](https://img.shields.io/badge/Security-Keep%20Your%20Keys%20Private-red?style=for-the-badge&logo=letsencrypt&logoColor=white)
+
+</div>
+
+Because this repository is public, everyone can see every file and every past commit. Please follow these simple tips.
+
+| Tip | What to do |
+|-----|------------|
+| **Never commit a key** | Do not paste your Gemini API key inside any file. Pass it only on the command line. |
+| **Check before you push** | Run `git status` and `git diff` to confirm no secret is included. |
+| **Ignore private files** | Add files like `.env` to your `.gitignore` file. |
+| **Rotate a leaked key** | If a key was ever pushed, delete it in Google AI Studio and create a new one. Removing it from a later commit is not enough, because the old commit still shows it. |
+| **Use the free tier wisely** | The code has an offline fallback, so you can run all experiments without a key. |
+
+The Gemini client in `code/agent/llm_client.py` has no hardcoded key, so it is safe to read and reuse.
+
+---
+
+## 11. How to Cite
+
+If this project helps your study or research, please give it a star on GitHub and cite it.
+
+```bibtex
+@misc{azeem2026autonomousnetwork,
+  title        = {Autonomous Network Troubleshooting Agent: A 7-Phase LLM Agent with Ticket Validation and Falsification},
+  author       = {Abdul Azeem and Taha Amjad},
+  year         = {2026},
+  howpublished = {\url{https://github.com/AbdulAzeemHashmi/Autonomous-Network-Troubleshooting-Agent}},
+  note         = {FAST-NUCES, Computer Networks (CS-3001)}
+}
+```
+
+<div align="center">
+
+<a href="https://star-history.com/#AbdulAzeemHashmi/Autonomous-Network-Troubleshooting-Agent&Date">
+  <img src="https://api.star-history.com/svg?repos=AbdulAzeemHashmi/Autonomous-Network-Troubleshooting-Agent&type=Date" alt="Star history chart" width="600"/>
+</a>
+
+</div>
+
+---
+
+## 12. Team
 
 <div align="center">
 
@@ -508,17 +680,29 @@ xychart-beta
 
 <br/>
 
+### Contributors
+
+<a href="https://github.com/AbdulAzeemHashmi/Autonomous-Network-Troubleshooting-Agent/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=AbdulAzeemHashmi/Autonomous-Network-Troubleshooting-Agent" alt="Contributors"/>
+</a>
+
+<br/><br/>
+
 [![Project Repository](https://img.shields.io/badge/Project%20Repository-Autonomous--Network--Troubleshooting--Agent-2C5364?style=for-the-badge&logo=github)](https://github.com/AbdulAzeemHashmi/Autonomous-Network-Troubleshooting-Agent)
 
 </div>
 
 ---
 
-## 10. License
+## 13. License
 
-This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the **MIT License**. You are free to use, copy, change, and share the code. Please keep the license notice and give credit to the authors. See the [LICENSE](LICENSE) file for details.
 
 <div align="center">
+
+<br/>
+
+![Thanks](https://img.shields.io/badge/Thanks%20for%20visiting-Star%20the%20repo%20if%20you%20like%20it-2C9CDB?style=for-the-badge&logo=github&logoColor=white)
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:2c5364,50:203a43,100:0f2027&height=120&section=footer" alt="Footer wave" width="100%"/>
 
