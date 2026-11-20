@@ -31,7 +31,8 @@ for v, g in d.groupby("variant"):
     res[v] = dict(n=int(len(g)), n_faulty=int(hf.sum()), detection_acc=float(np.mean(det == hf)), fault_recall=float(det[hf].mean()), fpr=float(det[~hf].mean()),
                   f1_logged=float(f1_score(yt, yp, average="macro", zero_division=0)), f1_harmonised=float(f1_score(yth, yp, average="macro", zero_division=0)),
                   acc_faulty=float(np.mean((yp == yt)[hf])), loc_acc=float(np.mean((g.gt_dev == g["loc"]).to_numpy()[hf])))
-    assert abs(res[v]["f1_logged"] - logged.loc[v, "rca_f1_macro"]) < 1e-3, (v, res[v]["f1_logged"], logged.loc[v, "rca_f1_macro"])
+    col = "rca_f1_macro_raw" if "rca_f1_macro_raw" in logged.columns else "rca_f1_macro"
+    assert abs(res[v]["f1_logged"] - logged.loc[v, col]) < 1e-3, (v, res[v]["f1_logged"], logged.loc[v, col])
     assert abs(res[v]["detection_acc"] - logged.loc[v, "detection_accuracy"]) < 1e-3
 json.dump(res, open(f"{OUT}/data/ablation_stats.json", "w"), indent=1)
 print(pd.DataFrame(res).T.round(3).to_string())
