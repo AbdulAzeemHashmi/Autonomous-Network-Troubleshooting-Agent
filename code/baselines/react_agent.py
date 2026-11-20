@@ -30,8 +30,8 @@ class ReActAgent:
         ticket_text = incident.get("ticket_text", "").lower()
         nodes = env.topo.get_nodes()
         target_device = nodes[0] if nodes else "unknown"
-        for n in nodes:
-            if n.lower() in ticket_text:
+        for n in sorted(nodes, key=len, reverse=True):
+            if re.search(r'\b' + re.escape(n) + r'\b', ticket_text, re.IGNORECASE):
                 target_device = n
                 break
 
