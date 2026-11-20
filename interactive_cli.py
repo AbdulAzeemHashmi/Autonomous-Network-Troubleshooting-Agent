@@ -47,7 +47,7 @@ def parse_args():
     parser.add_argument(
         "--gemini_api_key",
         type=str,
-        default="AQ.Ab8RN6Jm756xpaJsA3EJUqblruoGPIx_QochLYy4HS2yW0LhXQ",
+        default=os.environ.get("GEMINI_API_KEY", ""),
         help="Google Gemini API key"
     )
     parser.add_argument(

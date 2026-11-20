@@ -35,7 +35,7 @@ class GeminiClient:
         timeout: int = 15,
         max_retries: int = 2
     ):
-        self.api_key = api_key or os.environ.get("GEMINI_API_KEY", "AQ.Ab8RN6Jm756xpaJsA3EJUqblruoGPIx_QochLYy4HS2yW0LhXQ")
+        self.api_key = api_key or os.environ.get("GEMINI_API_KEY", "")
         self.model_name = model_name
         self.temperature = temperature
         self.timeout = timeout

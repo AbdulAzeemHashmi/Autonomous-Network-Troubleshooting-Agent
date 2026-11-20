@@ -154,7 +154,7 @@ class ExperimentRunner:
 
         # Initialize Gemini LLM client
         self.use_live_llm = use_live_llm or self.config.get("llm", {}).get("use_live_llm", False)
-        api_key = gemini_api_key or os.environ.get("GEMINI_API_KEY", "AQ.Ab8RN6Jm756xpaJsA3EJUqblruoGPIx_QochLYy4HS2yW0LhXQ")
+        api_key = gemini_api_key or os.environ.get("GEMINI_API_KEY", "")
         model = gemini_model or self.config.get("llm", {}).get("model", "gemini-1.5-flash")
         self.llm_client = GeminiClient(api_key=api_key, model_name=model)
         self.judge = LLMJudge(llm_client=self.llm_client, use_llm=self.use_live_llm)
