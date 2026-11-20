@@ -3,7 +3,7 @@
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f2027,50:203a43,100:2c5364&height=220&section=header&text=Autonomous%20Network%20Troubleshooting%20Agent&fontSize=38&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=Find%20the%20real%20fault.%20Ignore%20the%20false%20alarm.&descAlignY=58&descSize=18" alt="Header banner" width="100%"/>
 
 <a href="https://github.com/AbdulAzeemHashmi/Autonomous-Network-Troubleshooting-Agent">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&duration=3000&pause=800&color=2C9CDB&center=true&vCenter=true&width=760&lines=7-Phase+AI+Agent+for+Network+Faults;Powered+by+Google+Gemini+API;0.0%25+False+Positive+Rate+on+Healthy+Networks;Only+%240.0138+per+Troubleshooting+Session;720+Benchmark+Runs+and+60+Ablations" alt="Typing animation"/>
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&duration=3000&pause=800&color=2C9CDB&center=true&vCenter=true&width=760&lines=7-Phase+AI+Agent+for+Network+Faults;Powered+by+Google+Gemini+API;85.0%25+Detection+%7C+87.4%25+RCA+F1+(credited);0.0%25+False+Positive+Rate+on+Healthy+Networks;120+Incidents+%7C+60+Ablations+%7C+Phase+4+Paper" alt="Typing animation"/>
 </a>
 
 <br/>
@@ -15,10 +15,12 @@
 ![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
 ![Repo](https://img.shields.io/badge/Repository-Private-lightgrey?style=for-the-badge&logo=github)
 
+![Detection Accuracy](https://img.shields.io/badge/Detection%20Accuracy-85.0%25-brightgreen?style=flat-square)
+![RCA F1](https://img.shields.io/badge/RCA%20F1%20(credited)-87.4%25-brightgreen?style=flat-square)
+![Fault Recall](https://img.shields.io/badge/Fault%20Recall-80.0%25-brightgreen?style=flat-square)
 ![False Positive Rate](https://img.shields.io/badge/False%20Positive%20Rate-0.0%25-brightgreen?style=flat-square)
-![Cost](https://img.shields.io/badge/Cost%20per%20Session-%240.0138-brightgreen?style=flat-square)
-![Transfer Score](https://img.shields.io/badge/Transfer%20Score-96.3%25-brightgreen?style=flat-square)
-![Benchmark Runs](https://img.shields.io/badge/Benchmark%20Runs-720-informational?style=flat-square)
+![Cost](https://img.shields.io/badge/Cost%20per%20Session-%240.000296-brightgreen?style=flat-square)
+![Incidents](https://img.shields.io/badge/Benchmark%20Incidents-120-informational?style=flat-square)
 ![Ablation Runs](https://img.shields.io/badge/Ablation%20Runs-60-informational?style=flat-square)
 ![Topologies](https://img.shields.io/badge/Topologies-15-informational?style=flat-square)
 
@@ -61,8 +63,9 @@ This project builds a **7-Phase Autonomous Network Troubleshooting Agent** that:
 - Runs counter probes to disprove wrong guesses.
 - Abstains (says "no fault found") when the network is healthy.
 - Connects to Google Gemini models (Gemini 1.5 Flash, Gemini 2.0 Flash), which have generous free tier quotas.
-- Is tested against 5 baselines with 720 benchmark runs and 60 ablations.
-- Builds a publication quality PDF research report automatically.
+- Is tested against 5 baselines across 120 incidents (6 agents x 120 = 720 total runs) and 60 ablation runs.
+- Builds a publication-quality PDF research report automatically.
+- Includes a full Phase 4 research paper in Springer Nature format with statistical analysis and reproducibility scripts.
 
 ---
 
@@ -173,7 +176,8 @@ The agent knows seven main types of network faults.
 | Network modeling | ![NetworkX](https://img.shields.io/badge/-NetworkX-orange) | 3.7 graph library |
 | Data analysis | ![Pandas](https://img.shields.io/badge/-Pandas-150458?logo=pandas&logoColor=white) ![NumPy](https://img.shields.io/badge/-NumPy-013243?logo=numpy&logoColor=white) ![SciPy](https://img.shields.io/badge/-SciPy-8CAAE6?logo=scipy&logoColor=white) ![Scikit-Learn](https://img.shields.io/badge/-Scikit--Learn-F7931E?logo=scikitlearn&logoColor=white) | Statistical tests, confidence intervals, F1 scores |
 | Plotting | ![Matplotlib](https://img.shields.io/badge/-Matplotlib-11557c) | 9 publication figures at 300 DPI |
-| PDF export | ReportLab | Academic report compiler |
+| PDF export | ReportLab | Academic report compiler (Phase 3 report) |
+| Research paper | LaTeX (Springer Nature sn-jnl) | Phase 4 publication paper with BibTeX references |
 | Testing | ![Pytest](https://img.shields.io/badge/-Pytest-0A9EDC?logo=pytest&logoColor=white) | 32 automated unit tests |
 
 ---
@@ -208,16 +212,46 @@ The evaluation uses network topologies from three sources: NIKA, Fault-Bench, an
 Autonomous-Network-Troubleshooting-Agent/
 ├── Phase1_Literature_Review_Report.pdf   # Phase 1 submission report
 ├── Phase_2_Deliverables.pdf              # Phase 2 methodology report
+├── Phase4_Research_Paper.pdf             # Phase 4 compiled research paper (PDF)
 ├── LICENSE                               # MIT License
 ├── README.md                             # Project documentation and guide
 ├── requirements.txt                      # Python dependencies
 ├── pytest.ini                            # Pytest configuration
 ├── conftest.py                           # Root path configuration
-├── export_pdf.py                         # ReportLab PDF compiler
+├── export_pdf.py                         # ReportLab PDF compiler (Phase 3 report)
 ├── interactive_cli.py                    # Interactive single-incident demo
-├── run_experiments.bat                  # One-click Windows batch runner
-├── run_experiments.ps1                  # One-click Windows PowerShell runner
+├── run_experiments.bat                   # One-click Windows batch runner
+├── run_experiments.ps1                   # One-click Windows PowerShell runner
 ├── run_all.py                            # Single-command end-to-end run
+│
+├── Phase4_Paper_LaTeX_Source/            # Phase 4: full LaTeX source package
+│   └── phase4_paper_source/
+│       ├── paper.tex                     # Springer Nature sn-jnl LaTeX source
+│       ├── references.bib                # BibTeX bibliography
+│       ├── sn-jnl.cls                    # Springer Nature journal class file
+│       ├── sn-basic.bst                  # Springer Nature citation style
+│       ├── README.md                     # Compilation instructions
+│       ├── analysis/                     # Reproducibility and stats scripts
+│       │   ├── phase4_analysis.py        # Bootstrap CIs, McNemar tests, figures
+│       │   ├── ablation_rerun.py         # Label-harmonized ablation re-run
+│       │   ├── leakage_audit.py          # Ground-truth leakage check (0 discrepancies)
+│       │   └── build_tables.py           # LaTeX table rows and tokens.json
+│       ├── data/                         # Intermediate data for the paper
+│       │   ├── phase4_stats.json         # Full 120-incident stats with CIs
+│       │   ├── ablation_stats.json       # Ablation summary (60 runs each)
+│       │   ├── ablation_raw.csv          # Raw ablation measurements
+│       │   ├── main_metrics_point.csv    # Point-estimate table
+│       │   ├── proposed_failure_attribution.csv
+│       │   ├── scenario_table.json       # Per-scenario accuracy breakdown
+│       │   └── tokens.json               # Token-cost breakdown table
+│       ├── figures/                      # Vector figures embedded in paper
+│       │   ├── fig_main_results.pdf      # Main performance comparison
+│       │   ├── fig_ablation.pdf          # Component ablation drop chart
+│       │   ├── fig_failure_attribution.pdf
+│       │   └── fig_split_transfer.pdf    # Dev vs. held-out transfer plot
+│       └── results/                      # Raw CSVs scoped to the paper
+│           ├── raw_runs.csv
+│           └── ablation_results.csv
 │
 ├── configs/                              # System configurations
 │   ├── experiment_config.yaml            # Scenarios, topology sizes, token limits
@@ -226,16 +260,16 @@ Autonomous-Network-Troubleshooting-Agent/
 │
 ├── code/                                 # Implementation source code
 │   ├── agent/                            # Proposed 7-phase agent
-│   │   ├── llm_client.py                 # Google Gemini API wrapper
-│   │   ├── ticket_validator.py           # Phase 1: Ticket validation
-│   │   ├── evidence_scanner.py           # Phase 2: Layered scan
+│   │   ├── llm_client.py                 # Google Gemini API wrapper (importlib, no hardcoded key)
+│   │   ├── ticket_validator.py           # Phase 1: Ticket validation (word-boundary regex)
+│   │   ├── evidence_scanner.py           # Phase 2: Layered scan (L2 to Service)
 │   │   ├── hypothesis_router.py          # Phase 3: Fault family routing
 │   │   ├── falsification.py              # Phase 4: Counter probes
 │   │   ├── abstain.py                    # Phase 5: Abstain decision
 │   │   ├── root_cause.py                 # Phase 6: Ranked root causes
 │   │   ├── remediation.py                # Phase 7: Validated fix playbooks
-│   │   └── orchestrator.py               # Main agent loop
-│   ├── baselines/                        # 5 comparative baselines
+│   │   └── orchestrator.py               # Main agent loop (word-boundary regex fix)
+│   ├── baselines/                        # 5 comparative baselines (all use word-boundary regex)
 │   │   ├── zero_shot.py                  # Baseline 1: Zero-shot LLM
 │   │   ├── react_agent.py                # Baseline 2: Standard ReAct
 │   │   ├── coding_agent.py               # Baseline 3: Generic coding agent
@@ -250,7 +284,7 @@ Autonomous-Network-Troubleshooting-Agent/
 │   │   └── preprocessing.py              # Fault audit and token trimming
 │   ├── experiments/                      # Experiment runner and evaluation
 │   │   ├── runner.py                     # Benchmark runner and LLM judge
-│   │   ├── metrics.py                    # 9 canonical metric groups
+│   │   ├── metrics.py                    # 9 metric groups (outputs rca_f1_macro_raw too)
 │   │   ├── statistical_tests.py          # Bootstrap CI and Wilcoxon tests
 │   │   ├── ablation.py                   # 5-component ablation studies
 │   │   └── error_analysis.py             # Kim et al. 12-pitfall taxonomy
@@ -258,14 +292,14 @@ Autonomous-Network-Troubleshooting-Agent/
 │       └── plots.py                      # Matplotlib visualization code
 │
 ├── docs/                                 # Documentation and final report
-│   ├── Phase3_Report.md                  # Full academic report
-│   ├── Phase3_Report.pdf                 # Formatted academic report PDF
+│   ├── Phase3_Report.md                  # Full academic report (Markdown)
+│   ├── Phase3_Report.pdf                 # Formatted academic report (PDF)
 │   ├── baselines.md                      # Baseline descriptions
 │   ├── comparison_with_existing.md       # Comparison with published papers
 │   ├── error_analysis.md                 # Failure taxonomy report
 │   └── preprocessing.md                  # Audit and split documentation
 │
-├── figures/                              # Generated 300 DPI figures
+├── figures/                              # Generated 300 DPI figures (Phase 3)
 │   ├── fig1_main_performance_comparison.png
 │   ├── fig2_accuracy_vs_topology_size.png
 │   ├── fig3_cost_vs_rca_f1_pareto.png
@@ -286,15 +320,15 @@ Autonomous-Network-Troubleshooting-Agent/
 │   └── phase7_remediation.txt
 │
 ├── results/                              # Output CSV files
-│   ├── raw_runs.csv                      # All 720 individual run records
-│   ├── metrics_summary.csv               # Aggregate metrics with CIs
-│   ├── statistical_tests.csv             # Wilcoxon test results
-│   ├── ablation_results.csv              # Component ablation metrics
+│   ├── raw_runs.csv                      # Per-run records (all 6 agents x 120 incidents)
+│   ├── metrics_summary.csv               # Aggregate metrics (includes rca_f1_macro_raw column)
+│   ├── statistical_tests.csv             # Wilcoxon and McNemar test results
+│   ├── ablation_results.csv              # Component ablation metrics (60 runs each)
 │   ├── robustness_results.csv            # Scale, persona, and sensitivity stress tests
 │   ├── failure_taxonomy.csv              # Error classification counts
 │   └── fault_audit.csv                   # Preprocessing audit logs
 │
-└── tests/                                # Automated test suite (32 tests)
+└── tests/                                # Automated test suite (32 tests, all passing)
     ├── test_agent_phases.py              # Phase 1 to 7 unit tests
     ├── test_baselines.py                 # All 5 baseline tests
     ├── test_data_loader.py               # Loader, graph, and env tests
@@ -384,29 +418,29 @@ The PDF is saved to `docs/Phase3_Report.pdf`.
 
 <div align="center">
 
-| False Positive Rate | Cost per Session | Transfer Score | Input Tokens per Session |
-|:-------------------:|:----------------:|:--------------:|:------------------------:|
-| **0.0%** | **$0.0138** | **96.3%** | **1,915** |
+| Detection Acc | Fault Recall | RCA F1 (credited) | False Positive Rate | Cost per Session | Input Tokens |
+|:-------------:|:------------:|:-----------------:|:-------------------:|:----------------:|:------------:|
+| **85.0%** | **80.0%** | **0.874** | **0.0%** | **$0.000296** | **1,905** |
 
 </div>
 
 ### 1. Comparison with baselines
 
-| Model | Detection Acc | Localization Acc | RCA F1 | False Positive Rate | Cost per Session |
-|-------|:-------------:|:----------------:|:------:|:-------------------:|:----------------:|
-| **Proposed 7-Phase Agent** | **0.7500** | **0.6667** | **0.6207** | **0.00%** | **$0.0138** |
-| SADE-Style Baseline | 0.7500 | 0.6556 | 0.5734 | 100.0% | $0.0109 |
-| Zero-Shot LLM | 0.7500 | 0.6556 | 0.5375 | 100.0% | $0.0013 |
-| Scripted Rules | 0.6833 | 0.5778 | 0.5372 | 0.00% | $0.0000 |
-| ReAct Agent | 0.7500 | 0.6556 | 0.0244 | 100.0% | $0.0038 |
-| Generic Coding Agent | 0.7500 | 0.6556 | 0.0244 | 100.0% | $0.0088 |
+| Model | Detection Acc | Fault Recall | RCA F1 (credited) | RCA F1 (raw) | False Positive Rate | Cost per Session |
+|-------|:-------------:|:------------:|:-----------------:|:------------:|:-------------------:|:----------------:|
+| **Proposed 7-Phase Agent** | **0.850** | **0.800** | **0.874** | **0.691** | **0.0%** | **$0.000296** |
+| Scripted Rules | 0.767 | 0.689 | 0.754 | 0.595 | 0.0% | $0.000000 |
+| SADE-Style Baseline | 0.750 | 1.000 | 0.636 | 0.636 | 100.0% | $0.001095 |
+| Zero-Shot LLM | 0.750 | 1.000 | 0.513 | 0.513 | 100.0% | $0.000029 |
+| ReAct Agent | 0.750 | 1.000 | 0.024 | 0.024 | 100.0% | $0.000381 |
+| Generic Coding Agent | 0.750 | 1.000 | 0.024 | 0.024 | 100.0% | $0.000885 |
 
 ```mermaid
 xychart-beta
-    title "RCA F1 Score (higher is better)"
-    x-axis ["Proposed", "SADE-Style", "Zero-Shot", "Scripted", "ReAct", "Coding"]
-    y-axis "RCA F1" 0 --> 0.7
-    bar [0.6207, 0.5734, 0.5375, 0.5372, 0.0244, 0.0244]
+    title "RCA F1 Score credited (higher is better)"
+    x-axis ["Proposed", "Scripted", "SADE-Style", "Zero-Shot", "ReAct", "Coding"]
+    y-axis "RCA F1" 0 --> 1.0
+    bar [0.874, 0.754, 0.636, 0.513, 0.024, 0.024]
 ```
 
 ```mermaid
@@ -421,17 +455,19 @@ xychart-beta
 
 | Gap | Result |
 |-----|--------|
-| **Sub-Gap A: Over-diagnosis** | The agent had a **0.0% False Positive Rate** on healthy network controls. ReAct, Claude Code style, and SADE baselines had 100% false alarms. |
-| **Sub-Gap B: Cost and tokens** | The agent used **1,915 input tokens ($0.0138 per session)**. That is more than 100 times cheaper than unconstrained agents ($1.44 in SADE). |
-| **Sub-Gap C: Transferability** | The agent kept a **96.3% transfer score** on held-out topologies and P4 testbeds, with no performance collapse. |
+| **Sub-Gap A: Over-diagnosis** | The agent achieved **0.0% False Positive Rate** on healthy network controls. ReAct, Coding, and SADE baselines had 100% false alarms. |
+| **Sub-Gap B: Cost and tokens** | The agent used **1,905 input tokens ($0.000296 per session)** on average. That is drastically cheaper than unconstrained agents (up to $1.44 in SADE). |
+| **Sub-Gap C: Transferability** | The agent achieved **held-out F1 = 1.0** on unseen topologies (dev F1 = 0.667), showing strong transfer to new network environments. |
 
 ### 3. Component ablations
 
-| Component removed | Effect observed |
-|-------------------|-----------------|
-| Falsification probes | RCA F1 drops by **29.1%** |
-| Abstain option | False positive rate jumps to **100%** |
-| Phase gating or skills | RCA F1 falls to **near zero** |
+| Component removed | Detection Acc | RCA F1 (credited) | False Positive Rate | Effect observed |
+|-------------------|:-------------:|:-----------------:|:-------------------:|-----------------|
+| Falsification probes | 0.700 | 0.489 | 0.0% | RCA F1 drops by **43.7%** (most critical component) |
+| Abstain option | 0.700 | 0.868 | **100.0%** | False positive rate jumps to 100% |
+| Phase gating | 0.700 | 0.023 | 100.0% | RCA F1 collapses to near zero |
+| Skills (prompt templates) | 1.000 | 0.156 | 0.0% | RCA F1 drops by **82.0%** |
+| Evidence filtering | 0.833 | 0.868 | 0.0% | Minimal change (filtering is redundant at small scale) |
 
 ---
 
