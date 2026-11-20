@@ -36,8 +36,19 @@ class MetricCalculator:
             localization_accuracy = 1.0
 
         # 3. RCA F1: multiclass macro/micro F1 over fault family classifications
-        y_true = runs_df["ground_truth_fault_family"].fillna("none").astype(str).tolist()
-        y_pred = runs_df["root_cause"].fillna("none").astype(str).tolist()
+        # Harmonize labels: "healthy" and "none" both represent fault-free status
+        def harmonize(val):
+            s = str(val).strip().lower()
+            if s in ("none", "healthy", "nan", ""):
+                return "healthy"
+            return s
+
+        y_true_raw = runs_df["ground_truth_fault_family"].fillna("none").astype(str).tolist()
+        y_pred_raw = runs_df["root_cause"].fillna("none").astype(str).tolist()
+        rca_f1_macro_raw = float(f1_score(y_true_raw, y_pred_raw, average="macro", zero_division=0))
+
+        y_true = [harmonize(x) for x in runs_df["ground_truth_fault_family"]]
+        y_pred = [harmonize(x) for x in runs_df["root_cause"]]
         rca_f1_macro = float(f1_score(y_true, y_pred, average="macro", zero_division=0))
         rca_f1_weighted = float(f1_score(y_true, y_pred, average="weighted", zero_division=0))
 
@@ -70,15 +81,19 @@ class MetricCalculator:
         held_out_runs = runs_df[runs_df["split"] == "held_out"]
 
         if len(dev_runs) > 0 and len(held_out_runs) > 0:
+            dev_y_true = [harmonize(x) for x in dev_runs["ground_truth_fault_family"]]
+            dev_y_pred = [harmonize(x) for x in dev_runs["root_cause"]]
             dev_f1 = float(f1_score(
-                dev_runs["ground_truth_fault_family"].astype(str),
-                dev_runs["root_cause"].astype(str),
+                dev_y_true,
+                dev_y_pred,
                 average="macro",
                 zero_division=0
             ))
+            held_y_true = [harmonize(x) for x in held_out_runs["ground_truth_fault_family"]]
+            held_y_pred = [harmonize(x) for x in held_out_runs["root_cause"]]
             held_f1 = float(f1_score(
-                held_out_runs["ground_truth_fault_family"].astype(str),
-                held_out_runs["root_cause"].astype(str),
+                held_y_true,
+                held_y_pred,
                 average="macro",
                 zero_division=0
             ))
@@ -93,6 +108,7 @@ class MetricCalculator:
             "detection_accuracy": round(detection_accuracy, 4),
             "localization_accuracy": round(localization_accuracy, 4),
             "rca_f1_macro": round(rca_f1_macro, 4),
+            "rca_f1_macro_raw": round(rca_f1_macro_raw, 4),
             "rca_f1_weighted": round(rca_f1_weighted, 4),
             "false_positive_rate": round(false_positive_rate, 4),
             "mean_steps": round(mean_steps, 2),

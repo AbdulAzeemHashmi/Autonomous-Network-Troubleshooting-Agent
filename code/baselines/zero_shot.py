@@ -6,6 +6,7 @@ Receives the incident ticket and topology summary, guessing root cause and devic
 
 from typing import Dict, Any, Optional
 import time
+import re
 from code.data.mock_network_env import MockNetworkEnv
 from code.agent.llm_client import GeminiClient
 
@@ -61,8 +62,8 @@ class ZeroShotAgent:
         if not predicted_cause or not suspected_device:
             t_lower = ticket_text.lower()
             suspected_device = nodes[0] if nodes else "unknown"
-            for n in nodes:
-                if n.lower() in t_lower:
+            for n in sorted(nodes, key=len, reverse=True):
+                if re.search(r'\b' + re.escape(n) + r'\b', t_lower, re.IGNORECASE):
                     suspected_device = n
                     break
 
