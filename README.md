@@ -128,17 +128,31 @@ The agent knows seven main types of network faults.
 
 </details>
 
-<details open>
-<summary><b>Click to open: Phase 3, Implementation and Experimental Evaluation (this phase)</b></summary>
+<details>
+<summary><b>Click to open: Phase 3, Implementation and Experimental Evaluation</b></summary>
 
 <br/>
 
 - Built the full 7-phase agent and 5 baselines in Python.
-- Added a Google Gemini LLM API client with an offline fallback.
-- Ran 720 benchmark evaluations.
+- Added a Google Gemini LLM API client with resilient offline fallback.
+- Ran 720 benchmark evaluations across 120 incidents and 15 network scenarios.
 - Ran 60 ablation studies across 5 component removals.
-- Made 8 publication grade figures at 300 DPI.
-- Built an automatic PDF compiler for the academic report.
+- Generated 9 publication-grade figures at 300 DPI.
+- Built an automatic ReportLab PDF compiler for the academic evaluation report.
+
+</details>
+
+<details open>
+<summary><b>Click to open: Phase 4, Research Paper Writing and Publication (Final Phase)</b></summary>
+
+<br/>
+
+- Authored a complete, self-contained publication research paper formatted in the Springer Nature `sn-jnl` template (two-column layout, `sn-basic` citation style).
+- Resolved device-name parsing collisions using whole-token regex word-boundary matching, lifting fault recall to 80.0% (72/90) and detection accuracy to 85.0% (102/120).
+- Performed rigorous statistical analysis: 5,000 bootstrap resamples for 95% confidence intervals and exact two-sided McNemar tests on discordant incident pairs.
+- Conducted ground-truth leakage audit (zero discrepancy when healthy flags are hidden).
+- Harmonized root-cause evaluation labels (`"healthy"` vs `"none"`), measuring both raw logged F1 (0.691) and credited abstention F1 (0.874).
+- Packaged the complete LaTeX source, reproducibility scripts, vector figures, and compiled PDF (`Phase4_Research_Paper.pdf`).
 
 </details>
 
