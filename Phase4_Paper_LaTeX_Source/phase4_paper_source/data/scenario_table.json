@@ -1,0 +1,182 @@
+[
+ {
+  "scenario": "abilene_backbone",
+  "source": "Course-Abilene",
+  "split": "held_out",
+  "faulty": 6,
+  "healthy": 0,
+  "nodes": [
+   11,
+   33,
+   77
+  ]
+ },
+ {
+  "scenario": "bgp_peering_exchange",
+  "source": "FaulT-Bench",
+  "split": "held_out",
+  "faulty": 6,
+  "healthy": 0,
+  "nodes": [
+   6,
+   8,
+   18
+  ]
+ },
+ {
+  "scenario": "campus_core_access",
+  "source": "FaulT-Bench",
+  "split": "development",
+  "faulty": 6,
+  "healthy": 0,
+  "nodes": [
+   6,
+   8,
+   18
+  ]
+ },
+ {
+  "scenario": "campus_network",
+  "source": "NIKA",
+  "split": "development",
+  "faulty": 6,
+  "healthy": 3,
+  "nodes": [
+   6,
+   8,
+   18
+  ]
+ },
+ {
+  "scenario": "datacenter_clos",
+  "source": "NIKA",
+  "split": "development",
+  "faulty": 6,
+  "healthy": 3,
+  "nodes": [
+   10,
+   15,
+   40
+  ]
+ },
+ {
+  "scenario": "datacenter_dci",
+  "source": "FaulT-Bench",
+  "split": "held_out",
+  "faulty": 6,
+  "healthy": 0,
+  "nodes": [
+   10,
+   15,
+   40
+  ]
+ },
+ {
+  "scenario": "enterprise_branch",
+  "source": "FaulT-Bench",
+  "split": "development",
+  "faulty": 6,
+  "healthy": 3,
+  "nodes": [
+   6,
+   8,
+   18
+  ]
+ },
+ {
+  "scenario": "isp_backbone",
+  "source": "NIKA",
+  "split": "development",
+  "faulty": 6,
+  "healthy": 3,
+  "nodes": [
+   6,
+   9,
+   24
+  ]
+ },
+ {
+  "scenario": "leaf_spine_clos",
+  "source": "FaulT-Bench",
+  "split": "development",
+  "faulty": 6,
+  "healthy": 3,
+  "nodes": [
+   10,
+   15,
+   40
+  ]
+ },
+ {
+  "scenario": "multihomed_edge",
+  "source": "FaulT-Bench",
+  "split": "development",
+  "faulty": 6,
+  "healthy": 3,
+  "nodes": [
+   6,
+   8,
+   18
+  ]
+ },
+ {
+  "scenario": "netman_aiops",
+  "source": "Course-NetManAIOps",
+  "split": "development",
+  "faulty": 6,
+  "healthy": 0,
+  "nodes": [
+   13,
+   15,
+   25
+  ]
+ },
+ {
+  "scenario": "p4_testbed",
+  "source": "NIKA",
+  "split": "held_out",
+  "faulty": 6,
+  "healthy": 3,
+  "nodes": [
+   6,
+   8,
+   18
+  ]
+ },
+ {
+  "scenario": "sdn_cloud_fabric",
+  "source": "NIKA",
+  "split": "held_out",
+  "faulty": 6,
+  "healthy": 3,
+  "nodes": [
+   5,
+   7,
+   17
+  ]
+ },
+ {
+  "scenario": "sdn_hybrid",
+  "source": "FaulT-Bench",
+  "split": "development",
+  "faulty": 6,
+  "healthy": 3,
+  "nodes": [
+   5,
+   7,
+   17
+  ]
+ },
+ {
+  "scenario": "transit_wan",
+  "source": "FaulT-Bench",
+  "split": "development",
+  "faulty": 6,
+  "healthy": 3,
+  "nodes": [
+   6,
+   9,
+   24
+  ]
+ }
+]

@@ -1,0 +1,68 @@
+{
+ "Ablation_No_Abstain": {
+  "n": 60,
+  "n_faulty": 42,
+  "detection_acc": 0.7,
+  "fault_recall": 1.0,
+  "fpr": 1.0,
+  "f1_logged": 0.7839393939393939,
+  "f1_harmonised": 0.6168350168350168,
+  "acc_faulty": 0.6666666666666666,
+  "loc_acc": 0.6666666666666666
+ },
+ "Ablation_No_Evidence_Filtering": {
+  "n": 60,
+  "n_faulty": 42,
+  "detection_acc": 0.7666666666666667,
+  "fault_recall": 0.6666666666666666,
+  "fpr": 0.0,
+  "f1_logged": 0.6168350168350168,
+  "f1_harmonised": 0.7839393939393939,
+  "acc_faulty": 0.6666666666666666,
+  "loc_acc": 0.6666666666666666
+ },
+ "Ablation_No_Falsification": {
+  "n": 60,
+  "n_faulty": 42,
+  "detection_acc": 0.6166666666666667,
+  "fault_recall": 0.4523809523809524,
+  "fpr": 0.0,
+  "f1_logged": 0.3111111111111111,
+  "f1_harmonised": 0.42627118644067796,
+  "acc_faulty": 0.35714285714285715,
+  "loc_acc": 0.4523809523809524
+ },
+ "Ablation_No_Phase_Gating": {
+  "n": 60,
+  "n_faulty": 42,
+  "detection_acc": 0.7,
+  "fault_recall": 1.0,
+  "fpr": 1.0,
+  "f1_logged": 0.022727272727272728,
+  "f1_harmonised": 0.022727272727272728,
+  "acc_faulty": 0.14285714285714285,
+  "loc_acc": 0.21428571428571427
+ },
+ "Ablation_No_Skills": {
+  "n": 60,
+  "n_faulty": 42,
+  "detection_acc": 1.0,
+  "fault_recall": 1.0,
+  "fpr": 0.0,
+  "f1_logged": 0.027777777777777776,
+  "f1_harmonised": 0.15625,
+  "acc_faulty": 0.14285714285714285,
+  "loc_acc": 0.6666666666666666
+ },
+ "Full_Proposed_Agent": {
+  "n": 60,
+  "n_faulty": 42,
+  "detection_acc": 0.7666666666666667,
+  "fault_recall": 0.6666666666666666,
+  "fpr": 0.0,
+  "f1_logged": 0.6168350168350168,
+  "f1_harmonised": 0.7839393939393939,
+  "acc_faulty": 0.6666666666666666,
+  "loc_acc": 0.6666666666666666
+ }
+}
