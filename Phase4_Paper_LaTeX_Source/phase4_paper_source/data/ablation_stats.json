@@ -5,32 +5,32 @@
   "detection_acc": 0.7,
   "fault_recall": 1.0,
   "fpr": 1.0,
-  "f1_logged": 0.7839393939393939,
-  "f1_harmonised": 0.6168350168350168,
-  "acc_faulty": 0.6666666666666666,
-  "loc_acc": 0.6666666666666666
+  "f1_logged": 0.8681818181818182,
+  "f1_harmonised": 0.6828282828282828,
+  "acc_faulty": 0.7857142857142857,
+  "loc_acc": 0.7857142857142857
  },
  "Ablation_No_Evidence_Filtering": {
   "n": 60,
   "n_faulty": 42,
-  "detection_acc": 0.7666666666666667,
-  "fault_recall": 0.6666666666666666,
+  "detection_acc": 0.85,
+  "fault_recall": 0.7857142857142857,
   "fpr": 0.0,
-  "f1_logged": 0.6168350168350168,
-  "f1_harmonised": 0.7839393939393939,
-  "acc_faulty": 0.6666666666666666,
-  "loc_acc": 0.6666666666666666
+  "f1_logged": 0.6828282828282828,
+  "f1_harmonised": 0.8681818181818182,
+  "acc_faulty": 0.7857142857142857,
+  "loc_acc": 0.7857142857142857
  },
  "Ablation_No_Falsification": {
   "n": 60,
   "n_faulty": 42,
-  "detection_acc": 0.6166666666666667,
-  "fault_recall": 0.4523809523809524,
+  "detection_acc": 0.7,
+  "fault_recall": 0.5714285714285714,
   "fpr": 0.0,
-  "f1_logged": 0.3111111111111111,
-  "f1_harmonised": 0.42627118644067796,
-  "acc_faulty": 0.35714285714285715,
-  "loc_acc": 0.4523809523809524
+  "f1_logged": 0.36035353535353537,
+  "f1_harmonised": 0.48873106060606064,
+  "acc_faulty": 0.4523809523809524,
+  "loc_acc": 0.5714285714285714
  },
  "Ablation_No_Phase_Gating": {
   "n": 60,
@@ -41,7 +41,7 @@
   "f1_logged": 0.022727272727272728,
   "f1_harmonised": 0.022727272727272728,
   "acc_faulty": 0.14285714285714285,
-  "loc_acc": 0.21428571428571427
+  "loc_acc": 0.7857142857142857
  },
  "Ablation_No_Skills": {
   "n": 60,
@@ -52,17 +52,17 @@
   "f1_logged": 0.027777777777777776,
   "f1_harmonised": 0.15625,
   "acc_faulty": 0.14285714285714285,
-  "loc_acc": 0.6666666666666666
+  "loc_acc": 0.7857142857142857
  },
  "Full_Proposed_Agent": {
   "n": 60,
   "n_faulty": 42,
-  "detection_acc": 0.7666666666666667,
-  "fault_recall": 0.6666666666666666,
+  "detection_acc": 0.85,
+  "fault_recall": 0.7857142857142857,
   "fpr": 0.0,
-  "f1_logged": 0.6168350168350168,
-  "f1_harmonised": 0.7839393939393939,
-  "acc_faulty": 0.6666666666666666,
-  "loc_acc": 0.6666666666666666
+  "f1_logged": 0.6828282828282828,
+  "f1_harmonised": 0.8681818181818182,
+  "acc_faulty": 0.7857142857142857,
+  "loc_acc": 0.7857142857142857
  }
 }
